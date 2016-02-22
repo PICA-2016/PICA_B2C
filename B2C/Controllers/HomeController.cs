@@ -26,5 +26,11 @@ namespace B2C.Controllers
 
             return View();
         }
+
+        public ActionResult Table()
+        {
+
+            return View();
+        }
     }
 }
