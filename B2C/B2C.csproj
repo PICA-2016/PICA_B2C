@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -601,6 +602,17 @@
     <Content Include="bower_components\raphael\raphael.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Kendo\kendo.common.min.css" />
+    <Content Include="Content\Kendo\kendo.default.min.css" />
+    <Content Include="Content\Kendo\kendo.material.min.css" />
+    <Content Include="Content\Kendo\kendo.metro.min.css" />
+    <Content Include="Content\Kendo\kendo.mobile.all.min.css" />
+    <Content Include="Content\Kendo\kendo.mobile.material.min.css" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\Linq\linq.js" />
     <Content Include="dist\css\sb-admin-2.css" />
     <Content Include="dist\css\timeline.css" />
     <Content Include="dist\js\flot-data.js" />
@@ -936,6 +948,25 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Kendo\jquery.min.js" />
+    <Content Include="Scripts\Kendo\kendo.autocomplete.min.js" />
+    <Content Include="Scripts\Kendo\kendo.calendar.min.js" />
+    <Content Include="Scripts\Kendo\kendo.combobox.min.js" />
+    <Content Include="Scripts\Kendo\kendo.core.min.js" />
+    <Content Include="Scripts\Kendo\kendo.data.min.js" />
+    <Content Include="Scripts\Kendo\kendo.data.odata.min.js" />
+    <Content Include="Scripts\Kendo\kendo.datepicker.min.js" />
+    <Content Include="Scripts\Kendo\kendo.datetimepicker.min.js" />
+    <Content Include="Scripts\Kendo\kendo.fx.min.js" />
+    <Content Include="Scripts\Kendo\kendo.list.min.js" />
+    <Content Include="Scripts\Kendo\kendo.listview.min.js" />
+    <Content Include="Scripts\Kendo\kendo.mobile.switch.min.js" />
+    <Content Include="Scripts\Kendo\kendo.numerictextbox.min.js" />
+    <Content Include="Scripts\Kendo\kendo.pager.min.js" />
+    <Content Include="Scripts\Kendo\kendo.popup.min.js" />
+    <Content Include="Scripts\Kendo\kendo.selectable.min.js" />
+    <Content Include="Scripts\Kendo\kendo.timepicker.min.js" />
+    <Content Include="Scripts\Kendo\kendo.userevents.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -955,6 +986,26 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Table.cshtml" />
+    <Content Include="Views\Administration\Products.cshtml" />
+    <Content Include="Scripts\Kendo\jquery.min.map" />
+    <Content Include="Scripts\Kendo\kendo.autocomplete.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.calendar.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.combobox.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.core.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.data.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.data.odata.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.datepicker.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.datetimepicker.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.fx.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.list.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.listview.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.mobile.switch.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.numerictextbox.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.pager.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.popup.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.selectable.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.timepicker.min.js.map" />
+    <Content Include="Scripts\Kendo\kendo.userevents.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -967,6 +1018,12 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PICA_B2C.Domain.MainModule.Entities\PICA_B2C.Domain.MainModule.Entities.csproj">
+      <Project>{68b22124-9c73-420f-ada9-ac48b39670ca}</Project>
+      <Name>PICA_B2C.Domain.MainModule.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
