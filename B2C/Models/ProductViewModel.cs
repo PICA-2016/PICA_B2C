@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace PICA_B2C.Domain.MainModule.Entities.Models
+namespace B2C.Models
 {
     /// <summary>
-    /// Product entity.
+    /// Product Model.
     /// </summary>
-    public class Product
+    public class ProductViewModel
     {
         /// <summary>
         /// Product identifier.

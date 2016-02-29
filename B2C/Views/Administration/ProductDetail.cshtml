@@ -1,0 +1,58 @@
+﻿@model B2C.Models.ProductViewModel
+<div id="ContainerProductDetail" class="modal-body">
+
+    @*Mostar mensaje*@
+    @if (ViewData["Result"] != null && (bool)(ViewData["Result"]))
+    {
+        <script type="text/javascript">
+            CompleteDetail('@(ViewData["ShowMessage"] !=null?ViewData["ShowMessage"].ToString():string.Empty)');
+        </script>
+    }
+    <div id="mensajeResultadosEdicionContainer" class="alert alert-info alert-dismissible hidden" role="alert">
+        <button type="button" class="close" onclick="$('#resultMessageContainer').addClass('hidden')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span id="mensajeResultadosEdicion">@ViewData["ShowMessage"]</span>
+    </div>
+
+
+    @using (Ajax.BeginForm("ProductDetail", "Administration", new AjaxOptions
+    {
+        InsertionMode = InsertionMode.ReplaceWith,
+        UpdateTargetId = "ContainerProductDetail",
+        LoadingElementId = "loader",
+        HttpMethod = "Post",
+        OnFailure = "error",
+        OnBegin = "CleanValidations"
+    }))
+    {
+        @Html.HiddenFor(m => m.ProductId)
+
+        <h2>Detail Product</h2>
+
+        <div class="form-group ">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(m => m.Description)
+            @Html.TextBoxFor(m => m.Description)
+            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+        </div>
+        @*<div class="modal-footer">*@
+            @Html.ValidationMessage("mensajeError", new { @class = "text-danger", id = "validationMessage" }) <br />
+
+            <div id="loader" class="" aletr="" style="display:none">
+                <h5><img src="~/Content/Kendo/Default/loading.gif" />Loading...</h5>
+            </div>
+
+            <div>
+                <button data-dismiss="modal">
+                    <img src="~/Content/Images/CloseWindow.png" /><h5>Close</h5>
+                </button>
+            </div>
+        @*</div>*@
+    }
+</div>
+
+

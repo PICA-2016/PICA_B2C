@@ -4,6 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="modal fade" id='detailModal' data-url='@Url.Action("ProductDetail", new {id="-id-" })' role="dialog" data-backdrop="static"  data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div id='modalInnerContainer'>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Products</h1>
@@ -24,10 +35,12 @@
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Price</th>
+                                <th>Detail</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="odd gradeA">
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -72,20 +85,53 @@
                      { data: 'Name' },
                      { data: 'Description' },
                      { data: 'Price' },
+                     {
+                         "targets": -1,
+                         "data": null,
+
+                         "defaultContent": "<button onclick='ProductDetail(this)'><img src='../../Content/Images/ViewDetail.png'/></button>"
+                     }
                 ],
             });
         });
 
-        //
+        //Detail Product
+        function ProductDetail(e) {
+            var dataRow = productsTable.row($(e).parents('tr')).data();
+            var url = $('#detailModal').data('url');
+            url = url.replace("-id-", dataRow.ProductId);
+            $.get(url, function (data) {
+                $('#modalInnerContainer').html(data);
+
+                $('#detailModal').modal('show');
+            });
+        }
+
+        //Complete Detail
+        function CompleteDetail(menssaje) {
+            $('#detailModal').modal('hide');
+            productsTable.ajax.reload();
+            if (menssaje != null && menssaje != '') {
+                document.getElementById("resultMessage").innerHTML = menssaje;
+                $("#resultMessageContainer").removeClass('hidden');
+            }
+        }
+
+        //Error
         function error() {
             $('#resultMessage').text("Connection error");
             $('#resultMessageContainer').removeClass('hidden');
         }
 
-        //
+        //Error table
         function errorTable() {
             $('#resultMessage').text("They will not be see data");
             $('#resultMessageContainer').removeClass('hidden');
+        }
+
+        //Clean validation control
+        function CleanValidations() {
+            $('#validationMessage').empty();
         }
     </script>
 }

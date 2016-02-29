@@ -1,4 +1,5 @@
-﻿using PICA_B2C.Domain.MainModule.Entities.Models;
+﻿using B2C.Models;
+using PICA_B2C.Domain.MainModule.Entities.Models;
 using PICA_B2C.Domain.MainModule.Entities.Pagination;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,47 @@ namespace B2C.Controllers
                 data = answerProduct.Results
             }, JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// Detalle de ProfesionalesSalud.
+        /// </summary>
+        /// <param name="id">Identificador del ProfesionalSalud.</param>
+        /// <returns>Resultado.</returns>
+        public PartialViewResult ProductDetail(int id)
+        {
+            ProductViewModel model;
+
+            if (id == 0)
+            {
+                model = new ProductViewModel()
+                {
+                    ProductId = 0,
+                };
+            }
+            else
+            {
+                Product product = GetList(new BaseQueryPagination()).Results.FirstOrDefault(pro => pro.ProductId == id);
+
+                if (product == null)
+                {
+                    ViewData["Result"] = false;
+                    ModelState.AddModelError("mensajeError", "product null .");
+                    ViewData["ShowMessage"] = "product null ...";
+                }
+
+                model = new ProductViewModel()
+                {
+                    ProductId = product.ProductId,
+                    Name = product.Name,
+                    Description = product.Description,
+                    Code = product.Code,
+                    Price = product.Price
+                };
+            }
+
+            return PartialView(model);
+        }
+
 
         //TODO: consulta temporal.
         private AnswerPage<Product> GetList(BaseQueryPagination query)
