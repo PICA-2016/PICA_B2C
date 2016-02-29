@@ -1,6 +1,7 @@
 ﻿using B2C.Models;
-using PICA_B2C.Domain.MainModule.Entities.Models;
-using PICA_B2C.Domain.MainModule.Entities.Pagination;
+using PICA_B2C.Business.MainModule.Entities.Models;
+using PICA_B2C.Business.MainModule.Entities.Pagination;
+using PICA_B2C.Business.MainModule.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,8 @@ namespace B2C.Controllers
                 PageSize = length
             };
 
-            AnswerPage<Product> answerProduct = GetList(query);
+            ProductsService productsService = new ProductsService();
+            AnswerPage<Product> answerProduct = productsService.GetProducts(query);
 
             return Json(new
             {
@@ -89,7 +91,8 @@ namespace B2C.Controllers
             }
             else
             {
-                Product product = GetList(new BaseQueryPagination()).Results.FirstOrDefault(pro => pro.ProductId == id);
+                ProductsService productsService = new ProductsService();
+                Product product = productsService.GetProductById(id);
 
                 if (product == null)
                 {
@@ -111,43 +114,5 @@ namespace B2C.Controllers
             return PartialView(model);
         }
 
-
-        //TODO: consulta temporal.
-        private AnswerPage<Product> GetList(BaseQueryPagination query)
-        {
-            List<Product> lstProductsTemp = new List<Product>();
-            for (int i = 1; i <= 1000; i++)
-            {
-                lstProductsTemp.Add(new Product() { ProductId = i, Code = "C" + i, Name = "Name" + i * 2, Description = "Description....", Price = (i * 10).ToString() });
-            }
-
-            AnswerPage<Product> answer = new AnswerPage<Product>();
-            List<Product> lstProducts = null;
-            var lstProductsQuery = (from pro in lstProductsTemp
-                                    where ((String.IsNullOrEmpty(query.Contains)) || (pro.Code.ToUpper().Contains(query.Contains.ToUpper())) || (pro.Name.ToUpper().Contains(query.Contains.ToUpper())))
-                                    select pro).OrderBy(nv => nv.Name).AsQueryable<Product>();
-
-            if (query.TotalReturn)
-            {
-                answer.Total = lstProductsQuery.Count();
-            }
-
-            if (query.Page > 0)
-            {
-                lstProducts = lstProductsQuery.Skip(query.PageSize * (query.Page - 1)).Take(query.PageSize).ToList();
-                answer.PageSize = query.PageSize;
-
-            }
-            else
-            {
-                lstProducts = lstProductsQuery.ToList();
-                answer.PageSize = lstProductsQuery.Count();
-            }
-
-            answer.Results = lstProducts;
-            answer.Page = query.Page;
-
-            return answer;
-        }
     }
 }

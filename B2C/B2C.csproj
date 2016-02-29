@@ -1041,9 +1041,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PICA_B2C.Domain.MainModule.Entities\PICA_B2C.Domain.MainModule.Entities.csproj">
-      <Project>{68b22124-9c73-420f-ada9-ac48b39670ca}</Project>
-      <Name>PICA_B2C.Domain.MainModule.Entities</Name>
+    <ProjectReference Include="..\PICA_B2C.Business.MainModule.Entities\PICA_B2C.Business.MainModule.Entities.csproj">
+      <Project>{8b07d3dc-2542-42d1-a3ad-0a7d6635feb8}</Project>
+      <Name>PICA_B2C.Business.MainModule.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PICA_B2C.Business.MainModule\PICA_B2C.Business.MainModule.csproj">
+      <Project>{02af2a8c-4e00-48c3-8b92-750873f686a4}</Project>
+      <Name>PICA_B2C.Business.MainModule</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

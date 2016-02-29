@@ -104,7 +104,9 @@ C:\Proyectos\PICA_B2C\B2C\bin\Newtonsoft.Json.xml
 C:\Proyectos\PICA_B2C\B2C\obj\Debug\B2C.csprojResolveAssemblyReference.cache
 C:\Proyectos\PICA_B2C\B2C\obj\Debug\B2C.dll
 C:\Proyectos\PICA_B2C\B2C\obj\Debug\B2C.pdb
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Domain.MainModule.Entities.dll
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Domain.MainModule.Entities.pdb
 C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\CloseWindow.png
 C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\ViewDetail.png
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.Entities.dll
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.Entities.pdb
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.dll
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.pdb

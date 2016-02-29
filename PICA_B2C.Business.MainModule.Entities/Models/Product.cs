@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PICA_B2C.Domain.MainModule.Entities.Models
+namespace PICA_B2C.Business.MainModule.Entities.Models
 {
     /// <summary>
     /// Product entity.
