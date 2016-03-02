@@ -1,4 +1,4 @@
-﻿@model B2C.Models.ProductViewModel
+﻿@model PICA_B2C.Business.MainModule.Entities.Models.Product
 <div id="ContainerProductDetail" class="modal-body">
 
     @*Mostar mensaje*@
@@ -13,7 +13,6 @@
         <span id="mensajeResultadosEdicion">@ViewData["ShowMessage"]</span>
     </div>
 
-
     @using (Ajax.BeginForm("ProductDetail", "Administration", new AjaxOptions
     {
         InsertionMode = InsertionMode.ReplaceWith,
@@ -24,34 +23,30 @@
         OnBegin = "CleanValidations"
     }))
     {
-        @Html.HiddenFor(m => m.ProductId)
-
         <h2>Detail Product</h2>
 
-        <div class="form-group ">
-            @Html.LabelFor(m => m.Name)
-            @Html.TextBoxFor(m => m.Name)
-            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-        </div>
+        <h4>Name: @Model.Name</h4>
+        <h4>Description: @Model.Description</h4>
+        <h4>Category: @Model.Category</h4>
+        <h4>Price: @Model.ListPrice</h4>
+        <h4>Producer: @Model.Producer</h4>
+        <img src="@Url.Content(Model.Image)" class="img-responsive" alt="" style="width: 150px; " />
 
-        <div class="form-group ">
-            @Html.LabelFor(m => m.Description)
-            @Html.TextBoxFor(m => m.Description)
-            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-        </div>
-        @*<div class="modal-footer">*@
+        <div class="modal-footer">
             @Html.ValidationMessage("mensajeError", new { @class = "text-danger", id = "validationMessage" }) <br />
 
             <div id="loader" class="" aletr="" style="display:none">
                 <h5><img src="~/Content/Kendo/Default/loading.gif" />Loading...</h5>
             </div>
-
             <div>
                 <button data-dismiss="modal">
-                    <img src="~/Content/Images/CloseWindow.png" /><h5>Close</h5>
+                    <img src="~/Content/Images/AddCart.png" /><h5>Add to Cart</h5>
                 </button>
+                @*<button data-dismiss="modal">
+                        <img src="~/Content/Images/CloseWindow.png" /><h5>Close</h5>
+                    </button>*@
             </div>
-        @*</div>*@
+        </div>
     }
 </div>
 

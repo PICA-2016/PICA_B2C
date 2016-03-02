@@ -80,11 +80,11 @@ namespace B2C.Controllers
         /// <returns>Resultado.</returns>
         public PartialViewResult ProductDetail(int id)
         {
-            ProductViewModel model;
+            Product product;
 
             if (id == 0)
             {
-                model = new ProductViewModel()
+                product = new Product()
                 {
                     ProductId = 0,
                 };
@@ -92,7 +92,7 @@ namespace B2C.Controllers
             else
             {
                 ProductsService productsService = new ProductsService();
-                Product product = productsService.GetProductById(id);
+                product = productsService.GetProductById(id);
 
                 if (product == null)
                 {
@@ -100,18 +100,9 @@ namespace B2C.Controllers
                     ModelState.AddModelError("mensajeError", "product null .");
                     ViewData["ShowMessage"] = "product null ...";
                 }
-
-                model = new ProductViewModel()
-                {
-                    ProductId = product.ProductId,
-                    Name = product.Name,
-                    Description = product.Description,
-                    Code = product.Code,
-                    Price = product.Price
-                };
             }
 
-            return PartialView(model);
+            return PartialView(product);
         }
 
     }

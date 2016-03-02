@@ -12,14 +12,14 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
     public class Product
     {
         /// <summary>
+        /// Identifier.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Product identifier.
         /// </summary>
         public int ProductId { get; set; }
-
-        /// <summary>
-        /// Product code.
-        /// </summary>
-        public string Code { get; set; }
 
         /// <summary>
         /// Product name.
@@ -32,9 +32,19 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
         public string Description { get; set; }
 
         /// <summary>
+        /// Product category.
+        /// </summary>
+        public string Category { get; set; }
+
+        /// <summary>
         /// Product price.
         /// </summary>
-        public string Price { get; set; }
+        public int ListPrice { get; set; }
+
+        /// <summary>
+        /// Product producer.
+        /// </summary>
+        public string Producer { get; set; }
 
         /// <summary>
         /// Name image.
