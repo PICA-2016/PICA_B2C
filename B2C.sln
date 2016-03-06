@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PICA_B2C.Business.MainModul
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 Service Agent", "4 Service Agent", "{5FC46390-F15E-46DC-9FCB-0E90639FB5EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PICA_B2C.Infrastructure.CrossCutting.Core.IoC", "PICA_B2C.Infrastructure.CrossCutting.Core.IoC\PICA_B2C.Infrastructure.CrossCutting.Core.IoC.csproj", "{13953B20-2335-4513-A457-26A0E23F69E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PICA_B2C.Infrastructure.CrossCutting.IoC", "PICA_B2C.Infrastructure.CrossCutting.Core.IoC\PICA_B2C.Infrastructure.CrossCutting.IoC.csproj", "{13953B20-2335-4513-A457-26A0E23F69E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PICA_B2C.ServiceAgent.MainModule", "PICA_B2C.ServiceAgent.MainModule\PICA_B2C.ServiceAgent.MainModule.csproj", "{FAC65432-62FC-4953-A312-CC80F04BFF96}"
 EndProject

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PICA_B2C.Infrastructure.CrossCutting.Core.IoC
+namespace PICA_B2C.Infrastructure.CrossCutting.IoC
 {
     /// <summary>
     /// Made with implementation of IoC, Unity for this deployment is used.

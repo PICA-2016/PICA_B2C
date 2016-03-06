@@ -1,7 +1,7 @@
 ﻿using PICA_B2C.Business.MainModule.Contracts;
 using PICA_B2C.Business.MainModule.Entities.Models;
 using PICA_B2C.Business.MainModule.Entities.Pagination;
-using PICA_B2C.Infrastructure.CrossCutting.Core.IoC;
+using PICA_B2C.Infrastructure.CrossCutting.IoC;
 using PICA_B2C.ServiceAgent.MainModule.Contracts;
 using System;
 using System.Collections.Generic;

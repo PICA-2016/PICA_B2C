@@ -50,9 +50,9 @@
       <Project>{8b07d3dc-2542-42d1-a3ad-0a7d6635feb8}</Project>
       <Name>PICA_B2C.Business.MainModule.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PICA_B2C.Infrastructure.CrossCutting.Core.IoC\PICA_B2C.Infrastructure.CrossCutting.Core.IoC.csproj">
+    <ProjectReference Include="..\PICA_B2C.Infrastructure.CrossCutting.Core.IoC\PICA_B2C.Infrastructure.CrossCutting.IoC.csproj">
       <Project>{13953b20-2335-4513-a457-26a0e23f69e2}</Project>
-      <Name>PICA_B2C.Infrastructure.CrossCutting.Core.IoC</Name>
+      <Name>PICA_B2C.Infrastructure.CrossCutting.IoC</Name>
     </ProjectReference>
     <ProjectReference Include="..\PICA_B2C.ServiceAgent.MainModule\PICA_B2C.ServiceAgent.MainModule.csproj">
       <Project>{fac65432-62fc-4953-a312-cc80f04bff96}</Project>

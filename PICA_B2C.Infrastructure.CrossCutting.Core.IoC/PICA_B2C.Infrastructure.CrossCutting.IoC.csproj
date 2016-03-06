@@ -7,8 +7,8 @@
     <ProjectGuid>{13953B20-2335-4513-A457-26A0E23F69E2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PICA_B2C.Infrastructure.CrossCutting.Core.IoC</RootNamespace>
-    <AssemblyName>PICA_B2C.Infrastructure.CrossCutting.Core.IoC</AssemblyName>
+    <RootNamespace>PICA_B2C.Infrastructure.CrossCutting.IoC</RootNamespace>
+    <AssemblyName>PICA_B2C.Infrastructure.CrossCutting.IoC</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
