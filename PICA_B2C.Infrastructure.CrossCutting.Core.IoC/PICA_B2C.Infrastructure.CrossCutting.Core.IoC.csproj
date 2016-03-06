@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{02AF2A8C-4E00-48C3-8B92-750873F686A4}</ProjectGuid>
+    <ProjectGuid>{13953B20-2335-4513-A457-26A0E23F69E2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PICA_B2C.Business.MainModule</RootNamespace>
-    <AssemblyName>PICA_B2C.Business.MainModule</AssemblyName>
+    <RootNamespace>PICA_B2C.Infrastructure.CrossCutting.Core.IoC</RootNamespace>
+    <AssemblyName>PICA_B2C.Infrastructure.CrossCutting.Core.IoC</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\MicrosoftEnterpriseLibrary5.0\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,19 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IProductsService.cs" />
+    <Compile Include="IoCFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ProductsService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\PICA_B2C.Business.MainModule.Entities\PICA_B2C.Business.MainModule.Entities.csproj">
-      <Project>{8b07d3dc-2542-42d1-a3ad-0a7d6635feb8}</Project>
-      <Name>PICA_B2C.Business.MainModule.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PICA_B2C.Infrastructure.CrossCutting.Core.IoC\PICA_B2C.Infrastructure.CrossCutting.Core.IoC.csproj">
-      <Project>{13953b20-2335-4513-a457-26a0e23f69e2}</Project>
-      <Name>PICA_B2C.Infrastructure.CrossCutting.Core.IoC</Name>
+    <ProjectReference Include="..\PICA_B2C.Infrastructure.CrossCutting.Core\PICA_B2C.Infrastructure.CrossCutting.Core.csproj">
+      <Project>{2ef26dba-b2b1-408f-813e-578370b903d1}</Project>
+      <Name>PICA_B2C.Infrastructure.CrossCutting.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\PICA_B2C.ServiceAgent.MainModule\PICA_B2C.ServiceAgent.MainModule.csproj">
       <Project>{fac65432-62fc-4953-a312-cc80f04bff96}</Project>

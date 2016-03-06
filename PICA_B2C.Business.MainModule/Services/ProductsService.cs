@@ -1,6 +1,8 @@
 ﻿using PICA_B2C.Business.MainModule.Contracts;
 using PICA_B2C.Business.MainModule.Entities.Models;
 using PICA_B2C.Business.MainModule.Entities.Pagination;
+using PICA_B2C.Infrastructure.CrossCutting.Core.IoC;
+using PICA_B2C.ServiceAgent.MainModule.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,54 +23,48 @@ namespace PICA_B2C.Business.MainModule.Services
         /// <returns>Products.</returns>
         public AnswerPage<Product> GetProducts(BaseQueryPagination query)
         {
-            List<Product> lstProductsTemp = new List<Product>();
-            for (int i = 1; i <= 1000; i++)
+            try
             {
-                temp = GetRamdom();
-
-                lstProductsTemp.Add(new Product() {
-                    Id = i,
-                    ProductId = i,
-                    Name = "Name " + temp,
-                    Description = "Description.." + temp,
-                    Category = "Category " + temp,
-                    ListPrice = (i * 10),
-                    Producer = "Producer " + temp,
-                    Image = GetImage(),
-            });
+                return IoCFactory.Resolve<IProductsServiceAgent>().GetProducts(query);
             }
-
-            AnswerPage<Product> answer = new AnswerPage<Product>();
-            List<Product> lstProducts = null;
-            var lstProductsQuery = (from pro in lstProductsTemp
-                                    where ((String.IsNullOrEmpty(query.Contains)) 
-                                    || (pro.ProductId.ToString().Equals(query.Contains))
-                                    || (pro.Name.ToUpper().Contains(query.Contains.ToUpper()))
-                                    || (pro.Description.ToUpper().Contains(query.Contains.ToUpper()))
-                                    )
-                                    select pro).OrderBy(pro => pro.Id).AsQueryable<Product>();
-
-            if (query.TotalReturn)
+            catch (Exception ex)
             {
-                answer.Total = lstProductsQuery.Count();
+                throw new Exception("An error occurred while querying products", ex);
             }
+        }
 
-            if (query.Page > 0)
+        /// <summary>
+        /// Get Products by Name.
+        /// </summary>
+        /// <param name="query">Query.</param>
+        /// <returns>Products.</returns>
+        public AnswerPage<Product> GetProductsByName(BaseQueryPagination query)
+        {
+            try
             {
-                lstProducts = lstProductsQuery.Skip(query.PageSize * (query.Page - 1)).Take(query.PageSize).ToList();
-                answer.PageSize = query.PageSize;
-
+                return IoCFactory.Resolve<IProductsServiceAgent>().GetProductsByName(query);
             }
-            else
+            catch (Exception ex)
             {
-                lstProducts = lstProductsQuery.ToList();
-                answer.PageSize = lstProductsQuery.Count();
+                throw new Exception("An error occurred while querying products by Name", ex);
             }
+        }
 
-            answer.Results = lstProducts;
-            answer.Page = query.Page;
-
-            return answer;
+        /// <summary>
+        /// Get Products by Description.
+        /// </summary>
+        /// <param name="query">Query.</param>
+        /// <returns>Products.</returns>
+        public AnswerPage<Product> GetProductsByDescription(BaseQueryPagination query)
+        {
+            try
+            {
+                return IoCFactory.Resolve<IProductsServiceAgent>().GetProductsByDescription(query);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while querying products by Description", ex);
+            }
         }
 
         /// <summary>
@@ -78,30 +74,14 @@ namespace PICA_B2C.Business.MainModule.Services
         /// <returns>Porduct.</returns>
         public Product GetProductById(int id)
         {
-            return GetProducts(new BaseQueryPagination()).Results.FirstOrDefault(pro => pro.Id == id);
-        }
-
-
-        //TODO: temporal .... borrar
-        private string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        private string temp;
-        private Random random = new Random();
-        private List<string> lstImages = new List<string>()
-        {
-            "http://ecx.images-amazon.com/images/I/41oZNEzk3NL.jpg",
-            "http://www.lamcomputer.com/images/logitech%20x530/x530b.jpg",
-            "http://sonyglobal.scene7.com/is/image/gwtprod/5ba9ed28c11595e42572c84b174da6bc?fmt=png-alpha&wid=1000",
-            "http://photos2.appleinsidercdn.com/gallery/13592-8515-150715-iPod_touch-l.jpg",
-            "http://www.omicrono.com/wp-content/uploads/2015/02/alienware-portatil.jpg"
-        };
-        private Random randomImg = new Random();
-        private string GetRamdom()
-        {
-            return chars[random.Next(chars.Length)].ToString() + chars[random.Next(chars.Length)].ToString() + chars[random.Next(chars.Length)].ToString();
-        }
-        private string GetImage()
-        {
-            return lstImages[randomImg.Next(lstImages.Count()-1)];
+            try
+            {
+                return IoCFactory.Resolve<IProductsServiceAgent>().GetProductById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while querying the product by id", ex);
+            }
         }
     }
 }

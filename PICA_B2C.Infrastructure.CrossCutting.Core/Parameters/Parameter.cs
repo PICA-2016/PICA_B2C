@@ -11,15 +11,15 @@ namespace PICA_B2C.Infrastructure.CrossCutting.Core.Parameters
     /// </summary>
     public static class Parameter
     {
-        ///// <summary>
-        ///// Example.
-        ///// </summary>
-        //public static string ConfigurationParameter
-        //{
-        //    get
-        //    {
-        //        return ParameterSettings.GetValue("ConfigurationParameter", "0");
-        //    }
-        //}
+        /// <summary>
+        /// Name of IoCFactory
+        /// </summary>
+        public static string NameIoCFactory
+        {
+            get
+            {
+                return ParameterSettings.GetValue("IoCFactoryDatosCore", "RealAppContext");
+            }
+        }
     }
 }

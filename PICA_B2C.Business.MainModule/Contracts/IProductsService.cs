@@ -21,6 +21,20 @@ namespace PICA_B2C.Business.MainModule.Contracts
         AnswerPage<Product> GetProducts(BaseQueryPagination query);
 
         /// <summary>
+        /// Get Products by Name.
+        /// </summary>
+        /// <param name="query">Query.</param>
+        /// <returns>Products.</returns>
+        AnswerPage<Product> GetProductsByName(BaseQueryPagination query);
+
+        /// <summary>
+        /// Get Products by Description.
+        /// </summary>
+        /// <param name="query">Query.</param>
+        /// <returns>Products.</returns>
+        AnswerPage<Product> GetProductsByDescription(BaseQueryPagination query);
+
+        /// <summary>
         /// Get Product by Id.
         /// </summary>
         /// <param name="productId">Product Id.</param>

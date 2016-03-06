@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://servicioomsproductos.kallsonys.com/" targetNamespace="http://servicioomsproductos.kallsonys.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="consultarPRODUCTOS_DESCRIPCION" type="tns:consultarPRODUCTOS_DESCRIPCION" />
+  <xs:element name="consultarPRODUCTOS_DESCRIPCIONResponse" type="tns:consultarPRODUCTOS_DESCRIPCIONResponse" />
+  <xs:element name="consultarPRODUCTOS_ID" type="tns:consultarPRODUCTOS_ID" />
+  <xs:element name="consultarPRODUCTOS_IDResponse" type="tns:consultarPRODUCTOS_IDResponse" />
+  <xs:element name="consultarPRODUCTOS_LISTA" type="tns:consultarPRODUCTOS_LISTA" />
+  <xs:element name="consultarPRODUCTOS_LISTAResponse" type="tns:consultarPRODUCTOS_LISTAResponse" />
+  <xs:element name="consultarPRODUCTOS_NOMBRE" type="tns:consultarPRODUCTOS_NOMBRE" />
+  <xs:element name="consultarPRODUCTOS_NOMBREResponse" type="tns:consultarPRODUCTOS_NOMBREResponse" />
+  <xs:complexType name="consultarPRODUCTOS_LISTA">
+    <xs:sequence>
+      <xs:element name="NUMERO_PAGINA" type="xs:int" />
+      <xs:element name="TAMANO_PAGINA" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarPRODUCTOS_LISTAResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:producto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="producto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CATEGORIA" type="xs:string" />
+      <xs:element minOccurs="0" name="DESCRIPCION" type="xs:string" />
+      <xs:element minOccurs="0" name="FABRICANTE" type="xs:string" />
+      <xs:element name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IMAGEN_URL" type="xs:string" />
+      <xs:element minOccurs="0" name="NOMBRE" type="xs:string" />
+      <xs:element name="PRECIO_LISTA" type="xs:int" />
+      <xs:element name="PRODUCTO_ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarPRODUCTOS_ID">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarPRODUCTOS_IDResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:producto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarPRODUCTOS_DESCRIPCION">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DESCRIPCION" type="xs:string" />
+      <xs:element name="NUMERO_PAGINA" type="xs:int" />
+      <xs:element name="TAMANO_PAGINA" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarPRODUCTOS_DESCRIPCIONResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:producto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarPRODUCTOS_NOMBRE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NOMBRE" type="xs:string" />
+      <xs:element name="NUMERO_PAGINA" type="xs:int" />
+      <xs:element name="TAMANO_PAGINA" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarPRODUCTOS_NOMBREResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:producto" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
