@@ -1,4 +1,5 @@
 ﻿using B2C.Models;
+using PICA_B2C.Business.MainModule.Entities.Enumerations;
 using PICA_B2C.Business.MainModule.Entities.Models;
 using PICA_B2C.Business.MainModule.Entities.Pagination;
 using PICA_B2C.Business.MainModule.Services;
@@ -43,8 +44,9 @@ namespace B2C.Controllers
         /// <param name="start">Start.</param>
         /// <param name="length">Length.</param>
         /// <param name="search">Search.</param>
+        /// <param name="typeSearch">Type Search.</param>
         /// <returns>Products.</returns>
-        public async Task<JsonResult> FilterProducts(int draw, int start, int length, Dictionary<string, string> search)
+        public async Task<JsonResult> FilterProducts(int draw, int start, int length, Dictionary<string, string> search, TypeSearch typeSearch)
         {
             Response.Expires = 0;
             string filterSearch = string.Empty;
@@ -62,7 +64,31 @@ namespace B2C.Controllers
             };
 
             ProductsService productsService = new ProductsService();
-            AnswerPage<Product> answerProduct = productsService.GetProducts(query);
+            AnswerPage<Product> answerProduct = new AnswerPage<Product>();
+
+            switch (typeSearch)
+            {
+                case TypeSearch.Code:
+                    {
+                        answerProduct = productsService.GetProductsByName(query);
+                        break;
+                    }
+                case TypeSearch.Name:
+                    {
+                        answerProduct = productsService.GetProductsByName(query);
+                        break;
+                    }
+                case TypeSearch.Description:
+                    {
+                        answerProduct = productsService.GetProductsByDescription(query);
+                        break;
+                    }
+                default:
+                    {
+                        answerProduct = productsService.GetProductsByName(query);
+                        break;
+                    }
+            }
 
             return Json(new
             {

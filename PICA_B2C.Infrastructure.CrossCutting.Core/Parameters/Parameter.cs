@@ -18,7 +18,7 @@ namespace PICA_B2C.Infrastructure.CrossCutting.Core.Parameters
         {
             get
             {
-                return ParameterSettings.GetValue("IoCFactoryDatosCore", "RealAppContext");
+                return ParameterSettings.GetValue("IoCFactoryServiceAgent", "RealAppContext");
             }
         }
     }

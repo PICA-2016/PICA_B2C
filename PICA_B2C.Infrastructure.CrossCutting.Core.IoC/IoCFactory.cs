@@ -92,17 +92,6 @@ namespace PICA_B2C.Infrastructure.CrossCutting.IoC
         private static void ConfigureRootContainer(IUnityContainer container)
         {
             RegisterServicesAgent(container);
-            RegisterServices(container);
-        }
-
-        /// <summary>
-        /// It records data types related services.
-        /// </summary>
-        /// <param name="container">Container to configure.</param>
-        private static void RegisterServices(IUnityContainer container)
-        {
-            //container.RegisterType<IProductsService, ProductsService>(new TransientLifetimeManager());
-            
         }
 
         /// <summary>
