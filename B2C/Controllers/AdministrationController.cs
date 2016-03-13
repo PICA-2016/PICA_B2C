@@ -70,7 +70,7 @@ namespace B2C.Controllers
             {
                 case TypeSearch.Code:
                     {
-                        answerProduct = productsService.GetProductsByName(query);
+                        answerProduct = productsService.GetProductsByName(query); //TODO: falta metodo de busqueda por codigo en el Servicio Web
                         break;
                     }
                 case TypeSearch.Name:
@@ -131,5 +131,38 @@ namespace B2C.Controllers
             return View(product);
         }
 
+        /// <summary>
+        /// Get the top 5
+        /// </summary>
+        /// <returnsTop 5></returns>
+        public async Task<JsonResult> ProductsTop5()
+        {
+            Response.Expires = 0;
+
+            ProductsService productsService = new ProductsService();
+            AnswerPage<Product> answerProduct = new AnswerPage<Product>();
+
+            //TODO: falta el metodo de TOP5 en el Servicio Web
+            answerProduct = productsService.GetProductsByName(new BaseQueryPagination() { Page = 1, PageSize = 5, Contains = string.Empty});
+
+            if (answerProduct.Results.Count > 0)
+            {
+                return Json(new
+                {
+                    Items = answerProduct.Results,
+                    Total = answerProduct.Results.Count,
+                    Message = answerProduct.Results.Count == 0 ? "No hay datos" : string.Empty
+                }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new
+                {
+                    Items = new List<Product>(),
+                    Total = 0,
+                    Mensaje = "No hay datos"
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

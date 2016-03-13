@@ -1,56 +1,3 @@
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\ApplicationInsights.config
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\csc.exe
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\Microsoft.CodeAnalysis.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\Microsoft.CSharp.Core.targets
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\Microsoft.VisualBasic.Core.targets
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\System.Collections.Immutable.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\System.Reflection.Metadata.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\vbc.exe
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\VBCSCompiler.exe
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\roslyn\VBCSCompiler.exe.config
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\B2C.dll.config
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\B2C.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\B2C.pdb
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Antlr3.Runtime.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.AI.Agent.Intercept.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.AI.DependencyCollector.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.AI.PerfCounterCollector.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.AI.ServerTelemetryChannel.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.AI.Web.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.AI.WindowsServer.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.ApplicationInsights.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.Web.Infrastructure.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Newtonsoft.Json.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.Helpers.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.Mvc.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.Optimization.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.Razor.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.WebPages.Deployment.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.WebPages.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.WebPages.Razor.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\WebGrease.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.AI.DependencyCollector.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.AI.ServerTelemetryChannel.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.AI.Web.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.AI.WindowsServer.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.ApplicationInsights.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.Helpers.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.Mvc.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.Optimization.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.Razor.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.WebPages.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.WebPages.Deployment.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\System.Web.WebPages.Razor.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Antlr3.Runtime.pdb
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\bin\Newtonsoft.Json.xml
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\obj\Debug\B2C.csprojResolveAssemblyReference.cache
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\obj\Debug\B2C.dll
-c:\users\daniel\documents\visual studio 2015\Projects\B2C\B2C\obj\Debug\B2C.pdb
 C:\Proyectos\PICA_B2C\B2C\bin\ApplicationInsights.config
 C:\Proyectos\PICA_B2C\B2C\bin\roslyn\csc.exe
 C:\Proyectos\PICA_B2C\B2C\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -64,6 +11,9 @@ C:\Proyectos\PICA_B2C\B2C\bin\roslyn\System.Reflection.Metadata.dll
 C:\Proyectos\PICA_B2C\B2C\bin\roslyn\vbc.exe
 C:\Proyectos\PICA_B2C\B2C\bin\roslyn\VBCSCompiler.exe
 C:\Proyectos\PICA_B2C\B2C\bin\roslyn\VBCSCompiler.exe.config
+C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\AddCart.png
+C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\CloseWindow.png
+C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\ViewDetail.png
 C:\Proyectos\PICA_B2C\B2C\bin\B2C.dll.config
 C:\Proyectos\PICA_B2C\B2C\bin\B2C.dll
 C:\Proyectos\PICA_B2C\B2C\bin\B2C.pdb
@@ -78,6 +28,8 @@ C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.ApplicationInsights.dll
 C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.Web.Infrastructure.dll
 C:\Proyectos\PICA_B2C\B2C\bin\Newtonsoft.Json.dll
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.dll
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.Entities.dll
 C:\Proyectos\PICA_B2C\B2C\bin\System.Web.Helpers.dll
 C:\Proyectos\PICA_B2C\B2C\bin\System.Web.Mvc.dll
 C:\Proyectos\PICA_B2C\B2C\bin\System.Web.Optimization.dll
@@ -86,6 +38,13 @@ C:\Proyectos\PICA_B2C\B2C\bin\System.Web.WebPages.Deployment.dll
 C:\Proyectos\PICA_B2C\B2C\bin\System.Web.WebPages.dll
 C:\Proyectos\PICA_B2C\B2C\bin\System.Web.WebPages.Razor.dll
 C:\Proyectos\PICA_B2C\B2C\bin\WebGrease.dll
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.ServiceAgent.MainModule.dll
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Infrastructure.CrossCutting.IoC.dll
+C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.Practices.Unity.dll
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Infrastructure.CrossCutting.Core.dll
+C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.Practices.ServiceLocation.dll
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.Entities.pdb
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.pdb
 C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.AI.DependencyCollector.xml
 C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.AI.Web.xml
@@ -101,22 +60,10 @@ C:\Proyectos\PICA_B2C\B2C\bin\System.Web.WebPages.Deployment.xml
 C:\Proyectos\PICA_B2C\B2C\bin\System.Web.WebPages.Razor.xml
 C:\Proyectos\PICA_B2C\B2C\bin\Antlr3.Runtime.pdb
 C:\Proyectos\PICA_B2C\B2C\bin\Newtonsoft.Json.xml
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.ServiceAgent.MainModule.pdb
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Infrastructure.CrossCutting.IoC.pdb
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Infrastructure.CrossCutting.Core.pdb
+C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.Practices.ServiceLocation.pdb
 C:\Proyectos\PICA_B2C\B2C\obj\Debug\B2C.csprojResolveAssemblyReference.cache
 C:\Proyectos\PICA_B2C\B2C\obj\Debug\B2C.dll
 C:\Proyectos\PICA_B2C\B2C\obj\Debug\B2C.pdb
-C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\CloseWindow.png
-C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\ViewDetail.png
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.Entities.dll
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.Entities.pdb
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.dll
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Business.MainModule.pdb
-C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\AddCart.png
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.ServiceAgent.MainModule.dll
-C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.Practices.Unity.dll
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Infrastructure.CrossCutting.Core.dll
-C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.Practices.ServiceLocation.dll
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.ServiceAgent.MainModule.pdb
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Infrastructure.CrossCutting.Core.pdb
-C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.Practices.ServiceLocation.pdb
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Infrastructure.CrossCutting.IoC.dll
-C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Infrastructure.CrossCutting.IoC.pdb
