@@ -1033,6 +1033,7 @@
     <Content Include="Scripts\Kendo\kendo.userevents.min.js.map" />
     <Content Include="Views\Administration\ProductDetail.cshtml" />
     <Content Include="Views\Administration\ShoppingCarts.cshtml" />
+    <Content Include="Views\Administration\ShoppingCartSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

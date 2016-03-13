@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Enumerations\TypeSearch.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Pagination\AnswerPage.cs" />
     <Compile Include="Pagination\BaseQueryPagination.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
