@@ -23,6 +23,7 @@ namespace B2C.Controllers
             return View();
         }
 
+        #region Products
         /// <summary>
         /// Product Management.
         /// </summary>
@@ -173,12 +174,29 @@ namespace B2C.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
-        #region Recursos de idioma
+        #region Shopping Cart
         /// <summary>
-        /// Recursos de Idioma para Datatables.
+        /// ShoppingCart Management.
         /// </summary>
-        /// <returns>Lista con rescursos.</returns>
+        /// <param name="id">Id.</param>
+        /// <returns>ShoppingCart(s) View.</returns>
+        public ActionResult ShoppingCart(int? id)
+        {
+            //if (id.HasValue)
+            //{
+            //    return View("Product", id.Value);
+            //}
+            return View();
+        }
+        #endregion
+
+        #region Language Resources
+        /// <summary>
+        /// Language Resources for Datatables.
+        /// </summary>
+        /// <returns>List resources.</returns>
         [HttpGet]
         public JsonResult DatatablesLocalizacion()
         {
