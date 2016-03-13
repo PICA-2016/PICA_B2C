@@ -56,6 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Service References\wsProductsReference\consultarProductos.wsdl" />
+    <None Include="Service References\wsProductsReference\consultarProductos.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\wsProductsReference\PICA_B2C.ServiceAgent.MainModule.wsProductsReference.consultarPRODUCTOS_DESCRIPCIONResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -71,10 +75,12 @@
     <None Include="Service References\wsProductsReference\PICA_B2C.ServiceAgent.MainModule.wsProductsReference.producto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\wsProductsReference\ws_productos.wsdl" />
-    <None Include="Service References\wsProductsReference\ws_productos.xsd">
-      <SubType>Designer</SubType>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PICA_B2C.Business.MainModule.Entities\PICA_B2C.Business.MainModule.Entities.csproj">
+      <Project>{8b07d3dc-2542-42d1-a3ad-0a7d6635feb8}</Project>
+      <Name>PICA_B2C.Business.MainModule.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\wsProductsReference\" />
@@ -90,12 +96,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PICA_B2C.Business.MainModule.Entities\PICA_B2C.Business.MainModule.Entities.csproj">
-      <Project>{8b07d3dc-2542-42d1-a3ad-0a7d6635feb8}</Project>
-      <Name>PICA_B2C.Business.MainModule.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

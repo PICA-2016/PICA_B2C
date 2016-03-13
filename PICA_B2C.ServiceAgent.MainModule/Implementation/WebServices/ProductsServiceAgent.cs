@@ -18,7 +18,7 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
         /// <returns>Products.</returns>
         public AnswerPage<Product> GetProducts(BaseQueryPagination query)
         {
-            wsProductsReference.ws_productosClient wsProductsClient = new wsProductsReference.ws_productosClient();
+            wsProductsReference.consultarProductosClient wsProductsClient = new wsProductsReference.consultarProductosClient();
             var resultsService = wsProductsClient.consultarPRODUCTOS_LISTA(query.Page, query.PageSize);
 
             AnswerPage<Product> answer = new AnswerPage<Product>();
@@ -48,7 +48,7 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
         /// <returns>Products.</returns>
         public AnswerPage<Product> GetProductsByName(BaseQueryPagination query)
         {
-            wsProductsReference.ws_productosClient wsProductsClient = new wsProductsReference.ws_productosClient();
+            wsProductsReference.consultarProductosClient wsProductsClient = new wsProductsReference.consultarProductosClient();
             var resultsService = wsProductsClient.consultarPRODUCTOS_NOMBRE(query.Contains, query.Page, query.PageSize);
 
             AnswerPage<Product> answer = new AnswerPage<Product>();
@@ -79,7 +79,7 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
         /// <returns>Products.</returns>
         public AnswerPage<Product> GetProductsByDescription(BaseQueryPagination query)
         {
-            wsProductsReference.ws_productosClient wsProductsClient = new wsProductsReference.ws_productosClient();
+            wsProductsReference.consultarProductosClient wsProductsClient = new wsProductsReference.consultarProductosClient();
             var resultsService = wsProductsClient.consultarPRODUCTOS_DESCRIPCION(query.Contains, query.Page, query.PageSize);
 
             AnswerPage<Product> answer = new AnswerPage<Product>();
@@ -108,25 +108,30 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
         /// </summary>
         /// <param name="id">Product Id.</param>
         /// <returns>Porduct.</returns>
-        public Product GetProductById(int id)
+        public AnswerPage<Product> GetProductById(int id)
         {
-            wsProductsReference.ws_productosClient wsProductsClient = new wsProductsReference.ws_productosClient();
+            wsProductsReference.consultarProductosClient wsProductsClient = new wsProductsReference.consultarProductosClient();
             var resultsService = wsProductsClient.consultarPRODUCTOS_ID(id);
-            var porductResult = resultsService.FirstOrDefault();
+            AnswerPage<Product> answer = new AnswerPage<Product>();
 
-            Product product = new Product()
-            {
-                Id = porductResult.ID,
-                ProductId = porductResult.PRODUCTO_ID,
-                Name = porductResult.NOMBRE,
-                Description = porductResult.DESCRIPCION,
-                Category = porductResult.CATEGORIA,
-                ListPrice = porductResult.PRECIO_LISTA,
-                Producer = porductResult.FABRICANTE,
-                Image = porductResult.IMAGEN_URL
-            };
+            answer.Page = 1;
+            answer.PageSize = 10;
+            answer.Total = resultsService.FirstOrDefault().CANTIDAD_REGISTROS;
 
-            return product;
+            answer.Results = (from pro in resultsService
+                              select new Product()
+                              {
+                                  Id = pro.ID,
+                                  ProductId = pro.PRODUCTO_ID,
+                                  Name = pro.NOMBRE,
+                                  Description = pro.DESCRIPCION,
+                                  Category = pro.CATEGORIA,
+                                  ListPrice = pro.PRECIO_LISTA,
+                                  Producer = pro.FABRICANTE,
+                                  Image = pro.IMAGEN_URL
+                              }).ToList();
+
+            return answer;
         }
     }
 }

@@ -72,7 +72,7 @@ namespace PICA_B2C.Business.MainModule.Services
         /// </summary>
         /// <param name="id">Product Id.</param>
         /// <returns>Porduct.</returns>
-        public Product GetProductById(int id)
+        public AnswerPage<Product> GetProductById(int id)
         {
             try
             {

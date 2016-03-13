@@ -108,7 +108,7 @@
         function ProductDetail(e) {
             var dataRow = productsTable.row($(e).parents('tr')).data();
 
-            window.location.href = '@Url.Action("ProductDetail", new { id = "-id-" })'.replace('-id-', dataRow.Id);
+            window.location.href = '@Url.Action("ProductDetail", new { id = "-id-" })'.replace('-id-', dataRow.ProductId);
         }
 
         ////Complete Detail

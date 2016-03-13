@@ -39,6 +39,6 @@ namespace PICA_B2C.Business.MainModule.Contracts
         /// </summary>
         /// <param name="productId">Product Id.</param>
         /// <returns>Porduct.</returns>
-        Product GetProductById(int productId);
+        AnswerPage<Product> GetProductById(int productId);
     }
 }

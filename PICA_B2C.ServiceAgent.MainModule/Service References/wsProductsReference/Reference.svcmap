@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="473ee32e-4fa3-40ce-9308-6751a225dea5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9b41dd36-a71c-433c-b314-21c5ba23ea9e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -9,9 +9,7 @@
     <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionMappings>
-      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
-    </CollectionMappings>
+    <CollectionMappings />
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -21,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8080/ServicioOMSProductos/ws_productos?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8080/ServicioOMSProductos/consultarProductos?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ws_productos.wsdl" MetadataType="Wsdl" ID="18a63510-2e4d-468c-9bb5-23f382cf9e25" SourceId="1" SourceUrl="http://localhost:8080/ServicioOMSProductos/ws_productos?wsdl" />
-    <MetadataFile FileName="ws_productos.xsd" MetadataType="Schema" ID="f5c8a926-6fb5-4efa-8e99-35fce5c609d8" SourceId="1" SourceUrl="http://localhost:8080/ServicioOMSProductos/ws_productos?xsd=1" />
+    <MetadataFile FileName="consultarProductos.wsdl" MetadataType="Wsdl" ID="83a3be57-c359-4ab6-9e5e-ba12b168eea8" SourceId="1" SourceUrl="http://localhost:8080/ServicioOMSProductos/consultarProductos?wsdl" />
+    <MetadataFile FileName="consultarProductos.xsd" MetadataType="Schema" ID="7d97ad9f-c581-4420-8bd1-db4eb183cc94" SourceId="1" SourceUrl="http://localhost:8080/ServicioOMSProductos/consultarProductos?xsd=1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

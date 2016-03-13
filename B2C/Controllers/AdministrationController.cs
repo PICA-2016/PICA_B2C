@@ -70,7 +70,16 @@ namespace B2C.Controllers
             {
                 case TypeSearch.Code:
                     {
-                        answerProduct = productsService.GetProductsByName(query); //TODO: falta metodo de busqueda por codigo en el Servicio Web
+                        int value;
+                        if (int.TryParse(filterSearch, out value))
+                        {
+                            answerProduct = productsService.GetProductById(Convert.ToInt32(filterSearch));
+                        }
+                        else
+                        {
+                            answerProduct = productsService.GetProducts(query);
+                        }
+                            
                         break;
                     }
                 case TypeSearch.Name:
@@ -118,7 +127,7 @@ namespace B2C.Controllers
             else
             {
                 ProductsService productsService = new ProductsService();
-                product = productsService.GetProductById(id);
+                product = productsService.GetProductById(id).Results.FirstOrDefault();
 
                 if (product == null)
                 {

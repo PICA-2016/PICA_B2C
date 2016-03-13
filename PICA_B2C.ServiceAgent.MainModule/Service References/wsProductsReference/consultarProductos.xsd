@@ -8,13 +8,14 @@
   <xs:element name="consultarPRODUCTOS_LISTAResponse" type="tns:consultarPRODUCTOS_LISTAResponse" />
   <xs:element name="consultarPRODUCTOS_NOMBRE" type="tns:consultarPRODUCTOS_NOMBRE" />
   <xs:element name="consultarPRODUCTOS_NOMBREResponse" type="tns:consultarPRODUCTOS_NOMBREResponse" />
-  <xs:complexType name="consultarPRODUCTOS_LISTA">
+  <xs:complexType name="consultarPRODUCTOS_DESCRIPCION">
     <xs:sequence>
+      <xs:element minOccurs="0" name="DESCRIPCION" type="xs:string" />
       <xs:element name="NUMERO_PAGINA" type="xs:int" />
       <xs:element name="TAMANO_PAGINA" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="consultarPRODUCTOS_LISTAResponse">
+  <xs:complexType name="consultarPRODUCTOS_DESCRIPCIONResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:producto" />
     </xs:sequence>
@@ -42,14 +43,13 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:producto" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="consultarPRODUCTOS_DESCRIPCION">
+  <xs:complexType name="consultarPRODUCTOS_LISTA">
     <xs:sequence>
-      <xs:element minOccurs="0" name="DESCRIPCION" type="xs:string" />
       <xs:element name="NUMERO_PAGINA" type="xs:int" />
       <xs:element name="TAMANO_PAGINA" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="consultarPRODUCTOS_DESCRIPCIONResponse">
+  <xs:complexType name="consultarPRODUCTOS_LISTAResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:producto" />
     </xs:sequence>
