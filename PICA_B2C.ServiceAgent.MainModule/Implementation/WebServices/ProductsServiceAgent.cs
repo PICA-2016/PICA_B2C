@@ -24,7 +24,7 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
             AnswerPage<Product> answer = new AnswerPage<Product>();
             answer.Page = query.Page;
             answer.PageSize = query.PageSize;
-            answer.Total = query.PageSize;  //TODO: el WS debe retornar el numero total
+            answer.Total = resultsService.FirstOrDefault().CANTIDAD_REGISTROS;
 
             answer.Results = (from pro in resultsService select new Product()
             {
@@ -54,7 +54,7 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
             AnswerPage<Product> answer = new AnswerPage<Product>();
             answer.Page = query.Page;
             answer.PageSize = query.PageSize;
-            answer.Total = query.PageSize;  //TODO: el WS debe retornar el numero total
+            answer.Total = resultsService.FirstOrDefault().CANTIDAD_REGISTROS;
 
             answer.Results = (from pro in resultsService
                               select new Product()
@@ -85,7 +85,7 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
             AnswerPage<Product> answer = new AnswerPage<Product>();
             answer.Page = query.Page;
             answer.PageSize = query.PageSize;
-            answer.Total = query.PageSize;  //TODO: el WS debe retornar el numero total
+            answer.Total = resultsService.FirstOrDefault().CANTIDAD_REGISTROS;
 
             answer.Results = (from pro in resultsService
                               select new Product()

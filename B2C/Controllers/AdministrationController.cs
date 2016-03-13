@@ -104,7 +104,7 @@ namespace B2C.Controllers
         /// </summary>
         /// <param name="id">Identificador del ProfesionalSalud.</param>
         /// <returns>Resultado.</returns>
-        public PartialViewResult ProductDetail(int id)
+        public ActionResult ProductDetail(int id)
         {
             Product product;
 
@@ -128,7 +128,7 @@ namespace B2C.Controllers
                 }
             }
 
-            return PartialView(product);
+            return View(product);
         }
 
     }

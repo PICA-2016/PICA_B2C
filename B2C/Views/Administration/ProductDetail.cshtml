@@ -1,5 +1,11 @@
 ﻿@model PICA_B2C.Business.MainModule.Entities.Models.Product
-<div id="ContainerProductDetail" class="modal-body">
+
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
 
     @*Mostar mensaje*@
     @if (ViewData["Result"] != null && (bool)(ViewData["Result"]))
@@ -13,15 +19,7 @@
         <span id="mensajeResultadosEdicion">@ViewData["ShowMessage"]</span>
     </div>
 
-    @using (Ajax.BeginForm("ProductDetail", "Administration", new AjaxOptions
-    {
-        InsertionMode = InsertionMode.ReplaceWith,
-        UpdateTargetId = "ContainerProductDetail",
-        LoadingElementId = "loader",
-        HttpMethod = "Post",
-        OnFailure = "error",
-        OnBegin = "CleanValidations"
-    }))
+    @using (Html.BeginForm("ProductDetail", "Administration", new { }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         <h2>Detalle Producto</h2>
 
@@ -32,7 +30,7 @@
         <h4>Fabricante: @Model.Producer</h4>
         <img src="@Url.Content(Model.Image)" class="img-responsive" alt="" style="width: 150px; " />
 
-        <div class="modal-footer">
+        <div >
             @Html.ValidationMessage("mensajeError", new { @class = "text-danger", id = "validationMessage" }) <br />
 
             <div id="loader" class="" aletr="" style="display:none">
@@ -42,12 +40,17 @@
                 <button data-dismiss="modal">
                     <img src="~/Content/Images/AddCart.png" /><h5>Agregar al carrito</h5>
                 </button>
-                @*<button data-dismiss="modal">
-                        <img src="~/Content/Images/CloseWindow.png" /><h5>Close</h5>
-                    </button>*@
             </div>
         </div>
     }
 </div>
+@section css {
+
+}
+@section scripts {
 
 
+    <script type="text/javascript">
+
+    </script>
+}

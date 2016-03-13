@@ -21,6 +21,7 @@
   </xs:complexType>
   <xs:complexType name="producto">
     <xs:sequence>
+      <xs:element name="CANTIDAD_REGISTROS" type="xs:int" />
       <xs:element minOccurs="0" name="CATEGORIA" type="xs:string" />
       <xs:element minOccurs="0" name="DESCRIPCION" type="xs:string" />
       <xs:element minOccurs="0" name="FABRICANTE" type="xs:string" />
