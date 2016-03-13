@@ -182,7 +182,7 @@ namespace B2C.Controllers
         /// </summary>
         /// <param name="id">Id.</param>
         /// <returns>ShoppingCart(s) View.</returns>
-        public ActionResult ShoppingCart(int? id)
+        public ActionResult ShoppingCarts(int? id)
         {
             //if (id.HasValue)
             //{

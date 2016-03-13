@@ -1032,7 +1032,7 @@
     <Content Include="Scripts\Kendo\kendo.timepicker.min.js.map" />
     <Content Include="Scripts\Kendo\kendo.userevents.min.js.map" />
     <Content Include="Views\Administration\ProductDetail.cshtml" />
-    <Content Include="Views\Administration\ShoppingCart.cshtml" />
+    <Content Include="Views\Administration\ShoppingCarts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
