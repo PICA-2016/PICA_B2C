@@ -27,13 +27,23 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
         public string LastNames { get; set; }
 
         /// <summary>
-        /// Identifiers shopping cart.
+        /// Customer email.
         /// </summary>
-        public List<int> ShoppingCartsId { get; set; }
+        public string Email { get; set; }
+
+        ///// <summary>
+        ///// Identifiers orders.
+        ///// </summary>
+        //public List<int> OrdersId { get; set; }
+
+        ///// <summary>
+        ///// List orders.
+        ///// </summary>
+        //public virtual ICollection<Order> Orders { get; set; }
 
         /// <summary>
-        /// List shopping cart.
+        /// Order.
         /// </summary>
-        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
+        public Order Order { get; set; }
     }
 }

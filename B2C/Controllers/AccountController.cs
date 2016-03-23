@@ -1,9 +1,12 @@
 ﻿using B2C.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 using PICA_B2C.Business.MainModule.Entities.Models;
 using PICA_B2C.Business.MainModule.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -15,13 +18,22 @@ namespace B2C.Controllers
     /// </summary>
     public class AccountController : Controller
     {
-        // GET: Account
+        /// <summary>
+        /// GET: Account
+        /// </summary>
+        /// <returns>View.</returns>
         public ActionResult Index()
         {
             return View();
         }
 
         #region Login
+        /// <summary>
+        /// Login.
+        /// </summary>
+        /// <param name="returnUrl">Source url.</param>
+        /// <param name="message">Message</param>
+        /// <returns>View.</returns>
         [AllowAnonymous]
         public ActionResult Login(string returnUrl, string message)
         {
@@ -35,22 +47,21 @@ namespace B2C.Controllers
         }
 
         /// <summary>
-        /// Ingresar a la aplicacion.
+        /// Login to the application.
         /// </summary>
-        /// <param name="model">Modelo.</param>
-        /// <param name="returnUrl">Url origen.</param>
-        /// <returns>Vista.</returns>
+        /// <param name="model">Model.</param>
+        /// <param name="returnUrl">Source url.</param>
+        /// <returns>View.</returns>
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                var respuestaAutenticacion = AutenticarUsuario(model.UserName.Trim(), model.Password);
+                var respuestaAutenticacion = AuthenticateUser(model.UserName.Trim(), model.Password);
 
                 if (respuestaAutenticacion != null)
                 {
-
                     await SignInAsync(respuestaAutenticacion, model.RememberMe);
 
                     return RedirectToLocal(returnUrl);
@@ -80,16 +91,14 @@ namespace B2C.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        #endregion
 
-        #region Authentication
         /// <summary>
-        /// Realizar la transacción de autenticación del usuario
+        /// Perform user authentication.
         /// </summary>
-        /// <param name="login">User name.</param>
+        /// <param name="userName">User name.</param>
         /// <param name="password">User password.</param>
         /// <returns>Service response.</returns>
-        private Customer AutenticarUsuario(string userName, string password)
+        private Customer AuthenticateUser(string userName, string password)
         {
             var customerService = new CustomersService();
 
@@ -97,27 +106,28 @@ namespace B2C.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Sign In Async.
         /// </summary>
-        /// <param name="usuario"></param>
-        /// <param name="isPersistent"></param>
-        /// <returns></returns>
-        private async Task SignInAsync(Customer usuario, bool isPersistent)
+        /// <param name="customer">Customer.</param>
+        /// <param name="isPersistent">Is Persistent.</param>
+        /// <returns>SignIn.</returns>
+        private async Task SignInAsync(Customer customer, bool isPersistent)
         {
-            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            //var claims = new List<Claim>();
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            var claims = new List<Claim>();
 
-            //List<string> lst = new List<string>();
-            //lst = usuario.Roles.Select(r => r.AutorizacionesMenu.Select(am => am.Ruta)).ToList().SelectMany(l => l).ToList();
+            List<int> lstProducts = new List<int>();
+            lstProducts = customer.Order.Items.Select(sc => sc.ProductId).ToList();
 
-            //claims.Add(new Claim(ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString()));
-            //claims.Add(new Claim(ClaimTypes.Name, usuario.Nombres));
-            //claims.Add(new Claim(ClaimTypes.Surname, usuario.Apellidos));
-            //claims.Add(new Claim(ClaimTypes.Email, usuario.CorreoElectronico));
-            //claims.Add(new Claim(ClaimTypes.Authentication, string.Join(", ", usuario.Roles.Select(r => r.Nombre))));
+            int totalProcuts = customer.Order.Items.Select(itm => itm.Quantity).Sum();
 
-            //#region Extraer ClienteId
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, customer.CustomerId.ToString()));
+            claims.Add(new Claim(ClaimTypes.Name, customer.Names));
+            claims.Add(new Claim(ClaimTypes.Surname, customer.LastNames));
+            claims.Add(new Claim(ClaimTypes.Email, !string.IsNullOrEmpty(customer.Email) ? customer.Email : string.Empty));
+            //claims.Add(new Claim(ClaimTypes.Authentication, string.Join(", ", customer.Roles.Select(r => r.Nombre))));
 
+            #region Extraer ClienteId
             //long clienteId = 0;
             //try
             //{
@@ -139,26 +149,28 @@ namespace B2C.Controllers
             //    //  string error = ex.Message;
 
             //}
-
-            //#endregion
-
+            #endregion
             //claims.Add(new Claim(ClaimTypes.Sid, clienteId.ToString()));
 
-            //claims.Add(new Claim(ClaimTypes.Role, string.Join(",", usuario.Roles.Select(r => r.RolId))));
-            //claims.Add(new Claim(ClaimTypes.UserData, string.Join(",", lst)));
-            //claims.Add(new Claim(ClaimTypes.Thumbprint, usuario.ImagenPerfilId.HasValue ? usuario.ImagenPerfilId.ToString() : ""));
-            //var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+            //claims.Add(new Claim(ClaimTypes.Role, string.Join(",", customer.Roles.Select(r => r.RolId))));
+            claims.Add(new Claim(ClaimTypes.SerialNumber, totalProcuts.ToString()));
+            claims.Add(new Claim(ClaimTypes.UserData, string.Join(",", lstProducts)));
+            //claims.Add(new Claim(ClaimTypes.Thumbprint, customer.ImagenPerfilId.HasValue ? customer.ImagenPerfilId.ToString() : ""));
+            var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
-            //AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, id);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, id);
         }
         #endregion
 
-        //private IAuthenticationManager AuthenticationManager
-        //{
-        //    get
-        //    {
-        //        return HttpContext.GetOwinContext().Authentication;
-        //    }
-        //}
+        /// <summary>
+        /// Authentication Manager.
+        /// </summary>
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
     }
 }

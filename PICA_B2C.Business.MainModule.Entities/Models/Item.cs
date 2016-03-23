@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace PICA_B2C.Business.MainModule.Entities.Models
 {
     /// <summary>
-    /// ShoppingCart entity.
+    /// Item entity.
     /// </summary>
-    public class ShoppingCart
+    public class Item
     {
         /// <summary>
         /// Identifier.
         /// </summary>
-        public int ShoppingCartId { get; set; }
+        public int ItemId { get; set; }
 
         /// <summary>
         /// Product identifier.
@@ -27,7 +27,7 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
         public virtual Product Product { get; set; }
 
         /// <summary>
-        /// quantity of the product.
+        /// Quantity of the product.
         /// </summary>
         public int Quantity { get; set; }
     }
