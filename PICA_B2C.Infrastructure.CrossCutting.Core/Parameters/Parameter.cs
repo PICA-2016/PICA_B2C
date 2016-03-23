@@ -21,5 +21,27 @@ namespace PICA_B2C.Infrastructure.CrossCutting.Core.Parameters
                 return ParameterSettings.GetValue("IoCFactoryServiceAgent", "RealAppContext");
             }
         }
+
+        /// <summary>
+        /// Customer user name.
+        /// </summary>
+        public static string CustomerUserName
+        {
+            get
+            {
+                return "Pica";
+            }
+        }
+
+        /// <summary>
+        /// Customer password.
+        /// </summary>
+        public static string CustomerPassword
+        {
+            get
+            {
+                return "Pica123";
+            }
+        }
     }
 }

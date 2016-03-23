@@ -67,3 +67,4 @@ C:\Proyectos\PICA_B2C\B2C\bin\Microsoft.Practices.ServiceLocation.pdb
 C:\Proyectos\PICA_B2C\B2C\obj\Debug\B2C.csprojResolveAssemblyReference.cache
 C:\Proyectos\PICA_B2C\B2C\obj\Debug\B2C.dll
 C:\Proyectos\PICA_B2C\B2C\obj\Debug\B2C.pdb
+C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\Logo.png

@@ -1,0 +1,140 @@
+﻿@using B2C.Models
+@model LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>@ViewBag.Title - Login</title>
+</head>
+<body>
+    <div class="container">
+
+        @*Mostar mensaje*@
+        @if (ViewData["MostrarMensaje"] != null && !string.IsNullOrEmpty(ViewData["MostrarMensaje"].ToString()))
+        {
+            <div id="mensajeResultadosContainer" class="" role="alert">
+                <button type="button" data-dismiss="alert">
+                    <div class="cerrar_popup">
+                        <img src="~/Content/Images/CloseWindow.png" />
+                    </div>
+                </button>
+                <h4><span id="mensajeResultados">@ViewData["MostrarMensaje"]</span></h4>
+            </div>
+        }
+
+        <div class="row">
+            <!-- inicio encabezado -->
+            <div class="col-xs-12">
+                <div class="row">
+                    <!-- logo -->
+                    <div class="col-md-3 ">
+                        <a href="@Url.Action("Index","Home")"><img src="~/Content/Images/Logo.png" class="img-responsive" alt="B2C" /></a>
+                    </div>
+                </div>
+            </div>
+            <!-- fin encabezado -->
+            <!-- contenidos página -->
+            <div class="col-xs-12">
+            </div>
+            <div class="col-xs-12">
+                <div class="row">
+                    <!-- inicio popup fuera -->
+                    <div class="col-sm-5 ">
+                        <section id="loginForm">
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewData["ReturnUrl"] }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm" }))
+                            {
+                                <div class="row ">
+                                    <!-- titulo y cerrar -->
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                <div class="popup">
+                                                    <div class="">
+                                                        <h2>Inicio de sesión</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- formulario -->
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <!-- fin titulo y cerrar -->
+                                            <!-- inputs -->
+                                            <div class="col-xs-12 formulario">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="row">
+                                                            *@Html.LabelFor(m => m.UserName, new { @class = "" })
+                                                        </div>
+                                                        <div class="row">
+                                                            @Html.TextBoxFor(m => m.UserName, new { @class = "" })
+                                                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        <div class="row">
+                                                            *@Html.LabelFor(m => m.Password, new { @class = "" })
+                                                        </div>
+                                                        <div class="row">
+                                                            @Html.PasswordFor(m => m.Password, new { @class = "" })
+                                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        <div class="row">
+                                                            @Html.CheckBoxFor(m => m.RememberMe)
+                                                            @Html.LabelFor(m => m.RememberMe, new { @class = "check" })
+
+                                                        </div>
+                                                        <div class="row ">
+                                                            <a href=""><h5>@Html.ActionLink("Registrese", "Register")</h5></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- fin inputs -->
+                                            <h5 id="loading" class="hidden"><img src="~/Content/Kendo/Default/loading.gif" />Cargando...</h5>
+                                        </div>
+                                    </div>
+                                    <!-- Fin formulario -->
+                                    <!-- botones -->
+                                    <div class="col-xs-12">
+                                        <div class="boton_a">
+                                            <button type="submit" value="Ingresar" name="submitAction">
+                                                <h5>Ingresar</h5>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- fin botones -->
+                                </div>
+                            }
+                        </section>
+                    </div>
+                    <!-- fin popup fuera -->
+                </div>
+            </div>
+            <!-- fin contenidos página -->
+        </div>
+    </div>
+
+    <!-- fin contenedor -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/masterjs")
+    <script>
+        $('#loginForm').submit(function () {
+            $("#loading").removeClass("hidden");
+
+        });
+
+
+
+    </script>
+</body>
+</html>
