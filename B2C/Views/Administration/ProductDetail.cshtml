@@ -44,10 +44,11 @@
         <div class="row">
             <h4>TOP 5</h4>
             <script type="text/x-kendo-tmpl" id="templateTop5">
+               
                 <div class="col-sm-2 ">
                     <h5>#:Name#</h5>
                     <h5>Codigo: #:ProductId#</h5>
-                    <img src="#:Image#" alt="top5" style="width: 100px;" />
+                    <img src="#:Image#" alt="top5" style="width: 100px;" onclick="window.location.href = '@Url.Action("ProductDetail", new { id = Convert.ToInt32("11") })'" />
                     <h5>$ #:ListPrice#</h5>
                 </div>
             </script>

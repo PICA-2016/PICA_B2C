@@ -21,7 +21,7 @@
 
     @using (Html.BeginForm("ShoppingCarts", "Administration", new { }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
-        <div class="row">
+        <div >
             <h4>Carrito de compras</h4>
             <script type="text/x-kendo-tmpl" id="templateTop5">
                 <div class="row">
@@ -47,8 +47,9 @@
             <asp:HiddenField id="lbIlvTop5Id" ClientIDMode="Static" runat="server"></asp:HiddenField>
             @*@Html.ValidationMessageFor(m => m.NombreImagen, "", new { @class = "text-danger" })*@
 
-            <h5>Subtotal: $</h5>
-
+            <h4>Subtotal: $<span id="subtotal">@ViewData["subtotal"]</span></h4>
+            
+            
         </div>
 
         <div>
@@ -87,9 +88,9 @@
                 transport: {
                     read: {
                         url: "@Url.Action("ProductsCart")",
-                    dataType: "json",
+                        dataType: "json",
+                    }
                 }
-            }
             });
             if ($("#lvTop5").length != 0) {
 

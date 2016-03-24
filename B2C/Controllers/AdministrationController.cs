@@ -189,6 +189,17 @@ namespace B2C.Controllers
             //{
             //    return View("Product", id.Value);
             //}
+
+            Order order = GetOrder();
+            if (order != null)
+            {
+                ViewData["subtotal"] = order.Items.Sum(itm => itm.Product.ListPrice);
+            }
+            else
+            {
+                ViewData["subtotal"] = 0;
+            }
+
             return View();
         }
 
@@ -200,15 +211,7 @@ namespace B2C.Controllers
         {
             Response.Expires = 0;
 
-            int userId = Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
-
-            var lstPorductIs = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
-            var lstQuantitys = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString()).Value;
-            List<int> productsIds = lstPorductIs.Split(',').Select(p => Convert.ToInt32(p)).ToList();
-            List<int> quantitys = lstQuantitys.Split(',').Select(q => Convert.ToInt32(q)).ToList();
-
-            OrdersService ordersService = new OrdersService();
-            Order order = ordersService.GetOrderByCustomerId(userId, productsIds, quantitys);
+            Order order = GetOrder();
 
             if (order != null )
             {
@@ -229,6 +232,26 @@ namespace B2C.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        /// <summary>
+        /// Get order.
+        /// </summary>
+        /// <returns></returns>
+        private Order GetOrder()
+        {
+            int userId = Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
+
+            var lstPorductIs = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
+            var lstQuantitys = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString()).Value;
+            List<int> productsIds = lstPorductIs.Split(',').Select(p => Convert.ToInt32(p)).ToList();
+            List<int> quantitys = lstQuantitys.Split(',').Select(q => Convert.ToInt32(q)).ToList();
+
+            OrdersService ordersService = new OrdersService();
+            Order order = ordersService.GetOrderByCustomerId(userId, productsIds, quantitys);
+
+            return order;
+        }
+
         #endregion
 
         #region Language Resources
