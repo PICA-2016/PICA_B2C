@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IOrdersServiceAgent.cs" />
     <Compile Include="Contracts\IProductsServiceAgent.cs" />
+    <Compile Include="Implementation\WebServices\OrdersServiceAgent.cs" />
     <Compile Include="Implementation\WebServices\ProductsServiceAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\wsProductsReference\Reference.cs">

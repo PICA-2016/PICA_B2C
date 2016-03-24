@@ -1,13 +1,117 @@
-﻿
+﻿@model PICA_B2C.Business.MainModule.Entities.Models.Product
+
 @{
-    ViewBag.Title = "ShoppingCart";
+    ViewBag.Title = "Carrito de compras";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Carrito de compras</h1>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
 
+    @*Mostar mensaje*@
+    @if (ViewData["Result"] != null && (bool)(ViewData["Result"]))
+    {
+        <script type="text/javascript">
+            CompleteDetail('@(ViewData["ShowMessage"] !=null?ViewData["ShowMessage"].ToString():string.Empty)');
+        </script>
+    }
+    <div id="mensajeResultadosEdicionContainer" class="alert alert-info alert-dismissible hidden" role="alert">
+        <button type="button" class="close" onclick="$('#resultMessageContainer').addClass('hidden')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span id="mensajeResultadosEdicion">@ViewData["ShowMessage"]</span>
+    </div>
+
+    @using (Html.BeginForm("ShoppingCarts", "Administration", new { }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div class="row">
+            <h4>Carrito de compras</h4>
+            <script type="text/x-kendo-tmpl" id="templateTop5">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src="#:Product.Image#" alt="articulo" style="width: 150px;" />
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>#:Product.Name#</h5>
+                        <h5>Codigo: #:Product.ProductId#</h5>
+                        <h5>$ #:Product.ListPrice#</h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>#:Quantity#</h5>
+                        <button data-dismiss="modal">
+                            <img src="../Content/Images/Delete.png" /><h5>Eliminar</h5>
+                        </button>
+                    </div>
+                </div>
+            </script>
+
+            <div id="lvTop5"></div>
+            @*@Html.HiddenFor(m => m.NombreImagen, new { id = "lbIlvTop5Id" })*@
+            <asp:HiddenField id="lbIlvTop5Id" ClientIDMode="Static" runat="server"></asp:HiddenField>
+            @*@Html.ValidationMessageFor(m => m.NombreImagen, "", new { @class = "text-danger" })*@
+
+            <h5>Subtotal: $</h5>
+
+        </div>
+
+        <div>
+            @Html.ValidationMessage("mensajeError", new { @class = "text-danger", id = "validationMessage" }) <br />
+
+            <div id="loader" class="" aletr="" style="display:none">
+                <h5><img src="~/Content/Kendo/Default/loading.gif" />Cargando...</h5>
+            </div>
+        </div>
+    }
+</div>
+@section css {
+
+}
+@section scripts {
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
+    <script src="~/Scripts/Kendo/kendo.core.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.data.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.userevents.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.listview.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.selectable.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //Top 5
+            var dataSource = new kendo.data.DataSource({
+                serverPaging: false,
+                schema: {
+                    total: "Total",
+                    data: "Items",
+                    errors: "Mensaje"
+                },
+                transport: {
+                    read: {
+                        url: "@Url.Action("ProductsCart")",
+                    dataType: "json",
+                }
+            }
+            });
+            if ($("#lvTop5").length != 0) {
+
+                $("#lvTop5").kendoListView({
+                    dataSource: dataSource,
+                    selectable: "single",
+                    change: onChangelvTop5,
+                    template: kendo.template($("#templateTop5").html())
+                });
+                function onChangelvTop5() {
+                    var data = dataSource.view(),
+                        selected = $.map(this.select(), function (item) {
+                            return data[$(item).index()].id;
+                        });
+                    document.getElementById("lbIlvTop5Id").value = selected;
+                    return true;
+                }
+                var listView = $("#lvTop5").data("kendoListView");
+                // seleccion de item de la lista
+                var d = document.getElementById("lbIlvTop5Id").value;
+                listView.select(listView.element.children()[dataSource.indexOf(dataSource.get(d))]);
+            }
+        });
+    </script>
+}

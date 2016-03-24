@@ -31,6 +31,16 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
         /// </summary>
         public string Email { get; set; }
 
+        /// <summary>
+        /// Identifier order.
+        /// </summary>
+        public int OrderId { get; set; }
+
+        /// <summary>
+        /// Order.
+        /// </summary>
+        public virtual Order Order { get; set; }
+
         ///// <summary>
         ///// Identifiers orders.
         ///// </summary>
@@ -41,9 +51,7 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
         ///// </summary>
         //public virtual ICollection<Order> Orders { get; set; }
 
-        /// <summary>
-        /// Order.
-        /// </summary>
-        public Order Order { get; set; }
+
+
     }
 }

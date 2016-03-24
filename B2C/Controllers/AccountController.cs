@@ -116,49 +116,38 @@ namespace B2C.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             var claims = new List<Claim>();
 
-            List<int> lstProducts = new List<int>();
-            lstProducts = customer.Order.Items.Select(sc => sc.ProductId).ToList();
-
-            int totalProcuts = customer.Order.Items.Select(itm => itm.Quantity).Sum();
+            //List<int> lstProducts = new List<int>();
+            var lstProductId = customer.Order.Items.Select(sc => sc.ProductId).ToList();
+            var lstQuantity = customer.Order.Items.Select(sc => sc.Quantity).ToList();
+            //int totalProcuts = customer.Order.Items.Select(itm => itm.Quantity).Sum();
 
             claims.Add(new Claim(ClaimTypes.NameIdentifier, customer.CustomerId.ToString()));
             claims.Add(new Claim(ClaimTypes.Name, customer.Names));
             claims.Add(new Claim(ClaimTypes.Surname, customer.LastNames));
             claims.Add(new Claim(ClaimTypes.Email, !string.IsNullOrEmpty(customer.Email) ? customer.Email : string.Empty));
             //claims.Add(new Claim(ClaimTypes.Authentication, string.Join(", ", customer.Roles.Select(r => r.Nombre))));
-
-            #region Extraer ClienteId
-            //long clienteId = 0;
-            //try
-            //{
-            //    HttpContextBase currentContext = new HttpContextWrapper(System.Web.HttpContext.Current);
-            //    RouteData routeData = RouteTable.Routes.GetRouteData(currentContext);
-            //    try
-            //    {
-            //        string idTemp = routeData.GetRequiredString("clienteId");
-            //        long.TryParse(idTemp, out clienteId);
-            //    }
-            //    catch (Exception)
-            //    {
-
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    //  string error = ex.Message;
-
-            //}
-            #endregion
             //claims.Add(new Claim(ClaimTypes.Sid, clienteId.ToString()));
-
             //claims.Add(new Claim(ClaimTypes.Role, string.Join(",", customer.Roles.Select(r => r.RolId))));
-            claims.Add(new Claim(ClaimTypes.SerialNumber, totalProcuts.ToString()));
-            claims.Add(new Claim(ClaimTypes.UserData, string.Join(",", lstProducts)));
+            claims.Add(new Claim(ClaimTypes.UserData, string.Join(",", lstProductId)));
+            claims.Add(new Claim(ClaimTypes.SerialNumber, string.Join(",", lstQuantity)));
             //claims.Add(new Claim(ClaimTypes.Thumbprint, customer.ImagenPerfilId.HasValue ? customer.ImagenPerfilId.ToString() : ""));
+
             var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, id);
+        }
+        #endregion
+
+        #region LogOff
+        /// <summary>
+        /// Log Off.
+        /// </summary>
+        /// <returns>Redirect Login.</returns>
+        [HttpPost]
+        public ActionResult LogOff()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Login", "Account");
         }
         #endregion
 

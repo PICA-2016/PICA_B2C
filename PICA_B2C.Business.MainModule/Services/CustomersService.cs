@@ -37,8 +37,8 @@ namespace PICA_B2C.Business.MainModule.Services
                 };
 
                 //TODO: quitar, solo para prueba.
-                customer.Order.Items.Add(new Item { ItemId = 1, ProductId = 11, Quantity = 1 });
-                customer.Order.Items.Add(new Item { ItemId = 2, ProductId = 20, Quantity = 3 });
+                customer.Order.Items.Add(new Item { ItemId = 1, ProductId = 1, Quantity = 1 });
+                customer.Order.Items.Add(new Item { ItemId = 2, ProductId = 2, Quantity = 3 });
 
                 return customer;
             }

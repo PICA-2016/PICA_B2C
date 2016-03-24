@@ -6,6 +6,7 @@ using PICA_B2C.Business.MainModule.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -142,9 +143,9 @@ namespace B2C.Controllers
         }
 
         /// <summary>
-        /// Get the top 5
+        /// Get the top 5.
         /// </summary>
-        /// <returnsTop 5></returns>
+        /// <returns>Top 5.</returns>
         public async Task<JsonResult> ProductsTop5()
         {
             Response.Expires = 0;
@@ -189,6 +190,44 @@ namespace B2C.Controllers
             //    return View("Product", id.Value);
             //}
             return View();
+        }
+
+        /// <summary>
+        /// Get products shopping cart.
+        /// </summary>
+        /// <returns>Top 5</returns>
+        public async Task<JsonResult> ProductsCart()
+        {
+            Response.Expires = 0;
+
+            int userId = Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
+
+            var lstPorductIs = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
+            var lstQuantitys = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString()).Value;
+            List<int> productsIds = lstPorductIs.Split(',').Select(p => Convert.ToInt32(p)).ToList();
+            List<int> quantitys = lstQuantitys.Split(',').Select(q => Convert.ToInt32(q)).ToList();
+
+            OrdersService ordersService = new OrdersService();
+            Order order = ordersService.GetOrderByCustomerId(userId, productsIds, quantitys);
+
+            if (order != null )
+            {
+                return Json(new
+                {
+                    Items = order.Items,
+                    Total = order.Items.Count,
+                    Message = order.Items.Count == 0 ? "No hay datos" : string.Empty
+                }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new
+                {
+                    Items = new List<Item>(),
+                    Total = 0,
+                    Mensaje = "No hay datos"
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
         #endregion
 
