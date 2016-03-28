@@ -44,15 +44,16 @@
         <div class="row">
             <h4>TOP 5</h4>
             <script type="text/x-kendo-tmpl" id="templateTop5">
-               
-                <div class="col-sm-2 ">
+
+                <div class="col-sm-2 " id="divTop5">
                     <h5>#:Name#</h5>
                     <h5>Codigo: #:ProductId#</h5>
-                    <img src="#:Image#" alt="top5" style="width: 100px;" onclick="window.location.href = '@Url.Action("ProductDetail", new { id = Convert.ToInt32("11") })'" />
+                    <img src="#:Image#" alt="top5" style="width: 100px;"  />
+                    @*<img src="#:Image#" alt="top5" style="width: 100px;" onclick="window.location.href = '@Url.Action("ProductDetail", new { id = Convert.ToInt32("11") })'" />*@
                     <h5>$ #:ListPrice#</h5>
                 </div>
             </script>
-            
+
             <div id="lvTop5"></div>
             @*@Html.HiddenFor(m => m.NombreImagen, new { id = "lbIlvTop5Id" })*@
             <asp:HiddenField id="lbIlvTop5Id" ClientIDMode="Static" runat="server"></asp:HiddenField>
@@ -73,13 +74,13 @@
 }
 @section scripts {
 
-<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
 
-<script src="~/Scripts/Kendo/kendo.core.min.js"></script>
-<script src="~/Scripts/Kendo/kendo.data.min.js"></script>
-<script src="~/Scripts/Kendo/kendo.userevents.min.js"></script>
-<script src="~/Scripts/Kendo/kendo.listview.min.js"></script>
-<script src="~/Scripts/Kendo/kendo.selectable.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.core.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.data.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.userevents.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.listview.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.selectable.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -95,9 +96,9 @@
                 transport: {
                     read: {
                         url: "@Url.Action("ProductsTop5")",
-                    dataType: "json",
+                        dataType: "json",
+                    }
                 }
-            }
             });
             if ($("#lvTop5").length != 0) {
 
@@ -110,9 +111,12 @@
                 function onChangelvTop5() {
                     var data = dataSource.view(),
                         selected = $.map(this.select(), function (item) {
-                            return data[$(item).index()].id;
+                            return data[$(item).index()].ProductId;
                         });
                     document.getElementById("lbIlvTop5Id").value = selected;
+
+                    window.location.href = '@Url.Action("ProductDetail", new { id = "-id-" })'.replace('-id-', selected);
+
                     return true;
                 }
                 var listView = $("#lvTop5").data("kendoListView");
