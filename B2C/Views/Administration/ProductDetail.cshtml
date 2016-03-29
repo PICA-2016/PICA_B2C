@@ -48,16 +48,13 @@
                 <div class="col-sm-2 " id="divTop5">
                     <h5>#:Name#</h5>
                     <h5>Codigo: #:ProductId#</h5>
-                    <img src="#:Image#" alt="top5" style="width: 100px;"  />
-                    @*<img src="#:Image#" alt="top5" style="width: 100px;" onclick="window.location.href = '@Url.Action("ProductDetail", new { id = Convert.ToInt32("11") })'" />*@
+                    <img src="#:Image#" alt="top5" style="width: 100px;" />
                     <h5>$ #:ListPrice#</h5>
                 </div>
             </script>
 
             <div id="lvTop5"></div>
-            @*@Html.HiddenFor(m => m.NombreImagen, new { id = "lbIlvTop5Id" })*@
             <asp:HiddenField id="lbIlvTop5Id" ClientIDMode="Static" runat="server"></asp:HiddenField>
-            @*@Html.ValidationMessageFor(m => m.NombreImagen, "", new { @class = "text-danger" })*@
         </div>
 
         <div>

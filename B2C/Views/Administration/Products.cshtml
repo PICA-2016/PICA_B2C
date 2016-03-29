@@ -89,8 +89,8 @@
                          "targets": -1,
                          "data": null,
 
-                         "defaultContent": "<button onclick='ProductDetail(this)'><img src='../../Content/Images/ViewDetail.png'/></button>" +
-                             "      <button ><img src='../../Content/Images/AddCart.png'/></button>"
+                         "defaultContent": "<button onclick='ProductDetail(this)'><img src='../../Content/Images/ViewDetail.png'/></button>"
+                             //+"      <button ><img src='../../Content/Images/AddCart.png'/></button>"
                      }
                 ],
                 "columnDefs": [
@@ -111,16 +111,6 @@
 
             window.location.href = '@Url.Action("ProductDetail", new { id = "-id-" })'.replace('-id-', dataRow.ProductId);
         }
-
-        ////Complete Detail
-        //function CompleteDetail(menssaje) {
-        //    $('#detailModal').modal('hide');
-        //    productsTable.ajax.reload();
-        //    if (menssaje != null && menssaje != '') {
-        //        document.getElementById("resultMessage").innerHTML = menssaje;
-        //        $("#resultMessageContainer").removeClass('hidden');
-        //    }
-        //}
 
         //Error
         function error() {

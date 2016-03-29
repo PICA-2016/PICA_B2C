@@ -3,34 +3,33 @@
     @if (ViewData["Resultado"] != null && (bool)(ViewData["Resultado"]))
     {
         <script type="text/javascript">
-            @*EliminacionCompletada('@(ViewData["MostrarMensaje"]!=null?ViewData["MostrarMensaje"].ToString():string.Empty)');*@
         </script>
     }
     <h3>Procesar</h3>
-    
-        @using (Ajax.BeginForm("ProcessOrder", "Administracion", new AjaxOptions
-        {
-            InsertionMode = InsertionMode.ReplaceWith,
-            UpdateTargetId = "ContainerProcess",
-            LoadingElementId = "loaderProcess",
-            HttpMethod = "Post",
-            OnFailure = "errorGeneral"
-        }))
-        {
-                <p>
-                    Orden procesada correctamente
-                </p>
-            
-            <div class="modal-footer">
-                @Html.ValidationMessage("mensajeError", new { @class = "text-danger" }) <br />
-                <div id="loaderProcess" class=" aletr " style="display:none">
-                   Caragando...
-                </div>
 
-                <button type="submit" id="submitBt" name="continuar" value="continuar" class="btn botonPrimario">Aceptar</button>
+    @using (Ajax.BeginForm("ProcessOrder", "Administracion", new AjaxOptions
+    {
+        InsertionMode = InsertionMode.ReplaceWith,
+        UpdateTargetId = "ContainerProcess",
+        LoadingElementId = "loaderProcess",
+        HttpMethod = "Post",
+        OnFailure = "errorGeneral"
+    }))
+    {
+        <p>
+            Orden procesada correctamente
+        </p>
+
+        <div class="modal-footer">
+            @Html.ValidationMessage("mensajeError", new { @class = "text-danger" }) <br />
+            <div id="loaderProcess" class=" aletr " style="display:none">
+                Caragando...
             </div>
-        }
-    
+
+            <button type="button" data-dismiss="modal" aria-label="Close">Aceptar</button>
+        </div>
+    }
+
 </div>
 
 <script type="text/javascript">
