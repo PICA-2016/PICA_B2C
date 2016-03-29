@@ -1,4 +1,6 @@
 ﻿using B2C.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 using PICA_B2C.Business.MainModule.Entities.Enumerations;
 using PICA_B2C.Business.MainModule.Entities.Models;
 using PICA_B2C.Business.MainModule.Entities.Pagination;
@@ -6,7 +8,9 @@ using PICA_B2C.Business.MainModule.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -111,10 +115,10 @@ namespace B2C.Controllers
         }
 
         /// <summary>
-        /// Detalle de ProfesionalesSalud.
+        /// Detalle de ProductDetail.
         /// </summary>
-        /// <param name="id">Identificador del ProfesionalSalud.</param>
-        /// <returns>Resultado.</returns>
+        /// <param name="id">Product identifier.</param>
+        /// <returns>Result.</returns>
         public ActionResult ProductDetail(int id)
         {
             Product product;
@@ -140,6 +144,64 @@ namespace B2C.Controllers
             }
 
             return View(product);
+        }
+
+        /// <summary>
+        /// Click Add to Cart.
+        /// </summary>
+        /// <param name="product">Product.</param>
+        /// <returns>Resultado.</returns>
+        [HttpPost]
+        public async Task<ViewResult> ProductDetail(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                if (product.Id == 0)
+                {
+                    ViewData["Result"] = false;
+                    ViewData["MostrarMensaje"] = "Se debe especificar el id del producto.";
+                }
+                else
+                {
+                    //TODO: se esta actualizando solo en memoria.
+                    var lstPorductIs = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
+                    var lstQuantitys = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString()).Value;
+                    List<int> productsIds = lstPorductIs.Split(',').Select(p => Convert.ToInt32(p)).ToList();
+                    List<int> quantitys = lstQuantitys.Split(',').Select(q => Convert.ToInt32(q)).ToList();
+                    
+                    productsIds.Add(product.Id);
+                    quantitys.Add(1);
+
+                    var claims = new List<Claim>();
+                    
+                    //productsIds
+                    var thumbClaim = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString());
+                    if (thumbClaim != null)
+                    {
+                        (User.Identity as ClaimsIdentity).RemoveClaim(thumbClaim);
+                    }
+                    (User.Identity as ClaimsIdentity).AddClaim(new Claim(ClaimTypes.UserData, string.Join(",", productsIds)));
+                    
+                    //quantitys
+                    thumbClaim = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString());
+                    if (thumbClaim != null)
+                    {
+                        (User.Identity as ClaimsIdentity).RemoveClaim(thumbClaim);
+                    }
+                    (User.Identity as ClaimsIdentity).AddClaim(new Claim(ClaimTypes.SerialNumber, string.Join(",", quantitys)));
+
+                    claims = (User.Identity as ClaimsIdentity).Claims.ToList();
+                    var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+
+                    AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, id);
+
+                }
+
+                //    //ViewData["Resultado"] = true;
+                //    return PartialView(model);
+            }
+            ViewData["Result"] = false;
+            return View("Products");
         }
 
         /// <summary>
@@ -193,7 +255,7 @@ namespace B2C.Controllers
             Order order = GetOrder();
             if (order != null)
             {
-                ViewData["subtotal"] = order.Items.Sum(itm => itm.Product.ListPrice);
+                ViewData["subtotal"] = order.Items.Sum(itm => itm.Product.ListPrice*itm.Quantity);
             }
             else
             {
@@ -231,6 +293,15 @@ namespace B2C.Controllers
                     Mensaje = "No hay datos"
                 }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        /// <summary>
+        /// Process Order.
+        /// </summary>
+        /// <returns>Partial View.</returns>
+        public PartialViewResult ProcessOrder(int id)
+        {
+            return PartialView();
         }
 
         /// <summary>
@@ -291,5 +362,16 @@ namespace B2C.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        /// <summary>
+        /// Authentication Manager.
+        /// </summary>
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
     }
 }

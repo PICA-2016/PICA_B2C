@@ -653,6 +653,9 @@
     <Content Include="Content\Images\Logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\ProcessingOrder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\ViewDetail.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1077,6 +1080,7 @@
     <Content Include="Views\Administration\ProductDetail.cshtml" />
     <Content Include="Views\Administration\ShoppingCarts.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Administration\ProcessOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

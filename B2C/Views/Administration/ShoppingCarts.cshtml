@@ -5,6 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div id='processModal' style="background-color: rgba(130,130,130,0.50) ; border:none;" class="modal fade" data-url='@Url.Action("ProcessOrder", new { id = "-id-" })'>
+
+    <div class="">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div id='modalProcessInnerContainer'>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <div class="row">
 
     @*Mostar mensaje*@
@@ -21,21 +35,21 @@
 
     @using (Html.BeginForm("ShoppingCarts", "Administration", new { }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
-        <div >
+        <div>
             <h4>Carrito de compras</h4>
             <script type="text/x-kendo-tmpl" id="templateTop5">
                 <div class="row">
                     <div class="col-sm-4">
                         <img src="#:Product.Image#" alt="articulo" style="width: 150px;" />
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <h5>#:Product.Name#</h5>
                         <h5>Codigo: #:Product.ProductId#</h5>
                         <h5>$ #:Product.ListPrice#</h5>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <h5>#:Quantity#</h5>
-                        <button data-dismiss="modal">
+                        <button data-dismiss="modal" style="width:110px; height:80px; ">
                             <img src="../Content/Images/Delete.png" /><h5>Eliminar</h5>
                         </button>
                     </div>
@@ -44,12 +58,21 @@
 
             <div id="lvTop5"></div>
             @*@Html.HiddenFor(m => m.NombreImagen, new { id = "lbIlvTop5Id" })*@
-            <asp:HiddenField id="lbIlvTop5Id" ClientIDMode="Static" runat="server"></asp:HiddenField>
+            @*<asp:HiddenField id="lbIlvTop5Id" ClientIDMode="Static" runat="server"></asp:HiddenField>*@
             @*@Html.ValidationMessageFor(m => m.NombreImagen, "", new { @class = "text-danger" })*@
 
-            <h4>Subtotal: $<span id="subtotal">@ViewData["subtotal"]</span></h4>
-            
-            
+            <div class="row">
+                <div  >
+                    <h4><strong>Subtotal: $<span id="subtotal">@ViewData["subtotal"]</span></strong></h4>
+                </div>
+                <div  >
+                    <button onclick="ProcessOrder(this)" data-dismiss="modal" style="width:110px; height:80px; ">
+                        <img src="~/Content/Images/ProcessingOrder.png" /><h5>Procesar order</h5>
+                    </button>
+                </div>
+            </div>
+
+
         </div>
 
         <div>
@@ -101,18 +124,29 @@
                     template: kendo.template($("#templateTop5").html())
                 });
                 function onChangelvTop5() {
-                    var data = dataSource.view(),
-                        selected = $.map(this.select(), function (item) {
-                            return data[$(item).index()].id;
-                        });
-                    document.getElementById("lbIlvTop5Id").value = selected;
+                    //var data = dataSource.view(),
+                    //    selected = $.map(this.select(), function (item) {
+                    //        return data[$(item).index()].id;
+                    //    });
+                    //document.getElementById("lbIlvTop5Id").value = selected;
                     return true;
                 }
-                var listView = $("#lvTop5").data("kendoListView");
+                //var listView = $("#lvTop5").data("kendoListView");
                 // seleccion de item de la lista
-                var d = document.getElementById("lbIlvTop5Id").value;
-                listView.select(listView.element.children()[dataSource.indexOf(dataSource.get(d))]);
+                //var d = document.getElementById("lbIlvTop5Id").value;
+                //listView.select(listView.element.children()[dataSource.indexOf(dataSource.get(d))]);
             }
         });
+
+        //Process Order
+        function ProcessOrder(e) {
+            var url = $('#processModal').data('url');
+            url = url.replace("-id-", 1);
+            $.get(url, function (data) {
+                $('#modalProcessInnerContainer').html(data);
+
+                $('#processModal').modal('show');
+            });
+        }
     </script>
 }

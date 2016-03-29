@@ -91,3 +91,4 @@ C:\Proyectos\PICA_B2C\B2C\bin\es\System.Web.WebPages.resources.dll
 C:\Proyectos\PICA_B2C\B2C\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Proyectos\PICA_B2C\B2C\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\Delete.png
+C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\ProcessingOrder.png
