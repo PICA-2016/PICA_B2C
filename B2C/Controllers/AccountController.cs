@@ -88,7 +88,7 @@ namespace B2C.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Products", "Administration");
             }
         }
 

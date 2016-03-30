@@ -10,7 +10,9 @@ namespace B2C.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Products", "Administration");
+
+            //return View();
         }
 
         public ActionResult About()
