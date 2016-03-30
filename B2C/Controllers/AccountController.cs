@@ -116,21 +116,15 @@ namespace B2C.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             var claims = new List<Claim>();
 
-            //List<int> lstProducts = new List<int>();
             var lstProductId = customer.Order.Items.Select(sc => sc.ProductId).ToList();
             var lstQuantity = customer.Order.Items.Select(sc => sc.Quantity).ToList();
-            //int totalProcuts = customer.Order.Items.Select(itm => itm.Quantity).Sum();
 
             claims.Add(new Claim(ClaimTypes.NameIdentifier, customer.CustomerId.ToString()));
             claims.Add(new Claim(ClaimTypes.Name, customer.Names));
             claims.Add(new Claim(ClaimTypes.Surname, customer.LastNames));
             claims.Add(new Claim(ClaimTypes.Email, !string.IsNullOrEmpty(customer.Email) ? customer.Email : string.Empty));
-            //claims.Add(new Claim(ClaimTypes.Authentication, string.Join(", ", customer.Roles.Select(r => r.Nombre))));
-            //claims.Add(new Claim(ClaimTypes.Sid, clienteId.ToString()));
-            //claims.Add(new Claim(ClaimTypes.Role, string.Join(",", customer.Roles.Select(r => r.RolId))));
             claims.Add(new Claim(ClaimTypes.UserData, string.Join(",", lstProductId)));
             claims.Add(new Claim(ClaimTypes.SerialNumber, string.Join(",", lstQuantity)));
-            //claims.Add(new Claim(ClaimTypes.Thumbprint, customer.ImagenPerfilId.HasValue ? customer.ImagenPerfilId.ToString() : ""));
 
             var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
