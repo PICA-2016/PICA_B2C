@@ -27,8 +27,8 @@ namespace PICA_B2C.Business.MainModule.Services
                 Customer customer = new Customer()
                 {
                     CustomerId = 1,
-                    Names = "Andres",
-                    LastNames = "Fernandez",
+                    Names = "Usuario",
+                    LastNames = "PICA",
                     Order = new Order()
                     {
                         Items = new List<Item>()

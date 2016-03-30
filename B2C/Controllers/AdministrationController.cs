@@ -177,8 +177,22 @@ namespace B2C.Controllers
                     List<int> productsIds = string.IsNullOrEmpty(lstPorductIs) ? new List<int>() : lstPorductIs.Split(',').Select(p => Convert.ToInt32(p)).ToList();
                     List<int> quantitys = string.IsNullOrEmpty(lstQuantitys) ? new List<int>() : lstQuantitys.Split(',').Select(q => Convert.ToInt32(q)).ToList();
 
-                    productsIds.Add(product.Id);
-                    quantitys.Add(1);
+                    if (productsIds.Any(p => p == product.Id))
+                    {
+                        for(int i=0; i< productsIds.Count(); i++)
+                        {
+                            if(productsIds[i] == product.Id)
+                            {
+                                quantitys[i] = quantitys[i] + 1;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        productsIds.Add(product.Id);
+                        quantitys.Add(1);
+                    }
 
                     var claims = new List<Claim>();
 
@@ -322,57 +336,64 @@ namespace B2C.Controllers
             return PartialView();
         }
 
-
-        public ViewResult DeleteProduct(string productId)
+        /// <summary>
+        /// Delete product.
+        /// </summary>
+        /// <param name="productId">Identifier product.</param>
+        /// <returns></returns>
+        public ActionResult DeleteProduct(string productId)
         {
-            if (ModelState.IsValid)
+
+            if (string.IsNullOrEmpty(productId))
             {
-                if (string.IsNullOrEmpty(productId))
-                {
-                    ViewData["Result"] = false;
-                    ViewData["MostrarMensaje"] = "Se debe especificar el id del producto.";
-                }
-                else
-                {
-                    //TODO: se esta actualizando solo en memoria.
-                    //var lstPorductIs = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
-                    //var lstQuantitys = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString()).Value;
-                    //List<int> productsIds = lstPorductIs.Split(',').Select(p => Convert.ToInt32(p)).ToList();
-                    //List<int> quantitys = lstQuantitys.Split(',').Select(q => Convert.ToInt32(q)).ToList();
-
-                    //productsIds.Add(product.Id);
-                    //quantitys.Add(1);
-
-                    //var claims = new List<Claim>();
-
-                    ////productsIds
-                    //var thumbClaim = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString());
-                    //if (thumbClaim != null)
-                    //{
-                    //    (User.Identity as ClaimsIdentity).RemoveClaim(thumbClaim);
-                    //}
-                    //(User.Identity as ClaimsIdentity).AddClaim(new Claim(ClaimTypes.UserData, string.Join(",", productsIds)));
-
-                    ////quantitys
-                    //thumbClaim = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString());
-                    //if (thumbClaim != null)
-                    //{
-                    //    (User.Identity as ClaimsIdentity).RemoveClaim(thumbClaim);
-                    //}
-                    //(User.Identity as ClaimsIdentity).AddClaim(new Claim(ClaimTypes.SerialNumber, string.Join(",", quantitys)));
-
-                    //claims = (User.Identity as ClaimsIdentity).Claims.ToList();
-                    //var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-
-                    //AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, id);
-
-                }
-
-                //    //ViewData["Resultado"] = true;
-                //    return PartialView(model);
+                ViewData["Result"] = false;
+                ViewData["MostrarMensaje"] = "Se debe especificar el id del producto.";
             }
+            else
+            {
+                //TODO: se esta actualizando solo en memoria.
+                var lstPorductIs = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
+                var lstQuantitys = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString()).Value;
+                List<int> productsIds = lstPorductIs.Split(',').Select(p => Convert.ToInt32(p)).ToList();
+                List<int> quantitys = lstQuantitys.Split(',').Select(q => Convert.ToInt32(q)).ToList();
+
+                for(int i=0; i< productsIds.Count(); i++)
+                {
+                    if (productsIds[i] == Convert.ToInt32(productId))
+                    {
+                        productsIds.RemoveAt(i);
+                        quantitys.RemoveAt(i);
+                        i = productsIds.Count();
+                    }
+                }
+
+                var claims = new List<Claim>();
+
+                //productsIds
+                var thumbClaim = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString());
+                if (thumbClaim != null)
+                {
+                    (User.Identity as ClaimsIdentity).RemoveClaim(thumbClaim);
+                }
+                (User.Identity as ClaimsIdentity).AddClaim(new Claim(ClaimTypes.UserData, string.Join(",", productsIds)));
+
+                //quantitys
+                thumbClaim = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString());
+                if (thumbClaim != null)
+                {
+                    (User.Identity as ClaimsIdentity).RemoveClaim(thumbClaim);
+                }
+                (User.Identity as ClaimsIdentity).AddClaim(new Claim(ClaimTypes.SerialNumber, string.Join(",", quantitys)));
+
+                claims = (User.Identity as ClaimsIdentity).Claims.ToList();
+                var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+
+                AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, id);
+            }
+
             ViewData["Result"] = false;
-            return View("ShoppingCarts");
+
+            return RedirectToAction("ShoppingCarts");
         }
 
         /// <summary>

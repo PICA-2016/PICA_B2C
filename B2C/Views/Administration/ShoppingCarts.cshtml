@@ -45,8 +45,9 @@
                     <h5>$ #:Product.ListPrice#</h5>
                 </div>
                 <div class="col-sm-4">
+                    
                     <h5>#:Quantity#</h5>
-                    <button type="button" onclick="DeleteProduct(this)" data-dismiss="modal" style="width:110px; height:80px; ">
+                    <button type="button" onclick="DeleteProduct(#:Product.ProductId#)" data-dismiss="modal" style="width:110px; height:80px; ">
                         <img src="../Content/Images/Delete.png" /><h5>Eliminar</h5>
                     </button>
                 </div>
@@ -131,8 +132,11 @@
             });
         }
 
+        var urlDeleteProduct = '@Url.Action("DeleteProduct", new { productId = "-id-" })';
         function DeleteProduct(e) {
-           @*@Url.Action("DeleteProduct", new { id = "1" });*@
+
+            window.location.href = urlDeleteProduct.replace("-id-", e);
+
         }
     </script>
 }
