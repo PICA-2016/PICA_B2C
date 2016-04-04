@@ -1012,6 +1012,8 @@
     <Content Include="bower_components\morrisjs\spec\viz\run.sh" />
     <Content Include="bower_components\raphael\.bower.json" />
     <Content Include="bower_components\raphael\bower.json" />
+    <None Include="Properties\PublishProfiles\enServidor.pubxml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
