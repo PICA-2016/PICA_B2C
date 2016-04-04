@@ -455,6 +455,18 @@ namespace B2C.Controllers
         }
         #endregion
 
+
+        public PartialViewResult ParameterUpdate(int parametroId, int cantidad)
+        {
+            return PartialView(new Item() { ProductId = parametroId, Quantity = cantidad });
+        }
+
+        [HttpPost]
+        public PartialViewResult ParameterUpdate(Item model, int cantidad)
+        {
+            return PartialView(model);
+        }
+
         /// <summary>
         /// Authentication Manager.
         /// </summary>

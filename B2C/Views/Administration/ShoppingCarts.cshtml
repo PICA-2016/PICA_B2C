@@ -5,9 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id='processModal' style="background-color: rgba(130,130,130,0.50) ; border:none;" class="modal fade" data-url='@Url.Action("ProcessOrder", new { id = "-id-" })'>
 
-    <div class="">
+
+<div id='processModal' style="background-color: rgba(130,130,130,0.50) ; border:none;" class="modal fade" data-url='@Url.Action("ProcessOrder", new { id = "-id-" })' role="dialog" data-backdrop="static" data-keyboard="false">
+
+    <div class="" style="width:400px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -46,6 +48,14 @@
                 </div>
                 <div class="col-sm-4">
                     
+
+                    @*@{Html.RenderAction("ParameterUpdate", new
+                        {
+                            parametroId = 1,
+                            cantidad = 2
+                        });
+                    }*@
+
                     <h5>#:Quantity#</h5>
                     <button type="button" onclick="DeleteProduct(#:Product.ProductId#)" data-dismiss="modal" style="width:110px; height:80px; ">
                         <img src="../Content/Images/Delete.png" /><h5>Eliminar</h5>
@@ -77,7 +87,7 @@
     </div>
 </div>
 @section css {
-
+@*<link href="~/Content/Configuracion.css" rel="stylesheet" />*@
 }
 @section scripts {
 
@@ -119,7 +129,29 @@
                     return true;
                 }
             }
+
+            //
+            //inicializarControles('');
+
         });
+
+        //function inicializarControles(contenedor) {
+        //    var valoresEnteros;
+        //    if (contenedor != '') {
+        //        valoresEnteros = $(contenedor).find(".inpEntero");
+        //    } else {
+        //        valoresEnteros = $(".inpEntero");
+        //    }
+
+        //    for (var i = 0; i < valoresEnteros.length; i++) {
+        //        $(valoresEnteros[i]).kendoNumericTextBox({
+        //            min: 0,
+        //            step: 1,
+        //            decimals: 0,
+        //            format: '#'
+        //        });
+        //    }
+        //}
 
         //Process Order
         function ProcessOrder(e) {
