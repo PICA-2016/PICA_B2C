@@ -6,7 +6,6 @@
 }
 
 
-
 <div id='processModal' style="background-color: rgba(130,130,130,0.50) ; border:none;" class="modal fade" data-url='@Url.Action("ProcessOrder", new { id = "-id-" })' role="dialog" data-backdrop="static" data-keyboard="false">
 
     <div class="" style="width:400px">
@@ -47,16 +46,10 @@
                     <h5>$ #:Product.ListPrice#</h5>
                 </div>
                 <div class="col-sm-4">
-                    
 
-                    @*@{Html.RenderAction("ParameterUpdate", new
-                        {
-                            parametroId = 1,
-                            cantidad = 2
-                        });
-                    }*@
+                    @{Html.RenderPartial("ParameterUpdate", new PICA_B2C.Business.MainModule.Entities.Models.Item() { ProductId = 1, Quantity = 1 });}
 
-                    <h5>#:Quantity#</h5>
+                    @*<h5>#:Quantity#</h5>*@
                     <button type="button" onclick="DeleteProduct(#:Product.ProductId#)" data-dismiss="modal" style="width:110px; height:80px; ">
                         <img src="../Content/Images/Delete.png" /><h5>Eliminar</h5>
                     </button>
@@ -87,7 +80,7 @@
     </div>
 </div>
 @section css {
-@*<link href="~/Content/Configuracion.css" rel="stylesheet" />*@
+    @*<link href="~/Content/Configuracion.css" rel="stylesheet" />*@
 }
 @section scripts {
 
@@ -131,27 +124,30 @@
             }
 
             //
-            //inicializarControles('');
+            inicializarControles('');
 
         });
 
-        //function inicializarControles(contenedor) {
-        //    var valoresEnteros;
-        //    if (contenedor != '') {
-        //        valoresEnteros = $(contenedor).find(".inpEntero");
-        //    } else {
-        //        valoresEnteros = $(".inpEntero");
-        //    }
+        function inicializarControles(contenedor) {
+            var valoresEnteros;
+            if (contenedor != '') {
+                valoresEnteros = $(contenedor).find(".inpEntero");
+            } else {
+                valoresEnteros = $(".inpEntero");
+            }
 
-        //    for (var i = 0; i < valoresEnteros.length; i++) {
-        //        $(valoresEnteros[i]).kendoNumericTextBox({
-        //            min: 0,
-        //            step: 1,
-        //            decimals: 0,
-        //            format: '#'
-        //        });
-        //    }
-        //}
+            for (var i = 0; i < valoresEnteros.length; i++) {
+
+
+                $(valoresEnteros[i]).kendoNumericTextBox({
+                    //type: 'number',
+                    min: 1,
+                    step: 1,
+                    decimals: 0,
+                    format: '#'
+                });
+            }
+        }
 
         //Process Order
         function ProcessOrder(e) {
@@ -170,5 +166,11 @@
             window.location.href = urlDeleteProduct.replace("-id-", e);
 
         }
+
+        function cantidadOnChange(e)
+        {
+            //$(this).parent().find(".productId")
+        }
+
     </script>
 }
