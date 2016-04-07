@@ -1,31 +1,19 @@
 ﻿@model PICA_B2C.Business.MainModule.Entities.Models.Item
 @{var idContenedor = "cont" + Model.ProductId.ToString();
     var loadingContenedor = "loading" + Model.ProductId.ToString();
-    var submitid = "submit" + Model.ProductId.ToString(); }
+    @*var submitid = "submit" + Model.ProductId.ToString(); *@
+}
 <div id="@idContenedor" class="col-md-9">
     <div class="row contenedorParametro">
-        <div class="col-xs-6">
+        @*<div class="col-xs-6">
             <h4>@ViewData["descripcion"]</h4>
-        </div>
+        </div>*@
         <div class="col-xs-3">
-            @using (Ajax.BeginForm("ParameterUpdate", new AjaxOptions()
-            {
-                HttpMethod = "POST",
-                InsertionMode = InsertionMode.ReplaceWith,
-                UpdateTargetId = idContenedor,
-                OnFailure = "errorGeneral",
-                LoadingElementId = loadingContenedor,
-                OnSuccess = "inicializarControles('#" + idContenedor + "')"
-
-
-            }))
-            {
-                @Html.HiddenFor(m => m.ProductId)
-                        <input name="Valor" class="inpEntero" value="@Model.Quantity" onchange="$('#@submitid').click()" />
-
-                <img id="@loadingContenedor" src="~/Content/Kendo/Default/loading.gif" style="display:none" />
-                <button type="submit" id="@submitid" class="hidden">Guardar</button>
-            }
+            
+            @Html.Hidden("ProductId", "#:Product.ProductId#")
+            <input name="Valor" value="#:Quantity#" onchange="cantidadOnChange(this)" class="inpEntero" type="number" min="1" max="100" step="1" />
+            <img id="@loadingContenedor" src="~/Content/Kendo/Default/loading.gif" style="display:none" />
+            @*<button type="submit" id="@submitid" class="hidden">Guardar</button>*@
 
         </div>
     </div>
