@@ -25,7 +25,7 @@
 
         if (Request.IsAuthenticated)
         {
-            userName = string.Format("Bienvenido: {0} {1}", (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Name.ToString()).Value, (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Surname.ToString()).Value).Trim() ;
+            userName = string.Format("Bienvenido {0} {1}", (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Name.ToString()).Value, (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Surname.ToString()).Value).Trim() ;
 
             var lstQuantitys = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString()).Value;
             quantityProducts = string.IsNullOrEmpty(lstQuantitys) ? 0 : lstQuantitys.Split(',').Sum(itm => Convert.ToInt32(itm));
@@ -62,21 +62,12 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>Opciones<i class="fa fa-caret-down"></i>
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-fw"></i> @authenticationLabel</a>
+                        }
                     </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        @*<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>*@
-                        @*<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>*@ 
-                        <li class="divider"></li>
-                        <li>
-                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-                            {
-                                <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw"></i> @authenticationLabel</a>
-                            }
-                        </li>
-                    </ul>
+                    
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
@@ -88,10 +79,10 @@
                     <ul class="nav" id="side-menu">
                         
                         <li>
-                            <a href="@Url.Action("Products", "Administration")"><i class="fa fa-edit fa-fw"></i> Busqueda de Productos</a>
+                            <a href="@Url.Action("Products", "Administration")"><i class="fa fa-fw"></i> Busqueda de Productos</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("ShoppingCarts", "Administration")"><i class="fa fa-edit fa-fw"></i> Carrito de Compras</a>
+                            <a href="@Url.Action("ShoppingCarts", "Administration")"><i class="fa fa-fw"></i> Carrito de Compras</a>
                         </li>
                     </ul>
                 </div>

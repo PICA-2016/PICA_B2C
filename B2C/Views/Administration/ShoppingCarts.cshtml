@@ -5,9 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div id='processModal' style="background-color: rgba(130,130,130,0.50) ; border:none;" class="modal fade" data-url='@Url.Action("ProcessOrder", new { id = "-id-" })' role="dialog" data-backdrop="static" data-keyboard="false">
-
     <div class="" style="width:400px">
         <div class="modal-content">
             <div class="modal-header">
@@ -46,10 +44,7 @@
                     <h5>$ #:Product.ListPrice#</h5>
                 </div>
                 <div class="col-sm-4">
-
                     @{Html.RenderPartial("ParameterUpdate", new PICA_B2C.Business.MainModule.Entities.Models.Item() { ProductId = 1, Quantity = 1 });}
-
-                    @*<h5>#:Quantity#</h5>*@
                     <button type="button" onclick="DeleteProduct(#:Product.ProductId#)" data-dismiss="modal" style="width:110px; height:80px; ">
                         <img src="../Content/Images/Delete.png" /><h5>Eliminar</h5>
                     </button>
@@ -80,7 +75,6 @@
     </div>
 </div>
 @section css {
-    @*<link href="~/Content/Configuracion.css" rel="stylesheet" />*@
 }
 @section scripts {
 
@@ -122,8 +116,6 @@
                     return true;
                 }
             }
-
-            //
             inicializarControles('');
 
         });
@@ -140,7 +132,6 @@
 
 
                 $(valoresEnteros[i]).kendoNumericTextBox({
-                    //type: 'number',
                     min: 1,
                     step: 1,
                     decimals: 0,
@@ -160,6 +151,7 @@
             });
         }
 
+        //delete product
         var urlDeleteProduct = '@Url.Action("DeleteProduct", new { productId = "-id-" })';
         function DeleteProduct(e) {
 
@@ -167,9 +159,25 @@
 
         }
 
-        function cantidadOnChange(e)
+        //Change the quantity of the product.
+        function quantityOnChange(e)
         {
-            //$(this).parent().find(".productId")
+            var productId = parseInt( $(e).parent().find(".productId").val());
+            var quantity =  parseInt( $(e).val());
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ParameterUpdate","Administration" )',
+                data: {
+                    ProductId: productId,
+                    Quantity : quantity
+                },
+                success: successCantidadOnChange
+            });
+        }
+
+        function successCantidadOnChange()
+        {
+
         }
 
     </script>

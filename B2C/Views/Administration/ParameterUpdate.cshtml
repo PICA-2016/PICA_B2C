@@ -1,20 +1,15 @@
 ﻿@model PICA_B2C.Business.MainModule.Entities.Models.Item
-@{var idContenedor = "cont" + Model.ProductId.ToString();
-    var loadingContenedor = "loading" + Model.ProductId.ToString();
-    @*var submitid = "submit" + Model.ProductId.ToString(); *@
-}
+@{var idContenedor = "cont" + "#:Product.ProductId#";
+    var loadingContenedor = "loading" + "#:Product.ProductId#";
+    var submitid = "submit" + "#:Product.ProductId#"; }
 <div id="@idContenedor" class="col-md-9">
     <div class="row contenedorParametro">
-        @*<div class="col-xs-6">
-            <h4>@ViewData["descripcion"]</h4>
-        </div>*@
         <div class="col-xs-3">
-            
-            @Html.Hidden("ProductId", "#:Product.ProductId#")
-            <input name="Valor" value="#:Quantity#" onchange="cantidadOnChange(this)" class="inpEntero" type="number" min="1" max="100" step="1" />
-            <img id="@loadingContenedor" src="~/Content/Kendo/Default/loading.gif" style="display:none" />
-            @*<button type="submit" id="@submitid" class="hidden">Guardar</button>*@
+            @Html.Hidden("ProductId", "#:Product.ProductId#", new { @class = "productId" })
+            <input name="Valor" class="inpEntero" value="#:Quantity#" onchange="quantityOnChange(this)" type="number" min="1" max="100" />
 
+            <img id="@loadingContenedor" src="~/Content/Kendo/Default/loading.gif" style="display:none" />
+            <button type="submit" id="@submitid" class="hidden">Guardar</button>
         </div>
     </div>
 </div>

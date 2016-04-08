@@ -415,6 +415,64 @@ namespace B2C.Controllers
             return order;
         }
 
+        /// <summary>
+        /// Change the quantity of the product.
+        /// </summary>
+        /// <param name="item">Item.</param>
+        /// <returns>Vista.</returns>
+        [HttpPost]
+        public ActionResult ParameterUpdate(Item item)
+        {
+            if (item == null)
+            {
+                ViewData["Result"] = false;
+                ViewData["MostrarMensaje"] = "Se debe especificar el id del producto.";
+            }
+            else
+            {
+                //TODO: se esta actualizando solo en memoria.
+                var lstPorductIs = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
+                var lstQuantitys = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString()).Value;
+                List<int> productsIds = lstPorductIs.Split(',').Select(p => Convert.ToInt32(p)).ToList();
+                List<int> quantitys = lstQuantitys.Split(',').Select(q => Convert.ToInt32(q)).ToList();
+
+                for (int i = 0; i < productsIds.Count(); i++)
+                {
+                    if (productsIds[i] == Convert.ToInt32(item.ProductId))
+                    {
+                        quantitys[i] = item.Quantity;
+                        i = productsIds.Count();
+                    }
+                }
+
+                var claims = new List<Claim>();
+
+                //productsIds
+                var thumbClaim = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString());
+                if (thumbClaim != null)
+                {
+                    (User.Identity as ClaimsIdentity).RemoveClaim(thumbClaim);
+                }
+                (User.Identity as ClaimsIdentity).AddClaim(new Claim(ClaimTypes.UserData, string.Join(",", productsIds)));
+
+                //quantitys
+                thumbClaim = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString());
+                if (thumbClaim != null)
+                {
+                    (User.Identity as ClaimsIdentity).RemoveClaim(thumbClaim);
+                }
+                (User.Identity as ClaimsIdentity).AddClaim(new Claim(ClaimTypes.SerialNumber, string.Join(",", quantitys)));
+
+                claims = (User.Identity as ClaimsIdentity).Claims.ToList();
+                var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+
+                AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, id);
+            }
+
+            ViewData["Result"] = true;
+
+            return RedirectToAction("ShoppingCarts");
+        }
         #endregion
 
         #region Language Resources
@@ -454,18 +512,6 @@ namespace B2C.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
         #endregion
-
-
-        public PartialViewResult ParameterUpdate(int parametroId, int cantidad)
-        {
-            return PartialView(new Item() { ProductId = parametroId, Quantity = cantidad });
-        }
-
-        [HttpPost]
-        public PartialViewResult ParameterUpdate(Item model, int cantidad)
-        {
-            return PartialView(model);
-        }
 
         /// <summary>
         /// Authentication Manager.
