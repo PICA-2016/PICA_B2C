@@ -171,13 +171,10 @@
                     ProductId: productId,
                     Quantity : quantity
                 },
-                success: successCantidadOnChange
+                success: function(data) {
+                    window.location.href = '@Url.Action("ShoppingCarts")';
+                }
             });
-        }
-
-        function successCantidadOnChange()
-        {
-
         }
 
     </script>
