@@ -1,4 +1,5 @@
-﻿using PICA_B2C.Business.MainModule.Entities.Models;
+﻿using PICA_B2C.Business.MainModule.Entities.Enumerations;
+using PICA_B2C.Business.MainModule.Entities.Models;
 using PICA_B2C.Business.MainModule.Entities.Pagination;
 using System;
 using System.Collections.Generic;
@@ -18,21 +19,21 @@ namespace PICA_B2C.Business.MainModule.Contracts
         /// </summary>
         /// <param name="query">Query.</param>
         /// <returns>Products.</returns>
-        AnswerPage<Product> GetProducts(BaseQueryPagination query);
+        AnswerPage<Product> GetProducts(string filterSearch, int start, int length, TypeSearch typeSearch);
 
         /// <summary>
         /// Get Products by Name.
         /// </summary>
         /// <param name="query">Query.</param>
         /// <returns>Products.</returns>
-        AnswerPage<Product> GetProductsByName(BaseQueryPagination query);
+        AnswerPage<Product> GetProductsTop5(BaseQueryPagination query);
 
-        /// <summary>
-        /// Get Products by Description.
-        /// </summary>
-        /// <param name="query">Query.</param>
-        /// <returns>Products.</returns>
-        AnswerPage<Product> GetProductsByDescription(BaseQueryPagination query);
+        ///// <summary>
+        ///// Get Products by Description.
+        ///// </summary>
+        ///// <param name="query">Query.</param>
+        ///// <returns>Products.</returns>
+        //AnswerPage<Product> GetProductsByDescription(BaseQueryPagination query);
 
         /// <summary>
         /// Get Product by Id.

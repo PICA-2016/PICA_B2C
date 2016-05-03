@@ -61,49 +61,9 @@ namespace B2C.Controllers
                 filterSearch = search["value"];
             }
 
-            BaseQueryPagination query = new BaseQueryPagination()
-            {
-                Contains = filterSearch,
-                TotalReturn = true,
-                Page = start / length + 1,
-                PageSize = length
-            };
-
             ProductsService productsService = new ProductsService();
             AnswerPage<Product> answerProduct = new AnswerPage<Product>();
-
-            switch (typeSearch)
-            {
-                case TypeSearch.Code:
-                    {
-                        int value;
-                        if (int.TryParse(filterSearch, out value))
-                        {
-                            answerProduct = productsService.GetProductById(Convert.ToInt32(filterSearch));
-                        }
-                        else
-                        {
-                            answerProduct = productsService.GetProducts(query);
-                        }
-                            
-                        break;
-                    }
-                case TypeSearch.Name:
-                    {
-                        answerProduct = productsService.GetProductsByName(query);
-                        break;
-                    }
-                case TypeSearch.Description:
-                    {
-                        answerProduct = productsService.GetProductsByDescription(query);
-                        break;
-                    }
-                default:
-                    {
-                        answerProduct = productsService.GetProductsByName(query);
-                        break;
-                    }
-            }
+            answerProduct = productsService.GetProducts(filterSearch, start, length, typeSearch);
 
             return Json(new
             {
@@ -174,25 +134,11 @@ namespace B2C.Controllers
                     //TODO: se esta actualizando solo en memoria.
                     var lstPorductIs = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
                     var lstQuantitys = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString()).Value;
-                    List<int> productsIds = string.IsNullOrEmpty(lstPorductIs) ? new List<int>() : lstPorductIs.Split(',').Select(p => Convert.ToInt32(p)).ToList();
-                    List<int> quantitys = string.IsNullOrEmpty(lstQuantitys) ? new List<int>() : lstQuantitys.Split(',').Select(q => Convert.ToInt32(q)).ToList();
-
-                    if (productsIds.Any(p => p == product.Id))
-                    {
-                        for(int i=0; i< productsIds.Count(); i++)
-                        {
-                            if(productsIds[i] == product.Id)
-                            {
-                                quantitys[i] = quantitys[i] + 1;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        productsIds.Add(product.Id);
-                        quantitys.Add(1);
-                    }
+                    List<int> productsIds = new List<int>();
+                    List<int> quantitys = new List<int>();
+                    
+                    ProductsService productsService = new ProductsService();
+                    productsService.AddProductToCart(lstPorductIs, lstQuantitys, product, out productsIds, out quantitys);
 
                     var claims = new List<Claim>();
 
@@ -216,7 +162,6 @@ namespace B2C.Controllers
                     var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
                     AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, id);
-
                 }
 
                 //    //ViewData["Resultado"] = true;
@@ -237,8 +182,7 @@ namespace B2C.Controllers
             ProductsService productsService = new ProductsService();
             AnswerPage<Product> answerProduct = new AnswerPage<Product>();
 
-            //TODO: falta el metodo de TOP5 en el Servicio Web
-            answerProduct = productsService.GetProductsByName(new BaseQueryPagination() { Page = 1, PageSize = 5, Contains = string.Empty});
+            answerProduct = productsService.GetProductsTop5(new BaseQueryPagination() { Page = 1, PageSize = 5, Contains = string.Empty});
 
             if (answerProduct.Results.Count > 0)
             {
@@ -291,7 +235,6 @@ namespace B2C.Controllers
 
             return View();
         }
-
 
         /// <summary>
         /// Get products shopping cart.
