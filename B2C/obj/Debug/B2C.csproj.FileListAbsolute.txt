@@ -92,3 +92,7 @@ C:\Proyectos\PICA_B2C\B2C\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Proyectos\PICA_B2C\B2C\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\Delete.png
 C:\Proyectos\PICA_B2C\B2C\bin\Content\Images\ProcessingOrder.png
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.DataPersistence.MainModule.dll
+C:\Proyectos\PICA_B2C\B2C\bin\EntityFramework.dll
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.DataPersistence.MainModule.pdb
+C:\Proyectos\PICA_B2C\B2C\bin\EntityFramework.xml

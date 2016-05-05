@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PICA_B2C.Business.MainModule.Services
 {
     /// <summary>
-    /// Class service User.
+    /// Class service Customer.
     /// </summary>
     public class CustomersService : ICustomersService
     {

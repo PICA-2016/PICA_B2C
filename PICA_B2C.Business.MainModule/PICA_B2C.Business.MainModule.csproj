@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICustomersService.cs" />
+    <Compile Include="Contracts\IItemsService.cs" />
     <Compile Include="Contracts\IOrdersService.cs" />
     <Compile Include="Contracts\IProductsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ItemsService.cs" />
     <Compile Include="Services\OrdersService.cs" />
     <Compile Include="Services\ProductsService.cs" />
     <Compile Include="Services\CustomersService.cs" />
@@ -53,6 +55,10 @@
     <ProjectReference Include="..\PICA_B2C.Business.MainModule.Entities\PICA_B2C.Business.MainModule.Entities.csproj">
       <Project>{8b07d3dc-2542-42d1-a3ad-0a7d6635feb8}</Project>
       <Name>PICA_B2C.Business.MainModule.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PICA_B2C.DataPersistence.MainModule\PICA_B2C.DataPersistence.MainModule.csproj">
+      <Project>{c48c47d0-91cf-4c41-8470-10109049961d}</Project>
+      <Name>PICA_B2C.DataPersistence.MainModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\PICA_B2C.Infrastructure.CrossCutting.Core.IoC\PICA_B2C.Infrastructure.CrossCutting.IoC.csproj">
       <Project>{13953b20-2335-4513-a457-26a0e23f69e2}</Project>

@@ -48,6 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PICA_B2C.DataPersistence.MainModule\PICA_B2C.DataPersistence.MainModule.csproj">
+      <Project>{c48c47d0-91cf-4c41-8470-10109049961d}</Project>
+      <Name>PICA_B2C.DataPersistence.MainModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PICA_B2C.Infrastructure.CrossCutting.Core\PICA_B2C.Infrastructure.CrossCutting.Core.csproj">
       <Project>{2ef26dba-b2b1-408f-813e-578370b903d1}</Project>
       <Name>PICA_B2C.Infrastructure.CrossCutting.Core</Name>

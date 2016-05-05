@@ -1,4 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
+using PICA_B2C.DataPersistence.MainModule.Contracts;
+using PICA_B2C.DataPersistence.MainModule.Implementation;
 using PICA_B2C.Infrastructure.CrossCutting.Core.Parameters;
 using PICA_B2C.ServiceAgent.MainModule.Contracts;
 using PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices;
@@ -92,6 +94,7 @@ namespace PICA_B2C.Infrastructure.CrossCutting.IoC
         private static void ConfigureRootContainer(IUnityContainer container)
         {
             RegisterServicesAgent(container);
+            RegisterRepositories(container);
         }
 
         /// <summary>
@@ -101,6 +104,15 @@ namespace PICA_B2C.Infrastructure.CrossCutting.IoC
         private static void RegisterServicesAgent(IUnityContainer container)
         {
             container.RegisterType<IProductsServiceAgent, ProductsServiceAgent>(new TransientLifetimeManager());
+        }
+
+        /// <summary>
+        /// It records data types related to repositories.
+        /// </summary>
+        /// <param name="container">Container to configure.</param>
+        private static void RegisterRepositories(IUnityContainer container)
+        {
+            container.RegisterType<IItemsRepository, ItemsRepository>(new TransientLifetimeManager());
         }
 
     }
