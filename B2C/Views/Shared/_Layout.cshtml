@@ -3,6 +3,8 @@
 <head>
     @using Microsoft.AspNet.Identity;
     @using System.Security.Claims;
+    @using PICA_B2C.Business.MainModule.Entities.Models;
+    @using PICA_B2C.Infrastructure.CrossCutting.Core.Serialization;
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,11 +28,18 @@
         if (Request.IsAuthenticated)
         {
             userName = string.Format("Bienvenido {0} {1}", (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Name.ToString()).Value, (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Surname.ToString()).Value).Trim() ;
-
-            var lstQuantitys = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.SerialNumber.ToString()).Value;
-            quantityProducts = string.IsNullOrEmpty(lstQuantitys) ? 0 : lstQuantitys.Split(',').Sum(itm => Convert.ToInt32(itm));
-
             authenticationLabel = "Salir";
+        }
+
+        if ((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData) != null)
+        {
+            var lstItemsSerialized = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
+
+            if (!string.IsNullOrEmpty(lstItemsSerialized))
+            {
+                List<Item> lstItems = JsonSerializer.DeserializeObject<List<Item>>(lstItemsSerialized);
+                quantityProducts = lstItems.Sum(itm => itm.Quantity);
+            }
         }
     }
 

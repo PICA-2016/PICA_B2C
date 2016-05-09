@@ -61,6 +61,27 @@ namespace PICA_B2C.DataPersistence.MainModule.Implementation
         }
 
         /// <summary>
+        /// Remove item.
+        /// </summary>
+        /// <param name="item">Item to remove.</param>
+        /// <returns>True if the operation was successful.</returns>
+        public bool DeleteItem(PICA_B2C.Business.MainModule.Entities.Models.Item item)
+        {
+            using (AES_Pica_Items context = new AES_Pica_Items())
+            {
+                var currentItem = (from it in context.Items
+                                where it.ItemId == item.ItemId
+                                   select it).FirstOrDefault();
+                
+                context.Items.Attach(currentItem);
+                context.Entry(currentItem).State = System.Data.Entity.EntityState.Deleted;
+                context.SaveChanges();
+
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Remove items from a customer.
         /// </summary>
         /// <param name="customerId">Customer Id.</param>
@@ -78,13 +99,41 @@ namespace PICA_B2C.DataPersistence.MainModule.Implementation
                     foreach (var itm in lstItems)
                     {
                         context.Items.Attach(itm);
-                        //context.Entry(itm).State = System.Data.EntityState.Deleted;
+                        context.Entry(itm).State = System.Data.Entity.EntityState.Deleted;
                     }
 
                     context.SaveChanges();
                 }
 
                 return true;
+            }
+        }
+
+        /// <summary>
+        /// Modify item.
+        /// </summary>
+        /// <param name="item">Item to modify</param>
+        /// <returns>True if the operation was successful.</returns>
+        public bool ModifyQuantityToItem(PICA_B2C.Business.MainModule.Entities.Models.Item item)
+        {
+            using (AES_Pica_Items context = new AES_Pica_Items())
+            {
+                Item itemCurrent = (from itm in context.Items
+                                         where itm.ItemId == item.ItemId
+                                         select itm).FirstOrDefault();
+
+                if (itemCurrent != null)
+                {
+                    itemCurrent.Cantidad = item.Quantity;
+
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Item inexistente");
+                }
+
             }
         }
     }

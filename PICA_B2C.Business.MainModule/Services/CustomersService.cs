@@ -1,6 +1,8 @@
 ﻿using PICA_B2C.Business.MainModule.Contracts;
 using PICA_B2C.Business.MainModule.Entities.Models;
+using PICA_B2C.DataPersistence.MainModule.Contracts;
 using PICA_B2C.Infrastructure.CrossCutting.Core.Parameters;
+using PICA_B2C.Infrastructure.CrossCutting.IoC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,24 +24,31 @@ namespace PICA_B2C.Business.MainModule.Services
         /// <returns>Returns true if the credentials are valid.</returns>
         public Customer Authenticate(string userName, string password)
         {
-            if (Parameter.CustomerUserName.Equals(userName) && Parameter.CustomerPassword.Equals(password))
+            try
             {
-                Customer customer = new Customer()
+                if (Parameter.CustomerUserName.Equals(userName) && Parameter.CustomerPassword.Equals(password))
                 {
-                    CustomerId = 1,
-                    Names = "Juan",
-                    LastNames = "Giraldo",
-                    Order = new Order()
+                    Customer customer = new Customer()
                     {
-                        Items = new List<Item>()
-                    },
-                };
+                        CustomerId = 1,
+                        Names = "Liliana",
+                        LastNames = "Giraldo",
+                        Order = new Order
+                        {
+                            Items = new List<Item>()
+                        },
+                    };
 
-                return customer;
+                    return customer;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch(Exception ex)
             {
-                return null;
+                throw new Exception("Se produjo un error al autenticar el cliente", ex);
             }
         }
     }

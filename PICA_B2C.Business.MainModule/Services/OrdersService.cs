@@ -1,5 +1,6 @@
 ﻿using PICA_B2C.Business.MainModule.Contracts;
 using PICA_B2C.Business.MainModule.Entities.Models;
+using PICA_B2C.Infrastructure.CrossCutting.Core.Serialization;
 using PICA_B2C.Infrastructure.CrossCutting.IoC;
 using PICA_B2C.ServiceAgent.MainModule.Contracts;
 using System;
@@ -22,20 +23,22 @@ namespace PICA_B2C.Business.MainModule.Services
         /// <param name="lstProductsId">List of productIds.</param>
         /// <param name="lstQuantitys"></param>
         /// <returns>Order.</returns>
-        public Order GetOrderByCustomerId (int customerId, List<int> lstProductsId, List<int> lstQuantitys)
+        public Order GetOrderByCustomerId (int customerId, string lstItemsSerialized)
         {
+            List<Item> lstItems = JsonSerializer.DeserializeObject<List<Item>>(lstItemsSerialized);
+
             Order order = new Order()
             {
                 CustomerId = customerId,
-                Items = new List<Item>(),
+                Items = lstItems,
                 OrderId = customerId,
             };
 
             Product product = null;
-            for(int i = 0; i<lstProductsId.Count; i++)
+            foreach (var itm in order.Items)
             {
-                product = IoCFactory.Resolve<IProductsServiceAgent>().GetProductById(lstProductsId[i]).Results.FirstOrDefault();
-                order.Items.Add(new Item { ItemId = i, Product = product, ProductId = product.ProductId, Quantity = lstQuantitys[i] });
+                product = IoCFactory.Resolve<IProductsServiceAgent>().GetProductById(itm.ProductId).Results.FirstOrDefault();
+                itm.Product = product;
             }
 
             return order;

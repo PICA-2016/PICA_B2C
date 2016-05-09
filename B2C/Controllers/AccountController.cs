@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using PICA_B2C.Business.MainModule.Entities.Models;
 using PICA_B2C.Business.MainModule.Services;
+using PICA_B2C.Infrastructure.CrossCutting.Core.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,15 @@ namespace B2C.Controllers
 
                 if (respuestaAutenticacion != null)
                 {
+                    var lstItemsSerialized = JsonSerializer.SerializeObject(new List<Item>());
+                    if ((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData) != null)
+                    {
+                        lstItemsSerialized = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
+                    }
+
+                    ItemsService itemsService = new ItemsService();
+                    respuestaAutenticacion.Order.Items = itemsService.GetItemsByCustomer(respuestaAutenticacion.CustomerId, lstItemsSerialized);
+
                     await SignInAsync(respuestaAutenticacion, model.RememberMe);
 
                     return RedirectToLocal(returnUrl);
@@ -116,15 +126,13 @@ namespace B2C.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             var claims = new List<Claim>();
 
-            var lstProductId = customer.Order.Items.Select(sc => sc.ProductId).ToList();
-            var lstQuantity = customer.Order.Items.Select(sc => sc.Quantity).ToList();
+            var lstItemsSerialized = JsonSerializer.SerializeObject(customer.Order.Items);
 
             claims.Add(new Claim(ClaimTypes.NameIdentifier, customer.CustomerId.ToString()));
             claims.Add(new Claim(ClaimTypes.Name, customer.Names));
             claims.Add(new Claim(ClaimTypes.Surname, customer.LastNames));
             claims.Add(new Claim(ClaimTypes.Email, !string.IsNullOrEmpty(customer.Email) ? customer.Email : string.Empty));
-            claims.Add(new Claim(ClaimTypes.UserData, string.Join(",", lstProductId)));
-            claims.Add(new Claim(ClaimTypes.SerialNumber, string.Join(",", lstQuantity)));
+            claims.Add(new Claim(ClaimTypes.UserData, lstItemsSerialized));
 
             var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 

@@ -2,6 +2,8 @@
 using PICA_B2C.Business.MainModule.Entities.Enumerations;
 using PICA_B2C.Business.MainModule.Entities.Models;
 using PICA_B2C.Business.MainModule.Entities.Pagination;
+using PICA_B2C.DataPersistence.MainModule.Contracts;
+using PICA_B2C.Infrastructure.CrossCutting.Core.Serialization;
 using PICA_B2C.Infrastructure.CrossCutting.IoC;
 using PICA_B2C.ServiceAgent.MainModule.Contracts;
 using System;
@@ -110,37 +112,6 @@ namespace PICA_B2C.Business.MainModule.Services
             catch (Exception ex)
             {
                 throw new Exception("An error occurred while querying the product by id", ex);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="lstPorductIs">Product identifiers.</param>
-        /// <param name="lstQuantitys">Quantitys.</param>
-        /// <param name="product">Product to add.</param>
-        /// <param name="productsIds">Product identifiers</param>
-        /// <param name="quantitys">Quantitys</param>
-        public void AddProductToCart(string lstPorductIs, string lstQuantitys, Product product, out List<int> productsIds, out List<int> quantitys)
-        {
-            productsIds = string.IsNullOrEmpty(lstPorductIs) ? new List<int>() : lstPorductIs.Split(',').Select(p => Convert.ToInt32(p)).ToList();
-            quantitys = string.IsNullOrEmpty(lstQuantitys) ? new List<int>() : lstQuantitys.Split(',').Select(q => Convert.ToInt32(q)).ToList();
-
-            if (productsIds.Any(p => p == product.Id))
-            {
-                for (int i = 0; i < productsIds.Count(); i++)
-                {
-                    if (productsIds[i] == product.Id)
-                    {
-                        quantitys[i] = quantitys[i] + 1;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                productsIds.Add(product.Id);
-                quantitys.Add(1);
             }
         }
     }

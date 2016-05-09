@@ -24,10 +24,24 @@ namespace PICA_B2C.DataPersistence.MainModule.Contracts
         bool AddItem(PICA_B2C.Business.MainModule.Entities.Models.Item item, int customerId);
 
         /// <summary>
+        /// Remove item.
+        /// </summary>
+        /// <param name="item">Item to remove.</param>
+        /// <returns>True if the operation was successful.</returns>
+        bool DeleteItem(PICA_B2C.Business.MainModule.Entities.Models.Item item);
+
+        /// <summary>
         /// Remove items from a customer.
         /// </summary>
         /// <param name="customerId">Customer Id.</param>
         /// <returns>True if the operation was successful.</returns>
         bool DeleteItemsByCustomerId(int customerId);
+
+        /// <summary>
+        /// Modify item.
+        /// </summary>
+        /// <param name="item">Item to modify</param>
+        /// <returns>True if the operation was successful.</returns>
+        bool ModifyQuantityToItem(PICA_B2C.Business.MainModule.Entities.Models.Item item);
     }
 }
