@@ -96,3 +96,5 @@ C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.DataPersistence.MainModule.dll
 C:\Proyectos\PICA_B2C\B2C\bin\EntityFramework.dll
 C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.DataPersistence.MainModule.pdb
 C:\Proyectos\PICA_B2C\B2C\bin\EntityFramework.xml
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Infrastructure.CrossCutting.IoCBusiness.dll
+C:\Proyectos\PICA_B2C\B2C\bin\PICA_B2C.Infrastructure.CrossCutting.IoCBusiness.pdb

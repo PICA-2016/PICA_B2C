@@ -1,11 +1,12 @@
 ﻿using B2C.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using PICA_B2C.Business.MainModule.Contracts;
 using PICA_B2C.Business.MainModule.Entities.Enumerations;
 using PICA_B2C.Business.MainModule.Entities.Models;
 using PICA_B2C.Business.MainModule.Entities.Pagination;
-using PICA_B2C.Business.MainModule.Services;
 using PICA_B2C.Infrastructure.CrossCutting.Core.Serialization;
+using PICA_B2C.Infrastructure.CrossCutting.IoCBusiness;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,9 +90,8 @@ namespace B2C.Controllers
                 filterSearch = search["value"];
             }
 
-            ProductsService productsService = new ProductsService();
             AnswerPage<Product> answerProduct = new AnswerPage<Product>();
-            answerProduct = productsService.GetProducts(filterSearch, start, length, typeSearch);
+            answerProduct = IoCFactoryBusiness.Resolve<IProductsService>().GetProducts(filterSearch, start, length, typeSearch);
 
             return Json(new
             {
@@ -120,8 +120,7 @@ namespace B2C.Controllers
             }
             else
             {
-                ProductsService productsService = new ProductsService();
-                product = productsService.GetProductById(id).Results.FirstOrDefault();
+                product = IoCFactoryBusiness.Resolve<IProductsService>().GetProductById(id).Results.FirstOrDefault();
 
                 if (product == null)
                 {
@@ -156,8 +155,7 @@ namespace B2C.Controllers
 
                     int customerId = !User.Identity.IsAuthenticated ? 0 : Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
 
-                    ItemsService itemsService = new ItemsService();
-                    lstItemsSerialized = itemsService.AddItemToCart(product.Id, lstItemsSerialized, customerId);
+                    lstItemsSerialized = IoCFactoryBusiness.Resolve<IItemsService>().AddItemToCart(product.Id, lstItemsSerialized, customerId);
 
                     //Guardar en memoria
                     var claims = new List<Claim>();
@@ -193,10 +191,9 @@ namespace B2C.Controllers
         {
             Response.Expires = 0;
 
-            ProductsService productsService = new ProductsService();
             AnswerPage<Product> answerProduct = new AnswerPage<Product>();
 
-            answerProduct = productsService.GetProductsTop5(new BaseQueryPagination() { Page = 1, PageSize = 5, Contains = string.Empty});
+            answerProduct = IoCFactoryBusiness.Resolve<IProductsService>().GetProductsTop5(new BaseQueryPagination() { Page = 1, PageSize = 5, Contains = string.Empty});
 
             if (answerProduct.Results.Count > 0)
             {
@@ -309,8 +306,7 @@ namespace B2C.Controllers
 
                 int customerId = !User.Identity.IsAuthenticated ? 0 : Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
 
-                ItemsService itemsService = new ItemsService();
-                lstItemsSerialized = itemsService.DeleteItemToCart(Convert.ToInt32(productId), lstItemsSerialized, customerId);
+                lstItemsSerialized = IoCFactoryBusiness.Resolve<IItemsService>().DeleteItemToCart(Convert.ToInt32(productId), lstItemsSerialized, customerId);
 
                 //Guardar en memoria
                 var claims = new List<Claim>();
@@ -345,8 +341,7 @@ namespace B2C.Controllers
             int userId = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier) == null ? 0 : Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
             var lstItemsSerialized = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
 
-            OrdersService ordersService = new OrdersService();
-            Order order = ordersService.GetOrderByCustomerId(userId, lstItemsSerialized);
+            Order order = IoCFactoryBusiness.Resolve<IOrdersService>().GetOrderByCustomerId(userId, lstItemsSerialized);
 
             return order;
         }
@@ -370,8 +365,7 @@ namespace B2C.Controllers
 
                 int customerId = !User.Identity.IsAuthenticated ? 0 : Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
 
-                ItemsService itemsService = new ItemsService();
-                lstItemsSerialized = itemsService.ModifyQuantityToItem(item, lstItemsSerialized, customerId);
+                lstItemsSerialized = IoCFactoryBusiness.Resolve<IItemsService>().ModifyQuantityToItem(item, lstItemsSerialized, customerId);
 
                 //Guardar en memoria
                 var claims = new List<Claim>();

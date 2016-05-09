@@ -1,9 +1,10 @@
 ﻿using B2C.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using PICA_B2C.Business.MainModule.Contracts;
 using PICA_B2C.Business.MainModule.Entities.Models;
-using PICA_B2C.Business.MainModule.Services;
 using PICA_B2C.Infrastructure.CrossCutting.Core.Serialization;
+using PICA_B2C.Infrastructure.CrossCutting.IoCBusiness;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,8 +70,7 @@ namespace B2C.Controllers
                         lstItemsSerialized = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
                     }
 
-                    ItemsService itemsService = new ItemsService();
-                    respuestaAutenticacion.Order.Items = itemsService.GetItemsByCustomer(respuestaAutenticacion.CustomerId, lstItemsSerialized);
+                    respuestaAutenticacion.Order.Items = IoCFactoryBusiness.Resolve<IItemsService>().GetItemsByCustomer(respuestaAutenticacion.CustomerId, lstItemsSerialized);
 
                     await SignInAsync(respuestaAutenticacion, model.RememberMe);
 
@@ -110,9 +110,7 @@ namespace B2C.Controllers
         /// <returns>Service response.</returns>
         private Customer AuthenticateUser(string userName, string password)
         {
-            var customerService = new CustomersService();
-
-            return customerService.Authenticate(userName, password);
+            return IoCFactoryBusiness.Resolve<ICustomersService>().Authenticate(userName, password);
         }
 
         /// <summary>

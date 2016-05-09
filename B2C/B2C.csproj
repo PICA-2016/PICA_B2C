@@ -1110,6 +1110,10 @@
       <Project>{2ef26dba-b2b1-408f-813e-578370b903d1}</Project>
       <Name>PICA_B2C.Infrastructure.CrossCutting.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PICA_B2C.Infrastructure.CrossCutting.IoCBusiness\PICA_B2C.Infrastructure.CrossCutting.IoCBusiness.csproj">
+      <Project>{bce6d9fb-aa48-4793-ab83-76afb24575d8}</Project>
+      <Name>PICA_B2C.Infrastructure.CrossCutting.IoCBusiness</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

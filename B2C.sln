@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 Data Persistence", "3 Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PICA_B2C.DataPersistence.MainModule", "PICA_B2C.DataPersistence.MainModule\PICA_B2C.DataPersistence.MainModule.csproj", "{C48C47D0-91CF-4C41-8470-10109049961D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PICA_B2C.Infrastructure.CrossCutting.IoCBusiness", "PICA_B2C.Infrastructure.CrossCutting.IoCBusiness\PICA_B2C.Infrastructure.CrossCutting.IoCBusiness.csproj", "{BCE6D9FB-AA48-4793-AB83-76AFB24575D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{C48C47D0-91CF-4C41-8470-10109049961D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C48C47D0-91CF-4C41-8470-10109049961D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C48C47D0-91CF-4C41-8470-10109049961D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCE6D9FB-AA48-4793-AB83-76AFB24575D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCE6D9FB-AA48-4793-AB83-76AFB24575D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCE6D9FB-AA48-4793-AB83-76AFB24575D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCE6D9FB-AA48-4793-AB83-76AFB24575D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,5 +85,6 @@ Global
 		{13953B20-2335-4513-A457-26A0E23F69E2} = {081A513A-BA63-4EDA-A7AE-D6D634D0FE78}
 		{FAC65432-62FC-4953-A312-CC80F04BFF96} = {5FC46390-F15E-46DC-9FCB-0E90639FB5EE}
 		{C48C47D0-91CF-4C41-8470-10109049961D} = {088315B5-9176-47A2-949D-C1276C9DFAB1}
+		{BCE6D9FB-AA48-4793-AB83-76AFB24575D8} = {081A513A-BA63-4EDA-A7AE-D6D634D0FE78}
 	EndGlobalSection
 EndGlobal
