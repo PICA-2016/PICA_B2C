@@ -20,5 +20,12 @@ namespace PICA_B2C.Business.MainModule.Contracts
         /// <param name="lstQuantitys"></param>
         /// <returns>Order.</returns>
         Order GetOrderByCustomerId(int customerId, string lstItemsSerialized);
+
+        /// <summary>
+        /// process the order.
+        /// </summary>
+        /// <param name="customerId">Identifier customer.</param>
+        /// <returns>True if the operation was successful.</returns>
+        bool ProcessOrder(int customerId);
     }
 }

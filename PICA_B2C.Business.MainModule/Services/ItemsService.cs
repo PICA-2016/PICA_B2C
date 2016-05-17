@@ -149,5 +149,17 @@ namespace PICA_B2C.Business.MainModule.Services
             return lstItemsSerialized;
         }
 
+        /// <summary>
+        /// Remove items from a customer.
+        /// </summary>
+        /// <param name="customerId">Customer Id.</param>
+        /// <returns>True if the operation was successful.</returns>
+        public bool DeleteItemsByCustomerId(int customerId)
+        {
+            bool answerItems = IoCFactory.Resolve<IItemsRepository>().DeleteItemsByCustomerId(customerId);
+
+            return answerItems;
+        }
+
     }
 }

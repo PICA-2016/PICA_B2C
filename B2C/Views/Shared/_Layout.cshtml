@@ -60,23 +60,20 @@
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i ><img src="~/Content/Images/AddCart.png" width="18px;" /><strong> @quantityProducts</strong></i>
-                    </a>
-                    
+                        @using (Html.BeginForm("ShoppingCarts", "Administration", FormMethod.Post, new { id = "shoppingForm" }))
+                        {
+                            <a href="javascript:document.getElementById('shoppingForm').submit()"><i><img src="~/Content/Images/AddCart.png" width="18px;" /><strong> @quantityProducts</strong></i></a>
+                        }
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
 
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                         {
                             <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-fw"></i> @authenticationLabel</a>
                         }
-                    </a>
-                    
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->

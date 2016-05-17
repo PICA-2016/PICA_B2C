@@ -1,5 +1,6 @@
 ﻿using PICA_B2C.Business.MainModule.Contracts;
 using PICA_B2C.Business.MainModule.Entities.Models;
+using PICA_B2C.DataPersistence.MainModule.Contracts;
 using PICA_B2C.Infrastructure.CrossCutting.Core.Serialization;
 using PICA_B2C.Infrastructure.CrossCutting.IoC;
 using PICA_B2C.ServiceAgent.MainModule.Contracts;
@@ -42,6 +43,18 @@ namespace PICA_B2C.Business.MainModule.Services
             }
 
             return order;
+        }
+
+        /// <summary>
+        /// process the order.
+        /// </summary>
+        /// <param name="customerId">Identifier customer.</param>
+        /// <returns>True if the operation was successful.</returns>
+        public bool ProcessOrder(int customerId)
+        {
+            bool answerItems = IoCFactory.Resolve<IItemsRepository>().DeleteItemsByCustomerId(customerId);
+
+            return answerItems;
         }
     }
 }

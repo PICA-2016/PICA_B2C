@@ -6,6 +6,9 @@ using System.Web;
 
 namespace B2C.Models
 {
+    /// <summary>
+    /// Login Model.
+    /// </summary>
     public class LoginViewModel
     {
         /// <summary>

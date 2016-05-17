@@ -243,6 +243,58 @@ namespace B2C.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public ActionResult ShoppingCarts(string action, Customer model)
+        {
+            //1 validar si no esta autenticado
+            //2 Pedir Datos TC y envio
+            //3 borrar items de BD
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if(action.Equals("process"))
+            {
+                return RedirectToAction("ProcessCart");
+            }
+            if(action.Equals("cancelOrder"))
+            {
+                int customerId = !User.Identity.IsAuthenticated ? 0 : Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
+
+                var result = IoCFactoryBusiness.Resolve<IItemsService>().DeleteItemsByCustomerId(customerId);
+
+                if(result)
+                {
+                    var lstItemsSerialized = JsonSerializer.SerializeObject(new List<Item>());
+
+                    //Guardar en memoria
+                    var claims = new List<Claim>();
+
+                    var thumbClaim = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString());
+                    if (thumbClaim != null)
+                    {
+                        (User.Identity as ClaimsIdentity).RemoveClaim(thumbClaim);
+                    }
+                    (User.Identity as ClaimsIdentity).AddClaim(new Claim(ClaimTypes.UserData, lstItemsSerialized));
+
+                    claims = (User.Identity as ClaimsIdentity).Claims.ToList();
+                    var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, id);
+                    }
+                }
+
+                return RedirectToAction("ShoppingCarts");
+            }
+
+            return View();
+        }
+
         /// <summary>
         /// Get products shopping cart.
         /// </summary>
@@ -279,11 +331,7 @@ namespace B2C.Controllers
         /// <returns>Partial View.</returns>
         public PartialViewResult ProcessOrder(int id)
         {
-
-            //1 validar si no esta autenticado
-            //2 Pedir Datos TC y envio
-            //3 borrar items de BD
-
+            //TODO: popup
             return PartialView();
         }
 
@@ -390,6 +438,57 @@ namespace B2C.Controllers
 
             return RedirectToAction("ShoppingCarts");
         }
+        #endregion
+
+
+        #region Process Order
+        public ActionResult ProcessCart()
+        {
+            
+
+            return View("ProcessCart");
+        }
+
+        [HttpPost]
+        //[AllowAnonymous]
+        public ActionResult ProcessCart(string accion, ShippingInformationViewModel model)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            int customerId = !User.Identity.IsAuthenticated ? 0 : Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
+            //var lstItemsSerialized = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
+
+            var answerOrder = IoCFactoryBusiness.Resolve<IOrdersService>().ProcessOrder(customerId);
+
+            if (answerOrder)
+            {
+                var lstItemsSerialized = JsonSerializer.SerializeObject(new List<Item>());
+
+                //Guardar en memoria
+                var claims = new List<Claim>();
+
+                var thumbClaim = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString());
+                if (thumbClaim != null)
+                {
+                    (User.Identity as ClaimsIdentity).RemoveClaim(thumbClaim);
+                }
+                (User.Identity as ClaimsIdentity).AddClaim(new Claim(ClaimTypes.UserData, lstItemsSerialized));
+
+                claims = (User.Identity as ClaimsIdentity).Claims.ToList();
+                var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, id);
+                }
+            }
+
+            return View(model);
+        }
+
         #endregion
 
         #region Language Resources

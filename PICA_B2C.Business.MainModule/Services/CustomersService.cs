@@ -51,5 +51,29 @@ namespace PICA_B2C.Business.MainModule.Services
                 throw new Exception("Se produjo un error al autenticar el cliente", ex);
             }
         }
+
+        /// <summary>
+        /// Register Customer.
+        /// </summary>
+        /// <param name="customer">customer to register.</param>
+        /// <returns>Registered customer.</returns>
+        public Customer RegisterCustomer(Customer customer)
+        {
+            try
+            {
+                customer.Order = new Order
+                {
+                    CustomerId = 2,
+                    Items = new List<Item>()
+                };
+
+                return customer;
+               
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se produjo un error al registrar el cliente", ex);
+            }
+        }
     }
 }

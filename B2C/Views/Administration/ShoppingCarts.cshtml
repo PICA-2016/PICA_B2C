@@ -5,17 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id='processModal' style="background-color: rgba(130,130,130,0.50) ; border:none;" class="modal fade" data-url='@Url.Action("ProcessOrder", new { id = "-id-" })' role="dialog" data-backdrop="static" data-keyboard="false">
-    <div class="" style="width:400px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div id='modalProcessInnerContainer'>
+@*<div id='processModal' style="background-color: rgba(130,130,130,0.50) ; border:none;" class="modal fade" data-url='@Url.Action("ProcessOrder", new { id = "-id-" })' role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="" style="width:400px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div id='modalProcessInnerContainer'>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </div>*@
 
 <div class="row">
 
@@ -30,49 +30,59 @@
         <button type="button" class="close" onclick="$('#resultMessageContainer').addClass('hidden')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span id="mensajeResultadosEdicion">@ViewData["ShowMessage"]</span>
     </div>
+    @using (Html.BeginForm("ShoppingCarts", "Administration", new { }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div>
+            <h1 class="page-header">Carrito de compras</h1>
+            <script type="text/x-kendo-tmpl" id="templateTop5">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src="#:Product.Image#" alt="articulo" style="width: 150px;" />
+                    </div>
+                    <div class="col-sm-4">
+                        <h5>#:Product.Name#</h5>
+                        <h5>Codigo: #:Product.ProductId#</h5>
+                        <h5>$ #:Product.ListPrice#</h5>
+                    </div>
+                    <div class="col-sm-4">
+                        @{Html.RenderPartial("ParameterUpdate", new PICA_B2C.Business.MainModule.Entities.Models.Item() { ProductId = 1, Quantity = 1 });}
+                        <button type="button" onclick="DeleteProduct(#:Product.ProductId#)" data-dismiss="modal" style="width:110px; height:80px; ">
+                            <img src="../Content/Images/Delete.png" /><h5>Eliminar</h5>
+                        </button>
+                    </div>
+                </div>
+            </script>
 
-    <div>
-        <h1 class="page-header">Carrito de compras</h1>
-        <script type="text/x-kendo-tmpl" id="templateTop5">
+            <div id="lvTop5"></div>
+
             <div class="row">
-                <div class="col-sm-4">
-                    <img src="#:Product.Image#" alt="articulo" style="width: 150px;" />
+                <div>
+                    <h4><strong>Subtotal: $<span id="subtotal">@ViewData["subtotal"]</span></strong></h4>
                 </div>
-                <div class="col-sm-4">
-                    <h5>#:Product.Name#</h5>
-                    <h5>Codigo: #:Product.ProductId#</h5>
-                    <h5>$ #:Product.ListPrice#</h5>
-                </div>
-                <div class="col-sm-4">
-                    @{Html.RenderPartial("ParameterUpdate", new PICA_B2C.Business.MainModule.Entities.Models.Item() { ProductId = 1, Quantity = 1 });}
-                    <button type="button" onclick="DeleteProduct(#:Product.ProductId#)" data-dismiss="modal" style="width:110px; height:80px; ">
-                        <img src="../Content/Images/Delete.png" /><h5>Eliminar</h5>
+                @*<div>
+                        <button onclick="ProcessOrder(this)" data-dismiss="modal" style="width:110px; height:80px; ">
+                            <img src="~/Content/Images/ProcessingOrder.png" /><h5>Procesar order</h5>
+                        </button>
+                    </div>*@
+                <div>
+                    <button name="action" type="submit" value="process" data-dismiss="modal" style="width:110px; height:80px; ">
+                        <img src="~/Content/Images/ProcessingOrder.png" /><h5>Procesar orden</h5>
+                    </button>
+                    <button name="action" type="submit" value="cancelOrder" data-dismiss="modal" style="width:110px; height:80px; ">
+                        <img src="~/Content/Images/CancelOrder.png" /><h5>Cancelar orden</h5>
                     </button>
                 </div>
             </div>
-        </script>
+        </div>
 
-        <div id="lvTop5"></div>
+        <div>
+            @Html.ValidationMessage("mensajeError", new { @class = "text-danger", id = "validationMessage" }) <br />
 
-        <div class="row">
-            <div>
-                <h4><strong>Subtotal: $<span id="subtotal">@ViewData["subtotal"]</span></strong></h4>
-            </div>
-            <div>
-                <button onclick="ProcessOrder(this)" data-dismiss="modal" style="width:110px; height:80px; ">
-                    <img src="~/Content/Images/ProcessingOrder.png" /><h5>Procesar order</h5>
-                </button>
+            <div id="loader" class="" aletr="" style="display:none">
+                <h5><img src="~/Content/Kendo/Default/loading.gif" />Cargando...</h5>
             </div>
         </div>
-    </div>
-
-    <div>
-        @Html.ValidationMessage("mensajeError", new { @class = "text-danger", id = "validationMessage" }) <br />
-
-        <div id="loader" class="" aletr="" style="display:none">
-            <h5><img src="~/Content/Kendo/Default/loading.gif" />Cargando...</h5>
-        </div>
-    </div>
+                            }
 </div>
 @section css {
 }
@@ -142,13 +152,14 @@
 
         //Process Order
         function ProcessOrder(e) {
-            var url = $('#processModal').data('url');
-            url = url.replace("-id-", 1);
-            $.get(url, function (data) {
-                $('#modalProcessInnerContainer').html(data);
+            var a = 1;
+            //    var url = $('#processModal').data('url');
+            //    url = url.replace("-id-", 1);
+            //    $.get(url, function (data) {
+            //        $('#modalProcessInnerContainer').html(data);
 
-                $('#processModal').modal('show');
-            });
+            //        $('#processModal').modal('show');
+            //    });
         }
 
         //delete product

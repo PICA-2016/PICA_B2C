@@ -43,5 +43,12 @@ namespace PICA_B2C.Business.MainModule.Contracts
         /// <param name="customerId">Customer identifier.</param>
         /// <returns>Serialized list items.</returns>
         string ModifyQuantityToItem(Item item, string lstItemsSerialized, int customerId);
+
+        /// <summary>
+        /// Remove items from a customer.
+        /// </summary>
+        /// <param name="customerId">Customer Id.</param>
+        /// <returns>True if the operation was successful.</returns>
+        bool DeleteItemsByCustomerId(int customerId);
     }
 }

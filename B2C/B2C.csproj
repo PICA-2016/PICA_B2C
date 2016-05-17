@@ -189,8 +189,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\ShippingInformationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -644,6 +646,7 @@
     <Content Include="Content\Images\AddCart.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\CancelOrder.png" />
     <Content Include="Content\Images\CloseWindow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1084,6 +1087,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Administration\ProcessOrder.cshtml" />
     <Content Include="Views\Administration\ParameterUpdate.cshtml" />
+    <Content Include="Views\Administration\ProcessCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
