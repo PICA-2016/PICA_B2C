@@ -27,7 +27,7 @@
 
     @using (Html.BeginForm("ProcessCart", "Administration", new { }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
-        <h4>Datos</h4>
+        <h4>Datos para el envío del pedido</h4>
         <div class="col-xs-12">
             <div class="row">
                 <div class="row">
@@ -55,8 +55,11 @@
                         </div>
                         <div class="row">
                             @Html.LabelFor(m => m.CrediCardExpiration)
-                            <br />
+                            <br />                            
                             @*<input id="dpCrediCardExpiration" name="CrediCardExpiration" value="@Model.CrediCardExpiration.ToString("yyyy/MM/dd")" onkeydown="return false;" />*@
+                            @Html.TextBoxFor(m => m.CrediCardExpiration)
+                            <br />
+                            @Html.ValidationMessageFor(m => m.CrediCardExpiration, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-sm-4 ">
@@ -125,12 +128,17 @@
 
         <div class="col-xs-12">
             <div class="">
-                <button type="submit">
-                    <img src="~/Content/Imagenes/im_guardar.png" /><h5>Aceptar</h5>
+                <br />
+                <br />
+                <button type="submit" style="width:110px; height:80px; ">
+                    <img src="~/Content/Images/Aceptar.png" /><h5>Aceptar</h5>
                 </button>
-                <button data-dismiss="modal">
-                    <img src="~/Content/Imagenes/im_cerrar_negativo.png" /><h5>Cancelar</h5>
+                <button type="button" style="width:110px; height:80px;" onclick="window.location.href = '@Url.Action("ShoppingCarts")'">
+                    <img src="~/Content/Images/Cancelar.png" /><h5>Cancelar</h5>
                 </button>
+                @*<button type="button" onclick="window.location.href = '@Url.Action("RegistroInformacion")'">
+                    <img src="~/Content/Imagenes/im_volver.png" /><h5>@Language.Etiqueta_Volver</h5>
+                </button>*@
             </div>
 
         </div>

@@ -26,35 +26,63 @@ namespace PICA_B2C.Business.MainModule.Services
         /// <returns>Order.</returns>
         public Order GetOrderByCustomerId (int customerId, string lstItemsSerialized)
         {
-            List<Item> lstItems = JsonSerializer.DeserializeObject<List<Item>>(lstItemsSerialized);
-
-            Order order = new Order()
+            try
             {
-                CustomerId = customerId,
-                Items = lstItems,
-                OrderId = customerId,
-            };
+                List<Item> lstItems = JsonSerializer.DeserializeObject<List<Item>>(lstItemsSerialized);
 
-            Product product = null;
-            foreach (var itm in order.Items)
-            {
-                product = IoCFactory.Resolve<IProductsServiceAgent>().GetProductById(itm.ProductId).Results.FirstOrDefault();
-                itm.Product = product;
+                Order order = new Order()
+                {
+                    CustomerId = customerId,
+                    Items = lstItems,
+                    OrderId = customerId,
+                };
+
+                Product product = null;
+                foreach (var itm in order.Items)
+                {
+                    product = IoCFactory.Resolve<IProductsServiceAgent>().GetProductById(itm.ProductId).Results.FirstOrDefault();
+                    itm.Product = product;
+                }
+
+                return order;
             }
-
-            return order;
+            catch (Exception ex)
+            {
+                throw new Exception("Se produjo un error al consultar la orden del cliente.", ex);
+            }
         }
 
         /// <summary>
         /// process the order.
         /// </summary>
-        /// <param name="customerId">Identifier customer.</param>
+        /// <param name="order">Order to process.</param>
         /// <returns>True if the operation was successful.</returns>
-        public bool ProcessOrder(int customerId)
+        public bool ProcessOrder(Order order)
         {
-            bool answerItems = IoCFactory.Resolve<IItemsRepository>().DeleteItemsByCustomerId(customerId);
+            try
+            {
+                order.Items = IoCFactory.Resolve<IItemsRepository>().GetItemsByCustomer(order.CustomerId);
 
-            return answerItems;
+                Product product = null;
+                foreach (var itm in order.Items)
+                {
+                    product = IoCFactory.Resolve<IProductsServiceAgent>().GetProductById(itm.ProductId).Results.FirstOrDefault();
+                    itm.Product = product;
+                }
+
+                bool answerServiceAgent = IoCFactory.Resolve<IOrdersServiceAgent>().ProcessOrder(order);
+
+                if (answerServiceAgent)
+                {
+                    bool answerItems = IoCFactory.Resolve<IItemsRepository>().DeleteItemsByCustomerId(order.CustomerId);
+                }
+
+                return answerServiceAgent;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se produjo un error al procesar la orden", ex);
+            }
         }
     }
 }

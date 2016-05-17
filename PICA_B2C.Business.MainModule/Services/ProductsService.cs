@@ -111,7 +111,7 @@ namespace PICA_B2C.Business.MainModule.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while querying the product by id", ex);
+                throw new Exception("Se produjo un error al consultar el producto por id", ex);
             }
         }
     }

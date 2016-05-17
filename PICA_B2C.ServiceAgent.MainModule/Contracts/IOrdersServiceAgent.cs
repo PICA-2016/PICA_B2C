@@ -19,5 +19,12 @@ namespace PICA_B2C.ServiceAgent.MainModule.Contracts
         /// <param name="productsId">List of productIds.</param>
         /// <returns>Order.</returns>
         Order GetOrderByCustomerId(int customerId, List<int> productsId);
+
+        /// <summary>
+        /// process the order.
+        /// </summary>
+        /// <param name="order">Order to process.</param>
+        /// <returns>True if the operation was successful.</returns>
+        bool ProcessOrder(Order order);
     }
 }

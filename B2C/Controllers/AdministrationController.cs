@@ -461,7 +461,26 @@ namespace B2C.Controllers
             int customerId = !User.Identity.IsAuthenticated ? 0 : Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
             //var lstItemsSerialized = (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData.ToString()).Value;
 
-            var answerOrder = IoCFactoryBusiness.Resolve<IOrdersService>().ProcessOrder(customerId);
+            Order order = new Order()
+            {
+                CustomerId = customerId,
+                ShippingInformation = new ShippingInformation
+                {
+                    CrediCardType = model.CrediCardType,
+                    CreditCardHolder = model.CreditCardHolder,
+                    CreditCardNumber = model.CreditCardNumber,
+                    CrediCardExpiration = model.CrediCardExpiration,
+                    Names = model.Names,
+                    LastNames = model.LastNames,
+                    ShippingAddress = model.ShippingAddress,
+                    City = model.City,
+                    State = model.State,
+                    Zip = model.Zip,
+                    Country = model.Country
+                }
+            };
+
+            var answerOrder = IoCFactoryBusiness.Resolve<IOrdersService>().ProcessOrder(order);
 
             if (answerOrder)
             {

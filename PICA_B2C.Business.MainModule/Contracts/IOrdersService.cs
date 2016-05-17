@@ -24,8 +24,8 @@ namespace PICA_B2C.Business.MainModule.Contracts
         /// <summary>
         /// process the order.
         /// </summary>
-        /// <param name="customerId">Identifier customer.</param>
+        /// <param name="order">Order to process.</param>
         /// <returns>True if the operation was successful.</returns>
-        bool ProcessOrder(int customerId);
+        bool ProcessOrder(Order order);
     }
 }

@@ -12,7 +12,7 @@ namespace B2C.Models
     public class ShippingInformationViewModel
     {
         /// <summary>
-        /// Credi Card Type.
+        /// Credit Card Type.
         /// </summary>
         [Required(ErrorMessage = "El campo es obligatorio")]
         [Display(Name = "Tipo de tarjeta")]
@@ -43,8 +43,8 @@ namespace B2C.Models
         /// </summary>
         [Required(ErrorMessage = "El campo es obligatorio")]
         [Display(Name = "Fecha de expiración")]
-        [DataType(DataType.DateTime, ErrorMessage = "Formato de fecha incorrecto")]
-        public DateTime CrediCardExpiration { get; set; }
+        //[DataType(DataType.DateTime, ErrorMessage = "Formato de fecha incorrecto")]
+        public string CrediCardExpiration { get; set; }
 
         /// <summary>
         /// Recipient Names.

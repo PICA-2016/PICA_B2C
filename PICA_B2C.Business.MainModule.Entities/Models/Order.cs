@@ -29,11 +29,16 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
         /// <summary>
         /// Customer.
         /// </summary>
-        public virtual Customer customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
         /// <summary>
         /// List items.
         /// </summary>
         public virtual ICollection<Item> Items { get; set; }
+
+        /// <summary>
+        /// Shipping Information.
+        /// </summary>
+        public virtual ShippingInformation ShippingInformation { get; set; }
     }
 }
