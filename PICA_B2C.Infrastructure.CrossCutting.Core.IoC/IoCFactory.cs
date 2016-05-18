@@ -105,6 +105,7 @@ namespace PICA_B2C.Infrastructure.CrossCutting.IoC
         {
             container.RegisterType<IProductsServiceAgent, ProductsServiceAgent>(new TransientLifetimeManager());
             container.RegisterType<IOrdersServiceAgent, OrdersServiceAgent>(new TransientLifetimeManager());
+            container.RegisterType<ICustomersServiceAgent, CustomersServiceAgent>(new TransientLifetimeManager());
         }
 
         /// <summary>

@@ -505,7 +505,7 @@ namespace B2C.Controllers
                 }
             }
 
-            return View(model);
+            return View("ShoppingCarts");
         }
 
         #endregion

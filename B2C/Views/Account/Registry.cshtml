@@ -1,0 +1,210 @@
+﻿@using B2C.Models
+@model CustomerViewModel
+@{
+    ViewBag.Title = "Registrese";
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.default.min.css" rel="stylesheet" />
+    <title>@ViewBag.Title - Registrese</title>
+</head>
+<body>
+
+    <!-- titulo -->
+    <div class="col-xs-12">
+        <div class="titulo_seccion popup">
+            <h2>Registrese</h2>
+        </div>
+        <br />
+        <br />
+    </div>
+    <!-- fin titulo -->
+
+    <div class="container">
+        @*Mostar mensaje*@
+        @if (ViewData["MostrarMensaje"] != null && !string.IsNullOrEmpty(ViewData["MostrarMensaje"].ToString()))
+        {
+        <!-- mensaje alerta -->
+            <div id="mensajeResultadosContainer" class="mensaje_alerta alerta_bien " role="alert">
+                <button type="button" data-dismiss="alert" onclick="$('#mensajeResultadosContainer').addClass('hidden')">
+                    <div class="cerrar_popup">
+                        <img src="~/Content/Imagenes/im_cerrar_popup.png" />
+                    </div>
+                </button>
+                <h4><span id="mensajeResultados">@ViewData["MostrarMensaje"]</span></h4>
+            </div>
+        <!-- fin mensaje alerta -->
+        }
+
+        @using (Html.BeginForm("Registry", "Account", new { }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="row">
+                <div class="col-sm-4">
+                    <div>
+                        *@Html.LabelFor(m => m.Identification)
+                        @Html.TextBoxFor(m => m.Identification, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Identification, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.Names)
+                        @Html.TextBoxFor(m => m.Names, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Names, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.LastNames)
+                        @Html.TextBoxFor(m => m.LastNames, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.LastNames, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.Phone)
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>
+                        *@Html.LabelFor(m => m.Street)
+                        @Html.TextBoxFor(m => m.Street, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Street, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.State)
+                        @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.Zip)
+                        @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Zip, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.Country)
+                        @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.AddresType)
+                        @Html.TextBoxFor(m => m.AddresType, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.AddresType, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.City)
+                        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>
+                        *@Html.LabelFor(m => m.CrediCardType)
+                        @Html.TextBoxFor(m => m.CrediCardType, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CrediCardType, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.CreditCardNumber)
+                        @Html.TextBoxFor(m => m.CreditCardNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CreditCardNumber, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.Status)
+                        @Html.TextBoxFor(m => m.Status, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="f_modulo_a">
+                    <!-- Gif animado -->
+                    <div id="loader" class=" aletr " style="display:none">
+                        <h5><img src="~/Content/Imagenes/im_corazon.gif" />Cargando...</h5>
+                    </div>
+                    <!-- fin Gif animado -->
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="f_modulo_a">
+                    <br />
+                    <h5>Campos marcados con * son obligatorios.</h5>
+
+                    @Html.ValidationMessage("mensajeError", new { @class = "text-danger", id = "mensajeValidacion" }) <br />
+
+                    <!-- Gif animado -->
+                    <h5 id="loading" class="hidden"><img src="~/Content/Kendo/Default/loading.gif" />Cargando...</h5>
+                    <!-- fin Gif animado -->
+                </div>
+            </div>
+        <!-- botones -->
+            <div class="col-xs-12 contenedor_botones">
+                <div class="boton_a">
+                    <button name="accion" type="submit" value="siguiente" style="width:110px; height:80px; ">
+                        <img src="~/Content/Images/Aceptar.png" /><h5>Aceptar</h5>
+                    </button>
+                    <button type="button" onclick="window.location.href = '@Url.Action("Login")'" style="width:110px; height:80px; ">
+                        <img src="~/Content/Images/Volver.png" /><h5>Volver</h5>
+                    </button>
+                </div>
+
+                <div class="boton_b">
+
+                </div>
+            </div>
+        <!-- fin botones -->
+        }
+    </div>
+
+    <!-- fin contenedor -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/masterjs")
+    <script>
+        $('#loginForm').submit(function () {
+            $("#loading").removeClass("hidden");
+
+        });
+    </script>
+    @*@section scripts{
+
+            <script src="~/Scripts/Kendo/kendo.core.min.js"></script>
+            <script src="~/Scripts/Kendo/kendo.calendar.min.js"></script>
+            <script src="~/Scripts/Kendo/kendo.popup.min.js"></script>
+            <script src="~/Scripts/Kendo/kendo.datepicker.min.js"></script>
+            <script src="~/Scripts/Kendo/kendo.datetimepicker.min.js"></script>
+            <script src="~/Scripts/Kendo/kendo.timepicker.min.js"></script>
+            <script type="text/javascript">
+
+            </script>
+
+            <script type="text/javascript">
+                ////Fecha de nacimiento
+                //$(document).ready(function () {
+                //    $("#dpFechaNacimiento").kendoDatePicker(
+                //        {
+                //            value: new Date(),
+                //            format: "yyyy/MM/dd"
+                //        });
+                //});
+            </script>
+        }*@
+</body>
+</html>

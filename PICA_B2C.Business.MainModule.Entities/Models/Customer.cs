@@ -17,19 +17,79 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
         public int CustomerId { get; set; }
 
         /// <summary>
-        /// Customer name.
+        /// Customer Identification.
+        /// </summary>
+        public string Identification { get; set; }
+
+        /// <summary>
+        /// Customer Name.
         /// </summary>
         public string Names { get; set; }
 
         /// <summary>
-        /// Customer lastname.
+        /// Customer Lastname.
         /// </summary>
         public string LastNames { get; set; }
 
         /// <summary>
-        /// Customer email.
+        /// Customer Phone.
+        /// </summary>
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// Customer Email.
         /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Customer Password.
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// Credit Card Type.
+        /// </summary>
+        public string CrediCardType { get; set; }
+
+        /// <summary>
+        /// Credit Card Number.
+        /// </summary>
+        public string CreditCardNumber { get; set; }
+
+        /// <summary>
+        /// Status.
+        /// </summary>
+        public string Status { get; set; }
+
+        /// <summary>
+        /// Street.
+        /// </summary>
+        public string Street { get; set; }
+
+        /// <summary>
+        /// State.
+        /// </summary>
+        public string State { get; set; }
+
+        /// <summary>
+        /// Zip.
+        /// </summary>
+        public string Zip { get; set; }
+
+        /// <summary>
+        /// Country.
+        /// </summary>
+        public string Country { get; set; }
+
+        /// <summary>
+        /// Addres Type.
+        /// </summary>
+        public string AddresType { get; set; }
+
+        /// <summary>
+        /// City.
+        /// </summary>
+        public string City { get; set; }
 
         /// <summary>
         /// Identifier order.

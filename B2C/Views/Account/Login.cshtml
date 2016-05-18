@@ -1,6 +1,7 @@
 ﻿@using B2C.Models
 @model LoginViewModel
 @{
+    ViewBag.Title = "Login";
     Layout = null;
 }
 
@@ -12,6 +13,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.default.min.css" rel="stylesheet" />
     <title>@ViewBag.Title - Login</title>
 </head>
 <body>
@@ -92,7 +95,7 @@
 
                                                         </div>
                                                         <div class="row ">
-                                                            @*<a href=""><h5>@Html.ActionLink("Registrese", "Register")</h5></a>*@
+                                                            <a href=""><h5>@Html.ActionLink("Registrese", "Registry")</h5></a>
                                                         </div>
                                                     </div>
                                                 </div>

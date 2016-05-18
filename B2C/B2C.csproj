@@ -664,6 +664,7 @@
     <Content Include="Content\Images\ViewDetail.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Volver.png" />
     <Content Include="Content\Kendo\Default\editor.png" />
     <Content Include="Content\Kendo\Default\imagebrowser.png" />
     <Content Include="Content\Kendo\Default\indeterminate.gif" />
@@ -1090,6 +1091,7 @@
     <Content Include="Views\Administration\ProcessOrder.cshtml" />
     <Content Include="Views\Administration\ParameterUpdate.cshtml" />
     <Content Include="Views\Administration\ProcessCart.cshtml" />
+    <Content Include="Views\Account\Registry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

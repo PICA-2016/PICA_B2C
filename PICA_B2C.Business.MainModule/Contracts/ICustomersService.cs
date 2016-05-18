@@ -24,7 +24,7 @@ namespace PICA_B2C.Business.MainModule.Contracts
         /// Register Customer.
         /// </summary>
         /// <param name="customer">customer to register.</param>
-        /// <returns>Registered customer.</returns>
-        Customer RegisterCustomer(Customer customer);
+        /// <returns>True if the operation was successful.</returns>
+        bool RegisterCustomer(Customer customer);
     }
 }

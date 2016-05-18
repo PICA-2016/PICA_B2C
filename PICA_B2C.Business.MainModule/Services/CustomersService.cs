@@ -3,6 +3,7 @@ using PICA_B2C.Business.MainModule.Entities.Models;
 using PICA_B2C.DataPersistence.MainModule.Contracts;
 using PICA_B2C.Infrastructure.CrossCutting.Core.Parameters;
 using PICA_B2C.Infrastructure.CrossCutting.IoC;
+using PICA_B2C.ServiceAgent.MainModule.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,19 +57,13 @@ namespace PICA_B2C.Business.MainModule.Services
         /// Register Customer.
         /// </summary>
         /// <param name="customer">customer to register.</param>
-        /// <returns>Registered customer.</returns>
-        public Customer RegisterCustomer(Customer customer)
+        /// <returns>True if the operation was successful.</returns>
+        public bool RegisterCustomer(Customer customer)
         {
             try
             {
-                customer.Order = new Order
-                {
-                    CustomerId = 2,
-                    Items = new List<Item>()
-                };
+                return IoCFactory.Resolve<ICustomersServiceAgent>().RegisterCustomer(customer);
 
-                return customer;
-               
             }
             catch (Exception ex)
             {

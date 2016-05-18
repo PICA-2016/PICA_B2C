@@ -151,6 +151,67 @@ namespace B2C.Controllers
         }
         #endregion
 
+        #region Registry
+        /// <summary>
+        /// Paso dos del registro.
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        public ActionResult Registry()
+        {
+            return View("Registry");
+        }
+
+        /// <summary>
+        /// Aceptar o Cancelar del paso dos
+        /// </summary>
+        /// <param name="accion">aceptar o volver</param>
+        /// <returns>Vista.</returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Registry(string accion, CustomerViewModel model)
+        {
+            if (accion.Equals("siguiente"))
+            {
+                if (ModelState.IsValid)
+                {
+                    Customer customer = new Customer()
+                    {
+                        Identification = model.Identification,
+                        Names = model.Names,
+                        LastNames = model.LastNames,
+                        Phone = model.Phone,
+                        Email = model.Email,
+                        Password = model.Password,
+                        CrediCardType = model.CrediCardType,
+                        CreditCardNumber = model.CreditCardNumber,
+                        Status = model.Status,
+                        Street = model.Street,
+                        State = model.State,
+                        Zip = model.Zip,
+                        Country = model.Country,
+                        AddresType = model.AddresType,
+                        City = model.City,
+                    };
+
+                    bool answerCustomer = IoCFactoryBusiness.Resolve<ICustomersService>().RegisterCustomer(customer);
+
+                    if (!answerCustomer)
+                    {
+                        ViewData["MostrarMensaje"] = "Cliente no registrodo";
+                    }
+                    
+                    else
+                    {
+                        return RedirectToAction("Login");
+                    }
+                }
+            }
+
+            return View(model);
+        }
+
+        #endregion
         /// <summary>
         /// Authentication Manager.
         /// </summary>
