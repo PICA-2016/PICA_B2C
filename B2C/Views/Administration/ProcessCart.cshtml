@@ -32,86 +32,64 @@
             <div class="row">
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="row">
-                            @Html.LabelFor(m => m.CrediCardType)
-                            <br />
-                            @Html.TextBoxFor(m => m.CrediCardType)
-                            <br />
+                        <div>
+                            *@Html.LabelFor(m => m.CrediCardType)
+                            @Html.TextBoxFor(m => m.CrediCardType, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.CrediCardType, "", new { @class = "text-danger" })
                         </div>
-                        <div class="row">
-                            @Html.LabelFor(m => m.CreditCardHolder)
-                            <br />
-                            @Html.TextBoxFor(m => m.CreditCardHolder)
-                            <br />
+                        <div>
+                            *@Html.LabelFor(m => m.CreditCardHolder)
+                            @Html.TextBoxFor(m => m.CreditCardHolder, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.CreditCardHolder, "", new { @class = "text-danger" })
                         </div>
-                        <div class="row">
-                            @Html.LabelFor(m => m.CreditCardNumber)
-                            <br />
-                            @Html.TextBoxFor(m => m.CreditCardNumber)
-                            <br />
+                        <div>
+                            *@Html.LabelFor(m => m.CreditCardNumber)
+                            @Html.TextBoxFor(m => m.CreditCardNumber, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.CreditCardNumber, "", new { @class = "text-danger" })
                         </div>
-                        <div class="row">
-                            @Html.LabelFor(m => m.CrediCardExpiration)
-                            <br />                            
+                        <div>
+                            *@Html.LabelFor(m => m.CrediCardExpiration)
                             @*<input id="dpCrediCardExpiration" name="CrediCardExpiration" value="@Model.CrediCardExpiration.ToString("yyyy/MM/dd")" onkeydown="return false;" />*@
-                            @Html.TextBoxFor(m => m.CrediCardExpiration)
-                            <br />
+                            @Html.TextBoxFor(m => m.CrediCardExpiration, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.CrediCardExpiration, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-sm-4 ">
-                        <div class="row">
-                            @Html.LabelFor(m => m.Names)
-                            <br />
-                            @Html.TextBoxFor(m => m.Names)
-                            <br />
+                        <div>
+                            *@Html.LabelFor(m => m.Names)
+                            @Html.TextBoxFor(m => m.Names, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Names, "", new { @class = "text-danger" })
                         </div>
-                        <div class="row">
-                            @Html.LabelFor(m => m.LastNames)
-                            <br />
-                            @Html.TextBoxFor(m => m.LastNames)
-                            <br />
+                        <div>
+                            *@Html.LabelFor(m => m.LastNames)
+                            @Html.TextBoxFor(m => m.LastNames, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.LastNames, "", new { @class = "text-danger" })
                         </div>
-                        <div class="row">
-                            @Html.LabelFor(m => m.ShippingAddress)
-                            <br />
-                            @Html.TextBoxFor(m => m.ShippingAddress)
-                            <br />
+                        <div>
+                            *@Html.LabelFor(m => m.ShippingAddress)
+                            @Html.TextBoxFor(m => m.ShippingAddress, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.ShippingAddress, "", new { @class = "text-danger" })
                         </div>
-                        <div class="row">
-                            @Html.LabelFor(m => m.City)
-                            <br />
-                            @Html.TextBoxFor(m => m.City)
-                            <br />
+                        <div>
+                            *@Html.LabelFor(m => m.City)
+                            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-sm-4 ">
-                        <div class="row">
-                            @Html.LabelFor(m => m.State)
-                            <br />
-                            @Html.TextBoxFor(m => m.State)
-                            <br />
+                        <div>
+                            *@Html.LabelFor(m => m.State)
+                            @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
                         </div>
-                        <div class="row">
-                            @Html.LabelFor(m => m.Zip)
-                            <br />
-                            @Html.TextBoxFor(m => m.Zip)
-                            <br />
+                        <div>
+                            *@Html.LabelFor(m => m.Zip)
+                            @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Zip, "", new { @class = "text-danger" })
                         </div>
-                        <div class="row">
-                            @Html.LabelFor(m => m.Country)
-                            <br />
-                            @Html.TextBoxFor(m => m.Country)
-                            <br />
+                        <div>
+                            *@Html.LabelFor(m => m.Country)
+                            @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -127,7 +105,7 @@
         </div>
 
         <div class="col-xs-12">
-            <div class="">
+            <div class="" style="text-align:center">
                 <br />
                 <br />
                 <button type="submit" style="width:110px; height:80px; ">

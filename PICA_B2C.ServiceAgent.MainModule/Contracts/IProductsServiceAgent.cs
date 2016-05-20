@@ -40,5 +40,12 @@ namespace PICA_B2C.ServiceAgent.MainModule.Contracts
         /// <param name="id">Product Id.</param>
         /// <returns>Porduct.</returns>
         AnswerPage<Product> GetProductById(int id);
+
+        /// <summary>
+        /// Get the top 5.
+        /// </summary>
+        /// <param name="query">Query.</param>
+        /// <returns>Products.</returns>
+        AnswerPage<Product> GetProductsTop5(BaseQueryPagination query);
     }
 }

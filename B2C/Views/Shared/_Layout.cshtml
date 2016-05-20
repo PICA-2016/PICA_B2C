@@ -19,7 +19,6 @@
     @RenderSection("header", required: false)
 </head>
 <body>
-
     @{ 
         string userName = string.Empty;
         int quantityProducts = 0;
@@ -27,7 +26,7 @@
 
         if (Request.IsAuthenticated)
         {
-            userName = string.Format("Bienvenido {0} {1}", (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Name.ToString()).Value, (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Surname.ToString()).Value).Trim() ;
+            userName = string.Format("Bienvenido(a) {0} {1}", (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Name.ToString()).Value, (User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.Surname.ToString()).Value).Trim() ;
             authenticationLabel = "Salir";
         }
 

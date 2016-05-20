@@ -10,6 +10,14 @@ namespace PICA_B2C.ServiceAgent.MainModule.Contracts
     public interface ICustomersServiceAgent
     {
         /// <summary>
+        /// Validate credentials.
+        /// </summary>
+        /// <param name="userName">Customer user name.</param>
+        /// <param name="password">Customer password.</param>
+        /// <returns>Returns true if the credentials are valid.</returns>
+        Customer Authenticate(string userName, string password);
+
+        /// <summary>
         /// Register Customer.
         /// </summary>
         /// <param name="customer">customer to register.</param>

@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Registrese";
     Layout = null;
-
 }
 
 <!DOCTYPE html>
@@ -115,34 +114,25 @@
                 </div>
                 <div class="col-sm-4">
                     <div>
-                        *@Html.LabelFor(m => m.CrediCardType)
+                        @Html.LabelFor(m => m.CrediCardType)
                         @Html.TextBoxFor(m => m.CrediCardType, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.CrediCardType, "", new { @class = "text-danger" })
                     </div>
                     <div>
-                        *@Html.LabelFor(m => m.CreditCardNumber)
+                        @Html.LabelFor(m => m.CreditCardNumber)
                         @Html.TextBoxFor(m => m.CreditCardNumber, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.CreditCardNumber, "", new { @class = "text-danger" })
                     </div>
                     <div>
-                        *@Html.LabelFor(m => m.Status)
+                        @Html.LabelFor(m => m.Status)
                         @Html.TextBoxFor(m => m.Status, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
+            
             <div class="row">
-                <div class="f_modulo_a">
-                    <!-- Gif animado -->
-                    <div id="loader" class=" aletr " style="display:none">
-                        <h5><img src="~/Content/Imagenes/im_corazon.gif" />Cargando...</h5>
-                    </div>
-                    <!-- fin Gif animado -->
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="f_modulo_a">
+                <div style="text-align:center">
                     <br />
                     <h5>Campos marcados con * son obligatorios.</h5>
 
@@ -155,7 +145,9 @@
             </div>
         <!-- botones -->
             <div class="col-xs-12 contenedor_botones">
-                <div class="boton_a">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4" style="text-align:center">
                     <button name="accion" type="submit" value="siguiente" style="width:110px; height:80px; ">
                         <img src="~/Content/Images/Aceptar.png" /><h5>Aceptar</h5>
                     </button>
@@ -163,9 +155,7 @@
                         <img src="~/Content/Images/Volver.png" /><h5>Volver</h5>
                     </button>
                 </div>
-
-                <div class="boton_b">
-
+                <div class="col-sm-4">
                 </div>
             </div>
         <!-- fin botones -->

@@ -27,25 +27,7 @@ namespace PICA_B2C.Business.MainModule.Services
         {
             try
             {
-                if (Parameter.CustomerUserName.Equals(userName) && Parameter.CustomerPassword.Equals(password))
-                {
-                    Customer customer = new Customer()
-                    {
-                        CustomerId = 1,
-                        Names = "Liliana",
-                        LastNames = "Giraldo",
-                        Order = new Order
-                        {
-                            Items = new List<Item>()
-                        },
-                    };
-
-                    return customer;
-                }
-                else
-                {
-                    return null;
-                }
+                return IoCFactory.Resolve<ICustomersServiceAgent>().Authenticate(userName, password);
             }
             catch(Exception ex)
             {

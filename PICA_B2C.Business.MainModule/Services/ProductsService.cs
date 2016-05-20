@@ -90,7 +90,7 @@ namespace PICA_B2C.Business.MainModule.Services
         {
             try
             {
-                return IoCFactory.Resolve<IProductsServiceAgent>().GetProductsByName(query);
+                return IoCFactory.Resolve<IProductsServiceAgent>().GetProductsTop5(query);
             }
             catch (Exception ex)
             {

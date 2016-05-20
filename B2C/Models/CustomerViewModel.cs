@@ -71,7 +71,6 @@ namespace B2C.Models
         /// <summary>
         /// Credit Card Type.
         /// </summary>
-        [Required(ErrorMessage = "El campo es obligatorio")]
         [Display(Name = "Tipo de tarjeta")]
         [MaxLength(40, ErrorMessage = "Longitud maxima permitida de 40")]
         [RegularExpression(@"([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)", ErrorMessage = "Digite solo letras")]
@@ -80,7 +79,6 @@ namespace B2C.Models
         /// <summary>
         /// Credit Card Number.
         /// </summary>
-        [Required(ErrorMessage = "El campo es obligatorio")]
         [Display(Name = "Número de tarjeta")]
         [MaxLength(40, ErrorMessage = "Longitud maxima permitida de 40")]
         [RegularExpression(@"([ \s0-9]+)", ErrorMessage = "Digite solo números")]
@@ -89,7 +87,6 @@ namespace B2C.Models
         /// <summary>
         /// Status.
         /// </summary>
-        [Required(ErrorMessage = "El campo es obligatorio")]
         [Display(Name = "Estado")]
         [MaxLength(40, ErrorMessage = "Longitud maxima permitida de 40")]
         [RegularExpression(@"([A-Za-zÑñáéíóúÁÉÍÓÚ \s0-9]+)", ErrorMessage = "Digite solo letras y números")]

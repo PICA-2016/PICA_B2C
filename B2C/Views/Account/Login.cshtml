@@ -18,6 +18,26 @@
     <title>@ViewBag.Title - Login</title>
 </head>
 <body>
+
+    <div class="col-xs-12" style="text-align:center">
+        <div class="row" >
+            <!-- logo -->
+            <div >
+                <a href="@Url.Action("Index","Home")"><img src="~/Content/Images/Logo.png" class="img-responsive" alt="B2C" width="250px;" /></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- titulo -->
+    <div class="col-xs-12">
+        <div class="titulo_seccion popup">
+            <h2>Inicio de sesión</h2>
+        </div>
+        <br />
+        <br />
+    </div>
+    <!-- fin titulo -->
+
     <div class="container">
 
         @*Mostar mensaje*@
@@ -33,96 +53,65 @@
             </div>
         }
 
-        <div class="row">
-            <!-- inicio encabezado -->
-            <div class="col-xs-12">
-                <div class="row">
-                    <!-- logo -->
-                    <div class="col-md-3 ">
-                        <a href="@Url.Action("Index","Home")"><img src="~/Content/Images/Logo.png" class="img-responsive" alt="B2C" /></a>
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewData["ReturnUrl"] }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm" }))
+        {
+            <div class="row">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <div>
+                        *@Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        *@Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe, new { @class = "check" })
+                    </div>
+                    <div style="text-align:center">
+                        <a href=""><h5>@Html.ActionLink("Registrese", "Registry")</h5></a>
                     </div>
                 </div>
+                <div class="col-sm-4">
+                </div>
             </div>
-            <!-- fin encabezado -->
-            <!-- contenidos página -->
-            <div class="col-xs-12">
-            </div>
-            <div class="col-xs-12">
-                <div class="row">
-                    <!-- inicio popup fuera -->
-                    <div class="col-sm-5 ">
-                        <section id="loginForm">
-                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewData["ReturnUrl"] }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "loginForm" }))
-                            {
-                                <div class="row ">
-                                    <!-- titulo y cerrar -->
-                                    <div class="col-xs-12">
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <div class="popup">
-                                                    <div class="">
-                                                        <h2>Inicio de sesión</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- formulario -->
-                                    <div class="col-xs-12">
-                                        <div class="row">
-                                            <!-- fin titulo y cerrar -->
-                                            <!-- inputs -->
-                                            <div class="col-xs-12 formulario">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="row">
-                                                            *@Html.LabelFor(m => m.UserName, new { @class = "" })
-                                                        </div>
-                                                        <div class="row">
-                                                            @Html.TextBoxFor(m => m.UserName, new { @class = "" })
-                                                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-                                                        </div>
-                                                        <div class="row">
-                                                            *@Html.LabelFor(m => m.Password, new { @class = "" })
-                                                        </div>
-                                                        <div class="row">
-                                                            @Html.PasswordFor(m => m.Password, new { @class = "" })
-                                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                                                        </div>
-                                                        <div class="row">
-                                                            @Html.CheckBoxFor(m => m.RememberMe)
-                                                            @Html.LabelFor(m => m.RememberMe, new { @class = "check" })
+            <div class="row">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <br />
+                    <h5>Campos marcados con * son obligatorios.</h5>
 
-                                                        </div>
-                                                        <div class="row ">
-                                                            <a href=""><h5>@Html.ActionLink("Registrese", "Registry")</h5></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- fin inputs -->
-                                            <h5 id="loading" class="hidden"><img src="~/Content/Kendo/Default/loading.gif" />Cargando...</h5>
-                                        </div>
-                                    </div>
-                                    <!-- Fin formulario -->
-                                    <!-- botones -->
-                                    <div class="col-xs-12">
-                                        <div class="boton_a">
-                                            <button type="submit" value="Ingresar" name="submitAction">
-                                                <h5>Ingresar</h5>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- fin botones -->
-                                </div>
-                            }
-                        </section>
-                    </div>
-                    <!-- fin popup fuera -->
+                    @Html.ValidationMessage("mensajeError", new { @class = "text-danger", id = "mensajeValidacion" }) <br />
+
+                    <!-- Gif animado -->
+                    <h5 id="loading" class="hidden"><img src="~/Content/Kendo/Default/loading.gif" />Cargando...</h5>
+                    <!-- fin Gif animado -->
+                </div>
+                <div class="col-sm-4">
                 </div>
             </div>
-            <!-- fin contenidos página -->
-        </div>
+            <!-- botones -->
+            <div class="row">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4" style="text-align:center">
+                    <button type="submit" value="Ingresar" name="submitAction" style="width:110px; height:80px; ">
+                        <h5>Ingresar</h5>
+                    </button>
+                </div>
+                <div class="col-sm-4">
+                </div>
+            </div>
+        <!-- fin botones -->
+        }
+
+
     </div>
 
     <!-- fin contenedor -->
