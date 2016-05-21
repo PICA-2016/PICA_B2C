@@ -43,8 +43,8 @@ namespace B2C.Models
         /// </summary>
         [Required(ErrorMessage = "El campo es obligatorio")]
         [Display(Name = "Fecha de expiración")]
-        //[DataType(DataType.DateTime, ErrorMessage = "Formato de fecha incorrecto")]
-        public string CrediCardExpiration { get; set; }
+        [DataType(DataType.DateTime, ErrorMessage = "Formato de fecha incorrecto")]
+        public DateTime CrediCardExpiration { get; set; }
 
         /// <summary>
         /// Recipient Names.

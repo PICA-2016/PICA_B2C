@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section header{
+    <link href="~/Content/Kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.default.min.css" rel="stylesheet" />
+}
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Procesar Orden Carrito de Compras</h1>
@@ -49,8 +53,10 @@
                         </div>
                         <div>
                             *@Html.LabelFor(m => m.CrediCardExpiration)
-                            @*<input id="dpCrediCardExpiration" name="CrediCardExpiration" value="@Model.CrediCardExpiration.ToString("yyyy/MM/dd")" onkeydown="return false;" />*@
-                            @Html.TextBoxFor(m => m.CrediCardExpiration, new { @class = "form-control" })
+                            </div>
+                        <div>
+                            <input id="dpCrediCardExpiration" name="CrediCardExpiration" value="@Model.CrediCardExpiration.ToString("yyyy/MM/dd")" onkeydown="return false;" />
+                            @*@Html.TextBoxFor(m => m.CrediCardExpiration, new { @class = "form-control" })*@
                             @Html.ValidationMessageFor(m => m.CrediCardExpiration, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -130,6 +136,11 @@
     <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
 
     <script src="~/Scripts/Kendo/kendo.core.min.js"></script>
+<script src="~/Scripts/Kendo/kendo.calendar.min.js"></script>
+<script src="~/Scripts/Kendo/kendo.popup.min.js"></script>
+<script src="~/Scripts/Kendo/kendo.datepicker.min.js"></script>
+<script src="~/Scripts/Kendo/kendo.datetimepicker.min.js"></script>
+<script src="~/Scripts/Kendo/kendo.timepicker.min.js"></script>
     <script src="~/Scripts/Kendo/kendo.data.min.js"></script>
     <script src="~/Scripts/Kendo/kendo.userevents.min.js"></script>
     <script src="~/Scripts/Kendo/kendo.listview.min.js"></script>
@@ -141,6 +152,7 @@
             //CrediCardExpiration
             $("#dpCrediCardExpiration").kendoDatePicker(
                 {
+                    value: new Date(),
                     format: "yyyy/MM/dd"
                 });
         });

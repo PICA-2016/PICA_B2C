@@ -29,7 +29,7 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
         /// <summary>
         /// Credi Card Expiration.
         /// </summary>
-        public string CrediCardExpiration { get; set; }
+        public DateTime CrediCardExpiration { get; set; }
 
         /// <summary>
         /// Recipient Names.

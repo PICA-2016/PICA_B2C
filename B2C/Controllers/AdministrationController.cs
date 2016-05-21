@@ -444,9 +444,10 @@ namespace B2C.Controllers
         #region Process Order
         public ActionResult ProcessCart()
         {
-            
 
-            return View("ProcessCart");
+            ShippingInformationViewModel model = new ShippingInformationViewModel();
+
+            return View(model);
         }
 
         [HttpPost]
