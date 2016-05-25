@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns0="http://pica.com/dss/clientes" xmlns:ns1="http://ws.wso2.org/dataservice" targetNamespace="http://pica.com/dss/clientes" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation />
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://pica.com/dss/clientes">
+      <xs:element name="wsInsertarCliente">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CUSTOMERCEDULA_IN" nillable="true" type="xs:string" />
+            <xs:element name="FNAME_IN" nillable="true" type="xs:string" />
+            <xs:element name="LNAME_IN" nillable="true" type="xs:string" />
+            <xs:element name="PHONENUMBER_IN" nillable="true" type="xs:string" />
+            <xs:element name="EMAIL_IN" nillable="true" type="xs:string" />
+            <xs:element name="PASSWORD_IN" nillable="true" type="xs:string" />
+            <xs:element name="CREDITCARDTYPE_IN" nillable="true" type="xs:string" />
+            <xs:element name="CREDITCARDNUMBER_IN" nillable="true" type="xs:string" />
+            <xs:element name="STATUS_IN" nillable="true" type="xs:string" />
+            <xs:element name="STREET_IN" nillable="true" type="xs:string" />
+            <xs:element name="STATE_IN" nillable="true" type="xs:string" />
+            <xs:element name="ZIP_IN" nillable="true" type="xs:string" />
+            <xs:element name="COUNTRY_IN" nillable="true" type="xs:string" />
+            <xs:element name="ADDRESTYPE_IN" nillable="true" type="xs:string" />
+            <xs:element name="CITY_IN" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Elementos" type="ns0:Elementos" />
+      <xs:complexType name="Elementos">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Cliente" type="ns0:Cliente" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Cliente">
+        <xs:sequence>
+          <xs:element name="COD_CONF_OUT" nillable="true" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ws.wso2.org/dataservice">
+      <xs:element name="DataServiceFault">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="current_params" type="xs:string" />
+            <xs:element name="current_request_name" type="xs:string" />
+            <xs:element name="nested_exception" type="xs:string" />
+            <xs:element name="source_data_service">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="location" type="xs:string" />
+                  <xs:element name="default_namespace" type="xs:string" />
+                  <xs:element name="description" type="xs:string" />
+                  <xs:element name="data_service_name" type="xs:string" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ds_code" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="REQUEST_STATUS" type="xs:string" />
+      <xs:element name="DATA_SERVICE_RESPONSE">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any minOccurs="0" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="wsInsertarClienteRequest">
+    <wsdl:part name="parameters" element="ns0:wsInsertarCliente" />
+  </wsdl:message>
+  <wsdl:message name="wsInsertarClienteResponse">
+    <wsdl:part name="parameters" element="ns0:Elementos" />
+  </wsdl:message>
+  <wsdl:message name="DataServiceFault">
+    <wsdl:part name="parameters" element="ns1:DataServiceFault" />
+  </wsdl:message>
+  <wsdl:portType name="insertaClientesDSPortType">
+    <wsdl:operation name="wsInsertarCliente">
+      <wsdl:documentation />
+      <wsdl:input wsaw:Action="urn:wsInsertarCliente" message="ns0:wsInsertarClienteRequest" />
+      <wsdl:output wsaw:Action="urn:wsInsertarClienteResponse" message="ns0:wsInsertarClienteResponse" />
+      <wsdl:fault wsaw:Action="urn:wsInsertarClienteDataServiceFault" name="DataServiceFault" message="ns0:DataServiceFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="insertaClientesDSSOAP11Binding" type="ns0:insertaClientesDSPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wsInsertarCliente">
+      <soap:operation soapAction="urn:wsInsertarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DataServiceFault">
+        <soap:fault use="literal" name="DataServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="insertaClientesDSSOAP12Binding" type="ns0:insertaClientesDSPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wsInsertarCliente">
+      <soap12:operation soapAction="urn:wsInsertarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DataServiceFault">
+        <soap12:fault use="literal" name="DataServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="insertaClientesDSHttpBinding" type="ns0:insertaClientesDSPortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="wsInsertarCliente">
+      <http:operation location="wsInsertarCliente" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="insertaClientesDS">
+    <wsdl:port name="SOAP11Endpoint" binding="ns0:insertaClientesDSSOAP11Binding">
+      <soap:address location="http://10.152.100.57:9763/services/insertaClientesDS.SOAP11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SecureSOAP11Endpoint" binding="ns0:insertaClientesDSSOAP11Binding">
+      <soap:address location="https://10.152.100.57:9443/services/insertaClientesDS.SecureSOAP11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SecureSOAP12Endpoint" binding="ns0:insertaClientesDSSOAP12Binding">
+      <soap12:address location="https://10.152.100.57:9443/services/insertaClientesDS.SecureSOAP12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SOAP12Endpoint" binding="ns0:insertaClientesDSSOAP12Binding">
+      <soap12:address location="http://10.152.100.57:9763/services/insertaClientesDS.SOAP12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="HTTPEndpoint" binding="ns0:insertaClientesDSHttpBinding">
+      <http:address location="http://10.152.100.57:9763/services/insertaClientesDS.HTTPEndpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SecureHTTPEndpoint" binding="ns0:insertaClientesDSHttpBinding">
+      <http:address location="https://10.152.100.57:9443/services/insertaClientesDS.SecureHTTPEndpoint/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

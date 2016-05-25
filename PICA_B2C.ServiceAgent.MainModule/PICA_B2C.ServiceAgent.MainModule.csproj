@@ -49,6 +49,11 @@
     <Compile Include="Implementation\WebServices\OrdersServiceAgent.cs" />
     <Compile Include="Implementation\WebServices\ProductsServiceAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\wsInsertaClientesDSReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\wsProductsReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -60,6 +65,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Service References\wsInsertaClientesDSReference\insertaClientesDS.wsdl" />
+    <None Include="Service References\wsInsertaClientesDSReference\PICA_B2C.ServiceAgent.MainModule.wsInsertaClientesDSReference.Cliente.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsInsertaClientesDSReference\PICA_B2C.ServiceAgent.MainModule.wsInsertaClientesDSReference.wsInsertarClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\wsProductsReference\consultarProductos.wsdl" />
     <None Include="Service References\wsProductsReference\consultarProductos.xsd">
       <SubType>Designer</SubType>
@@ -91,6 +103,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\wsInsertaClientesDSReference\" />
     <WCFMetadataStorage Include="Service References\wsProductsReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +114,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\wsProductsReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsInsertaClientesDSReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsInsertaClientesDSReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsInsertaClientesDSReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

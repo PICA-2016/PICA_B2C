@@ -47,24 +47,27 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
         /// <returns>True if the operation was successful.</returns>
         public bool RegisterCustomer(Customer customer)
         {
-            var wsInsertarCliente = new
-            {
-                CUSTOMERCEDULA_IN = customer.Identification,
-                FNAME_IN = customer.Names,
-                LNAME_IN = customer.LastNames,
-                PHONENUMBER_IN = customer.Phone,
-                EMAIL_IN = customer.Email,
-                PASSWORD_IN = customer.Password,
-                CREDITCARDTYPE_IN = customer.CrediCardType,
-                CREDITCARDNUMBER_IN = customer.CreditCardNumber,
-                STATUS_IN = customer.Status,
-                STREET_IN = customer.Street,
-                STATE_IN = customer.State,
-                ZIP_IN = customer.Zip,
-                COUNTRY_IN = customer.Country,
-                ADDRESTYPE_IN = customer.AddresType,
-                CITY_IN = customer.City          
-            };
+            var wsCustomer = new wsInsertaClientesDSReference.insertaClientesDSPortTypeClient();
+
+            var resultService = wsCustomer.wsInsertarCliente(
+                customer.Identification,
+                customer.Names,
+                customer.LastNames,
+                customer.Phone,
+                customer.Email,
+                customer.Password,
+                customer.CrediCardType,
+                customer.CreditCardNumber,
+                customer.Status,
+                customer.Street,
+                customer.State,
+                customer.Zip,
+                customer.Country,
+                customer.AddresType,
+                customer.City);
+
+            //resultService.wsInsertarCliente.customer customer = new resultService.wsInsertarCliente.customer();
+            //resultService.wsInsertarCliente.RegisterCustomer(null);
 
             return true;
         }
