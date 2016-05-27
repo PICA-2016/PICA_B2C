@@ -42,9 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICampaignsServiceAgent.cs" />
     <Compile Include="Contracts\ICustomersServiceAgent.cs" />
     <Compile Include="Contracts\IOrdersServiceAgent.cs" />
     <Compile Include="Contracts\IProductsServiceAgent.cs" />
+    <Compile Include="Implementation\WebServices\CampaignsServiceAgent.cs" />
     <Compile Include="Implementation\WebServices\CustomersServiceAgent.cs" />
     <Compile Include="Implementation\WebServices\OrdersServiceAgent.cs" />
     <Compile Include="Implementation\WebServices\ProductsServiceAgent.cs" />

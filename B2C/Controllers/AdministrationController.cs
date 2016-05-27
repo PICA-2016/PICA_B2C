@@ -43,9 +43,8 @@ namespace B2C.Controllers
             //    return View("Product", id.Value);
             //}
 
-            //TODO: revisar
             
-            
+
             if ((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.UserData) == null)
             {
                 var lstItemsSerialized = JsonSerializer.SerializeObject(new List<Item>());
@@ -214,6 +213,86 @@ namespace B2C.Controllers
                     Mensaje = "No hay datos"
                 }, JsonRequestBehavior.AllowGet);
             }
+        }
+        #endregion
+
+        #region Campaign
+        /// <summary>
+        /// Get Campaigns.
+        /// </summary>
+        /// <returns>Campaigns.</returns>
+        public async Task<JsonResult> GetCampaigns()
+        {
+            Response.Expires = 0;
+
+            //Campañas
+            List<Campaign> answerCampaign = IoCFactoryBusiness.Resolve<ICampaignsService>().GetCampaigns();
+
+            if (answerCampaign.Count > 0)
+            {
+                return Json(new
+                {
+                    Items = answerCampaign,
+                    Total = answerCampaign.Count,
+                    Message = answerCampaign.Count == 0 ? "No hay datos" : string.Empty
+                }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new
+                {
+                    Items = new List<Campaign>(),
+                    Total = 0,
+                    Mensaje = "No hay datos"
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        /// <summary>
+        /// Products of a campaign.
+        /// </summary>
+        /// <param name="id">campaign identifier.</param>
+        /// <returns>Result.</returns>
+        public ActionResult CampaignDetail(int id)
+        {
+            List<Product> lstProducts;
+
+            if (id == 0)
+            {
+                lstProducts = new List<Product>();
+            }
+            else
+            {
+                List<Product> answerCampaign = IoCFactoryBusiness.Resolve<ICampaignsService>().GetProductsOfCampaignById(id);
+
+                if (answerCampaign.Count > 0)
+                {
+                    return Json(new
+                    {
+                        Items = answerCampaign,
+                        Total = answerCampaign.Count,
+                        Message = answerCampaign.Count == 0 ? "No hay datos" : string.Empty
+                    }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        Items = new List<Product>(),
+                        Total = 0,
+                        Mensaje = "No hay datos"
+                    }, JsonRequestBehavior.AllowGet);
+                }
+
+                if (lstProducts == null)
+                {
+                    ViewData["Result"] = false;
+                    ModelState.AddModelError("mensajeError", "product null .");
+                    ViewData["ShowMessage"] = "product null ...";
+                }
+            }
+
+            return View(lstProducts);
         }
         #endregion
 

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace PICA_B2C.ServiceAgent.MainModule.Contracts
 {
+    /// <summary>
+    /// Customer interface service agent.
+    /// </summary>
     public interface ICustomersServiceAgent
     {
         /// <summary>

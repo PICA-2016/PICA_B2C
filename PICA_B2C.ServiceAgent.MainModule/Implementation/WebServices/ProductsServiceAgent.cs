@@ -30,17 +30,17 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
             answer.Total = resultsService == null ? 0 : Convert.ToInt32(resultsService.FirstOrDefault().CANTIDAD_REGISTROS);
 
             answer.Results = resultsService == null ? new List<Product>() : (from pro in resultsService
-                              select new Product()
-                              {
-                                  Id = Convert.ToInt32(pro.ID),
-                                  ProductId = Convert.ToInt32(pro.PRODUCTO_ID),
-                                  Name = pro.NOMBRE,
-                                  Description = pro.DESCRIPCION,
-                                  Category = pro.CATEGORIA,
-                                  ListPrice = Convert.ToInt32(pro.PRECIO_LISTA),
-                                  Producer = pro.FABRICANTE,
-                                  Image = pro.IMAGEN_URL
-                              }).ToList();
+                                                                             select new Product()
+                                                                             {
+                                                                                 Id = Convert.ToInt32(pro.ID),
+                                                                                 ProductId = Convert.ToInt32(pro.PRODUCTO_ID),
+                                                                                 Name = pro.NOMBRE,
+                                                                                 Description = pro.DESCRIPCION,
+                                                                                 Category = pro.CATEGORIA,
+                                                                                 ListPrice = Convert.ToInt32(pro.PRECIO_LISTA),
+                                                                                 Producer = pro.FABRICANTE,
+                                                                                 Image = pro.IMAGEN_URL
+                                                                             }).ToList();
 
             return answer;
         }

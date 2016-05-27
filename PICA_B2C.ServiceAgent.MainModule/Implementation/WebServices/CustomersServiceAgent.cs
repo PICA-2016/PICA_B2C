@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
 {
+    /// <summary>
+    /// Class service agent Customer.
+    /// </summary>
     public class CustomersServiceAgent : ICustomersServiceAgent
     {
         /// <summary>

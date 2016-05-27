@@ -1092,6 +1092,7 @@
     <Content Include="Views\Administration\ParameterUpdate.cshtml" />
     <Content Include="Views\Administration\ProcessCart.cshtml" />
     <Content Include="Views\Account\Registry.cshtml" />
+    <Content Include="Views\Administration\CampaignDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\TypeSearch.cs" />
+    <Compile Include="Models\Campaign.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Product.cs" />
