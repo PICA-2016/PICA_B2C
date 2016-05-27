@@ -75,6 +75,11 @@
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                     <div>
+                        *@Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
                         *@Html.LabelFor(m => m.Password)
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -130,7 +135,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div style="text-align:center">
                     <br />
@@ -173,28 +178,5 @@
 
         });
     </script>
-    @*@section scripts{
-
-            <script src="~/Scripts/Kendo/kendo.core.min.js"></script>
-            <script src="~/Scripts/Kendo/kendo.calendar.min.js"></script>
-            <script src="~/Scripts/Kendo/kendo.popup.min.js"></script>
-            <script src="~/Scripts/Kendo/kendo.datepicker.min.js"></script>
-            <script src="~/Scripts/Kendo/kendo.datetimepicker.min.js"></script>
-            <script src="~/Scripts/Kendo/kendo.timepicker.min.js"></script>
-            <script type="text/javascript">
-
-            </script>
-
-            <script type="text/javascript">
-                ////Fecha de nacimiento
-                //$(document).ready(function () {
-                //    $("#dpFechaNacimiento").kendoDatePicker(
-                //        {
-                //            value: new Date(),
-                //            format: "yyyy/MM/dd"
-                //        });
-                //});
-            </script>
-        }*@
 </body>
 </html>

@@ -61,11 +61,22 @@ namespace B2C.Models
         [RegularExpression("^[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,4}$", ErrorMessage = "Formato de correo invalido")]
         public string Email { get; set; }
 
+        /// <summary>
+        /// Username.
+        /// </summary>
+        [Required(ErrorMessage = "El campo es obligatorio")]
+        [Display(Name = "Nombre usuario")]
+        [MaxLength(40, ErrorMessage = "Longitud maxima permitida de 40")]
+        [RegularExpression(@"([A-Za-zÑñáéíóúÁÉÍÓÚ \s0-9]+)", ErrorMessage = "Digite solo letras y números")]
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// Password.
+        /// </summary>
         [Required(ErrorMessage = "El campo es obligatorio")]
         [DataType(DataType.Password, ErrorMessage = "El campo es obligatorio")]
         [Display(Name = "Clave")]
         [MaxLength(40, ErrorMessage = "Longitud maxima permitida de 40")]
-        //[RegularExpression("^.*(?=.{8,}).*$", ErrorMessage = "Digite solo letras y números")]
         public string Password { get; set; }
 
         /// <summary>
@@ -87,7 +98,7 @@ namespace B2C.Models
         /// <summary>
         /// Status.
         /// </summary>
-        [Display(Name = "Estado")]
+        [Display(Name = "Status")]
         [MaxLength(40, ErrorMessage = "Longitud maxima permitida de 40")]
         [RegularExpression(@"([A-Za-zÑñáéíóúÁÉÍÓÚ \s0-9]+)", ErrorMessage = "Digite solo letras y números")]
         public string Status { get; set; }

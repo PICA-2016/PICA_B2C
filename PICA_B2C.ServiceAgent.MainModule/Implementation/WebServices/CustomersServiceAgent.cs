@@ -19,13 +19,19 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
         /// <returns>Returns true if the credentials are valid.</returns>
         public Customer Authenticate(string userName, string password)
         {
-            if (Parameter.CustomerUserName.Equals(userName) && Parameter.CustomerPassword.Equals(password))
+            var wsAuthentication = new wsAutenticacionReference.wsAutenticacionPortTypeClient();
+            var resultService = wsAuthentication.wsAutenticacionUsuario(userName, password);
+
+            if (resultService != null)
             {
+                var wsCustomer = new wsAdministrarClientesReference.administrarClientesPortTypeClient();
+                var resultCustomerService = wsCustomer.wsConsultaclienteUsuario(userName);
+
                 Customer customer = new Customer()
                 {
-                    CustomerId = 1,
-                    Names = "Liliana",
-                    LastNames = "Giraldo",
+                    CustomerId = Convert.ToInt32(resultCustomerService.FirstOrDefault().CUSTID),
+                    Names = resultCustomerService.FirstOrDefault().FNAME,
+                    LastNames = resultCustomerService.FirstOrDefault().LNAME,
                     Order = new Order
                     {
                         Items = new List<Item>()
@@ -47,7 +53,7 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
         /// <returns>True if the operation was successful.</returns>
         public bool RegisterCustomer(Customer customer)
         {
-            var wsCustomer = new wsInsertaClientesDSReference.insertaClientesDSPortTypeClient();
+            var wsCustomer = new wsAdministrarClientesReference.administrarClientesPortTypeClient();
 
             var resultService = wsCustomer.wsInsertarCliente(
                 customer.Identification,
@@ -55,6 +61,7 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
                 customer.LastNames,
                 customer.Phone,
                 customer.Email,
+                customer.UserName,
                 customer.Password,
                 customer.CrediCardType,
                 customer.CreditCardNumber,
@@ -65,9 +72,6 @@ namespace PICA_B2C.ServiceAgent.MainModule.Implementation.WebServices
                 customer.Country,
                 customer.AddresType,
                 customer.City);
-
-            //resultService.wsInsertarCliente.customer customer = new resultService.wsInsertarCliente.customer();
-            //resultService.wsInsertarCliente.RegisterCustomer(null);
 
             return true;
         }

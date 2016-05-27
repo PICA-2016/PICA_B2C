@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns0="http://pica.com/dss/Productos" xmlns:ns1="http://ws.wso2.org/dataservice" targetNamespace="http://pica.com/dss/Productos" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation />
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://pica.com/dss/Productos">
+      <xs:element name="wsTopCinco">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="PRODID_IN" nillable="true" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Elementos" type="ns0:Elementos" />
+      <xs:complexType name="Elementos">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Elemento" type="ns0:Elemento" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Elemento">
+        <xs:sequence>
+          <xs:element name="CANTIDAD" nillable="true" type="xs:integer" />
+          <xs:element name="PRODID" nillable="true" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ws.wso2.org/dataservice">
+      <xs:element name="DataServiceFault">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="current_params" type="xs:string" />
+            <xs:element name="current_request_name" type="xs:string" />
+            <xs:element name="nested_exception" type="xs:string" />
+            <xs:element name="source_data_service">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="location" type="xs:string" />
+                  <xs:element name="default_namespace" type="xs:string" />
+                  <xs:element name="description" type="xs:string" />
+                  <xs:element name="data_service_name" type="xs:string" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ds_code" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="REQUEST_STATUS" type="xs:string" />
+      <xs:element name="DATA_SERVICE_RESPONSE">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any minOccurs="0" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="wsTopCincoRequest">
+    <wsdl:part name="parameters" element="ns0:wsTopCinco" />
+  </wsdl:message>
+  <wsdl:message name="wsTopCincoResponse">
+    <wsdl:part name="parameters" element="ns0:Elementos" />
+  </wsdl:message>
+  <wsdl:message name="DataServiceFault">
+    <wsdl:part name="parameters" element="ns1:DataServiceFault" />
+  </wsdl:message>
+  <wsdl:portType name="topProductosPortType">
+    <wsdl:operation name="wsTopCinco">
+      <wsdl:documentation />
+      <wsdl:input wsaw:Action="urn:wsTopCinco" message="ns0:wsTopCincoRequest" />
+      <wsdl:output wsaw:Action="urn:wsTopCincoResponse" message="ns0:wsTopCincoResponse" />
+      <wsdl:fault wsaw:Action="urn:wsTopCincoDataServiceFault" name="DataServiceFault" message="ns0:DataServiceFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="topProductosSOAP11Binding" type="ns0:topProductosPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wsTopCinco">
+      <soap:operation soapAction="urn:wsTopCinco" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DataServiceFault">
+        <soap:fault use="literal" name="DataServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="topProductosSOAP12Binding" type="ns0:topProductosPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wsTopCinco">
+      <soap12:operation soapAction="urn:wsTopCinco" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DataServiceFault">
+        <soap12:fault use="literal" name="DataServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="topProductosHttpBinding" type="ns0:topProductosPortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="wsTopCinco">
+      <http:operation location="wsTopCinco" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="topProductos">
+    <wsdl:port name="SOAP11Endpoint" binding="ns0:topProductosSOAP11Binding">
+      <soap:address location="http://192.168.0.14:9763/services/topProductos.SOAP11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SecureSOAP11Endpoint" binding="ns0:topProductosSOAP11Binding">
+      <soap:address location="https://192.168.0.14:9443/services/topProductos.SecureSOAP11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SecureSOAP12Endpoint" binding="ns0:topProductosSOAP12Binding">
+      <soap12:address location="https://192.168.0.14:9443/services/topProductos.SecureSOAP12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SOAP12Endpoint" binding="ns0:topProductosSOAP12Binding">
+      <soap12:address location="http://192.168.0.14:9763/services/topProductos.SOAP12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="HTTPEndpoint" binding="ns0:topProductosHttpBinding">
+      <http:address location="http://192.168.0.14:9763/services/topProductos.HTTPEndpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SecureHTTPEndpoint" binding="ns0:topProductosHttpBinding">
+      <http:address location="https://192.168.0.14:9443/services/topProductos.SecureHTTPEndpoint/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

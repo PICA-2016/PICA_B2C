@@ -52,7 +52,7 @@ namespace PICA_B2C.Business.MainModule.Services
                             }
                             else
                             {
-                                answerProduct = IoCFactory.Resolve<IProductsServiceAgent>().GetProducts(query);
+                                answerProduct = IoCFactory.Resolve<IProductsServiceAgent>().GetProductsByName(query);
                             }
 
                             break;

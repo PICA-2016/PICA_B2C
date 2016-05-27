@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns0="http://pica.com/dss/login" xmlns:ns1="http://ws.wso2.org/dataservice" targetNamespace="http://pica.com/dss/login" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation />
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://pica.com/dss/login">
+      <xs:element name="wsAutenticacionUsuario">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="USUARIOLOGIN" nillable="true" type="xs:string" />
+            <xs:element name="PASSWORDUSUARIO" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Entries" type="ns0:Entries" />
+      <xs:complexType name="Entries">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Entry" type="ns0:Entry" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Entry">
+        <xs:sequence>
+          <xs:element name="NOMBREUSUARIO" nillable="true" type="xs:string" />
+          <xs:element name="CONTRASENA" nillable="true" type="xs:string" />
+          <xs:element name="ESTADO" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ws.wso2.org/dataservice">
+      <xs:element name="DataServiceFault">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="current_params" type="xs:string" />
+            <xs:element name="current_request_name" type="xs:string" />
+            <xs:element name="nested_exception" type="xs:string" />
+            <xs:element name="source_data_service">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="location" type="xs:string" />
+                  <xs:element name="default_namespace" type="xs:string" />
+                  <xs:element name="description" type="xs:string" />
+                  <xs:element name="data_service_name" type="xs:string" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ds_code" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="REQUEST_STATUS" type="xs:string" />
+      <xs:element name="DATA_SERVICE_RESPONSE">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any minOccurs="0" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="wsAutenticacionUsuarioRequest">
+    <wsdl:part name="parameters" element="ns0:wsAutenticacionUsuario" />
+  </wsdl:message>
+  <wsdl:message name="wsAutenticacionUsuarioResponse">
+    <wsdl:part name="parameters" element="ns0:Entries" />
+  </wsdl:message>
+  <wsdl:message name="DataServiceFault">
+    <wsdl:part name="parameters" element="ns1:DataServiceFault" />
+  </wsdl:message>
+  <wsdl:portType name="wsAutenticacionPortType">
+    <wsdl:operation name="wsAutenticacionUsuario">
+      <wsdl:documentation />
+      <wsdl:input wsaw:Action="urn:wsAutenticacionUsuario" message="ns0:wsAutenticacionUsuarioRequest" />
+      <wsdl:output wsaw:Action="urn:wsAutenticacionUsuarioResponse" message="ns0:wsAutenticacionUsuarioResponse" />
+      <wsdl:fault wsaw:Action="urn:wsAutenticacionUsuarioDataServiceFault" name="DataServiceFault" message="ns0:DataServiceFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsAutenticacionSOAP11Binding" type="ns0:wsAutenticacionPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wsAutenticacionUsuario">
+      <soap:operation soapAction="urn:wsAutenticacionUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DataServiceFault">
+        <soap:fault use="literal" name="DataServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsAutenticacionSOAP12Binding" type="ns0:wsAutenticacionPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wsAutenticacionUsuario">
+      <soap12:operation soapAction="urn:wsAutenticacionUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DataServiceFault">
+        <soap12:fault use="literal" name="DataServiceFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsAutenticacionHttpBinding" type="ns0:wsAutenticacionPortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="wsAutenticacionUsuario">
+      <http:operation location="wsAutenticacionUsuario" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsAutenticacion">
+    <wsdl:port name="SOAP11Endpoint" binding="ns0:wsAutenticacionSOAP11Binding">
+      <soap:address location="http://192.168.0.14:9763/services/wsAutenticacion.SOAP11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SecureSOAP11Endpoint" binding="ns0:wsAutenticacionSOAP11Binding">
+      <soap:address location="https://192.168.0.14:9443/services/wsAutenticacion.SecureSOAP11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SecureSOAP12Endpoint" binding="ns0:wsAutenticacionSOAP12Binding">
+      <soap12:address location="https://192.168.0.14:9443/services/wsAutenticacion.SecureSOAP12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SOAP12Endpoint" binding="ns0:wsAutenticacionSOAP12Binding">
+      <soap12:address location="http://192.168.0.14:9763/services/wsAutenticacion.SOAP12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="HTTPEndpoint" binding="ns0:wsAutenticacionHttpBinding">
+      <http:address location="http://192.168.0.14:9763/services/wsAutenticacion.HTTPEndpoint/" />
+    </wsdl:port>
+    <wsdl:port name="SecureHTTPEndpoint" binding="ns0:wsAutenticacionHttpBinding">
+      <http:address location="https://192.168.0.14:9443/services/wsAutenticacion.SecureHTTPEndpoint/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

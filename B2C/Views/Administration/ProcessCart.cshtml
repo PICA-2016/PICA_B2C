@@ -53,10 +53,9 @@
                         </div>
                         <div>
                             *@Html.LabelFor(m => m.CrediCardExpiration)
-                            </div>
+                        </div>
                         <div>
                             <input id="dpCrediCardExpiration" name="CrediCardExpiration" value="@Model.CrediCardExpiration.ToString("yyyy/MM/dd")" onkeydown="return false;" />
-                            @*@Html.TextBoxFor(m => m.CrediCardExpiration, new { @class = "form-control" })*@
                             @Html.ValidationMessageFor(m => m.CrediCardExpiration, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -103,7 +102,7 @@
             </div>
         </div>
         <div>
-            @Html.ValidationMessage("mensajeError", new { @class = "text-danger", id = "validationMessage" }) <br />
+            @Html.ValidationMessage("mensajeError", new { @class = "text-danger", id = "mensajeValidacion" }) <br />
 
             <div id="loader" class="" aletr="" style="display:none">
                 <h5><img src="~/Content/Kendo/Default/loading.gif" />Cargando...</h5>
@@ -120,11 +119,7 @@
                 <button type="button" style="width:110px; height:80px;" onclick="window.location.href = '@Url.Action("ShoppingCarts")'">
                     <img src="~/Content/Images/Cancelar.png" /><h5>Cancelar</h5>
                 </button>
-                @*<button type="button" onclick="window.location.href = '@Url.Action("RegistroInformacion")'">
-                    <img src="~/Content/Imagenes/im_volver.png" /><h5>@Language.Etiqueta_Volver</h5>
-                </button>*@
             </div>
-
         </div>
     }
 </div>
@@ -136,11 +131,11 @@
     <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
 
     <script src="~/Scripts/Kendo/kendo.core.min.js"></script>
-<script src="~/Scripts/Kendo/kendo.calendar.min.js"></script>
-<script src="~/Scripts/Kendo/kendo.popup.min.js"></script>
-<script src="~/Scripts/Kendo/kendo.datepicker.min.js"></script>
-<script src="~/Scripts/Kendo/kendo.datetimepicker.min.js"></script>
-<script src="~/Scripts/Kendo/kendo.timepicker.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.calendar.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.popup.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.datepicker.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.datetimepicker.min.js"></script>
+    <script src="~/Scripts/Kendo/kendo.timepicker.min.js"></script>
     <script src="~/Scripts/Kendo/kendo.data.min.js"></script>
     <script src="~/Scripts/Kendo/kendo.userevents.min.js"></script>
     <script src="~/Scripts/Kendo/kendo.listview.min.js"></script>

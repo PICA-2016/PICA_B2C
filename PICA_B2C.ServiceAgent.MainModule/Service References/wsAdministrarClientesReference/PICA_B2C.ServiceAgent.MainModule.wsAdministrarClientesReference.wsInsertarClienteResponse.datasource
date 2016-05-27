@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="wsInsertarClienteResponse" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>PICA_B2C.ServiceAgent.MainModule.wsInsertaClientesDSReference.wsInsertarClienteResponse, Service References.wsInsertaClientesDSReference.Reference.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+   <TypeInfo>PICA_B2C.ServiceAgent.MainModule.wsAdministrarClientesReference.wsInsertarClienteResponse, Service References.wsAdministrarClientesReference.Reference.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

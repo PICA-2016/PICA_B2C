@@ -17,14 +17,14 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="demo-section k-content">
-                    <input type="radio" value="Code" name="search" data-bind="checked: selectedSearch" class="k-radio" checked="checked">
-                    <label class="k-radio-label" for="search2">Código de Producto</label>
-
-                    <input type="radio" value="Name" name="search" data-bind="checked: selectedSearch" class="k-radio">
+                    <input type="radio" value="Name" name="search" data-bind="checked: selectedSearch" class="k-radio" checked="checked">
                     <label class="k-radio-label" for="search3">Nombre de Producto</label>
 
                     <input type="radio" value="Description" name="search" data-bind="checked: selectedSearch" class="k-radio">
                     <label class="k-radio-label" for="search4">Descripción de Producto</label>
+
+                    <input type="radio" value="Code" name="search" data-bind="checked: selectedSearch" class="k-radio">
+                    <label class="k-radio-label" for="search2">Código de Producto</label>
                 </div>
 
                 <div class="dataTable_wrapper">
@@ -60,7 +60,6 @@
     @Scripts.Render("~/bundles/dataTables_bootstrap"),
     @*@Scripts.Render("~/bundles/table")*@
 
-    @*<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>*@
     <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
 
     <script type="text/javascript">

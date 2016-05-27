@@ -49,7 +49,22 @@
     <Compile Include="Implementation\WebServices\OrdersServiceAgent.cs" />
     <Compile Include="Implementation\WebServices\ProductsServiceAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\wsInsertaClientesDSReference\Reference.cs">
+    <Compile Include="Service References\wsAdministrarCampanasReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\wsAdministrarClientesReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\wsAutenticacionReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\wsConsultasProductosReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -59,17 +74,105 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\wsTopProductsReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Service References\wsInsertaClientesDSReference\insertaClientesDS.wsdl" />
-    <None Include="Service References\wsInsertaClientesDSReference\PICA_B2C.ServiceAgent.MainModule.wsInsertaClientesDSReference.Cliente.datasource">
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsAdministrarCampanasReference\administrarCampanas1.wsdl" />
+    <None Include="Service References\wsAdministrarCampanasReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarCampanasReference.CampanaAct.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\wsInsertaClientesDSReference\PICA_B2C.ServiceAgent.MainModule.wsInsertaClientesDSReference.wsInsertarClienteResponse.datasource">
+    <None Include="Service References\wsAdministrarCampanasReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarCampanasReference.CampanaCons.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarCampanasReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarCampanasReference.CampanaConXPro.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarCampanasReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarCampanasReference.CampanaInsert.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarCampanasReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarCampanasReference.CampanaInsPC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarCampanasReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarCampanasReference.wsActualizarCampanaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarCampanasReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarCampanasReference.wsConsultaCampanaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarCampanasReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarCampanasReference.wsConsultarProductosXCampanaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarCampanasReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarCampanasReference.wsInsertaProductoCampanaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarCampanasReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarCampanasReference.wsInsertarCampanaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarClientesReference\administrarClientes1.wsdl" />
+    <None Include="Service References\wsAdministrarClientesReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarClientesReference.ElementoCons.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarClientesReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarClientesReference.ElementoConsUsu.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarClientesReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarClientesReference.ElementoIns.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarClientesReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarClientesReference.wsConsultaClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarClientesReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarClientesReference.wsConsultaclienteUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAdministrarClientesReference\PICA_B2C.ServiceAgent.MainModule.wsAdministrarClientesReference.wsInsertarClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAutenticacionReference\PICA_B2C.ServiceAgent.MainModule.wsAutenticacionReference.Entry.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAutenticacionReference\PICA_B2C.ServiceAgent.MainModule.wsAutenticacionReference.wsAutenticacionUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsAutenticacionReference\wsAutenticacion.wsdl" />
+    <None Include="Service References\wsConsultasProductosReference\consultasEspecialesProductos1.wsdl" />
+    <None Include="Service References\wsConsultasProductosReference\PICA_B2C.ServiceAgent.MainModule.wsConsultasProductosReference.ConsultaProductoXID.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsConsultasProductosReference\PICA_B2C.ServiceAgent.MainModule.wsConsultasProductosReference.ConsultaProXDes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsConsultasProductosReference\PICA_B2C.ServiceAgent.MainModule.wsConsultasProductosReference.ConsultaProXNombre.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsConsultasProductosReference\PICA_B2C.ServiceAgent.MainModule.wsConsultasProductosReference.RankingCategoria.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsConsultasProductosReference\PICA_B2C.ServiceAgent.MainModule.wsConsultasProductosReference.RankingProducto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsConsultasProductosReference\PICA_B2C.ServiceAgent.MainModule.wsConsultasProductosReference.wsBuscarProductosXDescripcionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsConsultasProductosReference\PICA_B2C.ServiceAgent.MainModule.wsConsultasProductosReference.wsBuscarproductosXNombreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsConsultasProductosReference\PICA_B2C.ServiceAgent.MainModule.wsConsultasProductosReference.wsBuscarproductoXIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsConsultasProductosReference\PICA_B2C.ServiceAgent.MainModule.wsConsultasProductosReference.wsRankingCategoriasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsConsultasProductosReference\PICA_B2C.ServiceAgent.MainModule.wsConsultasProductosReference.wsRankingProductosResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\wsProductsReference\consultarProductos.wsdl" />
@@ -91,6 +194,13 @@
     <None Include="Service References\wsProductsReference\PICA_B2C.ServiceAgent.MainModule.wsProductsReference.producto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\wsTopProductsReference\PICA_B2C.ServiceAgent.MainModule.wsTopProductsReference.Elemento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsTopProductsReference\PICA_B2C.ServiceAgent.MainModule.wsTopProductsReference.wsTopCincoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\wsTopProductsReference\topProductos.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PICA_B2C.Business.MainModule.Entities\PICA_B2C.Business.MainModule.Entities.csproj">
@@ -103,8 +213,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\wsInsertaClientesDSReference\" />
+    <WCFMetadataStorage Include="Service References\wsAdministrarCampanasReference\" />
+    <WCFMetadataStorage Include="Service References\wsAdministrarClientesReference\" />
+    <WCFMetadataStorage Include="Service References\wsAutenticacionReference\" />
+    <WCFMetadataStorage Include="Service References\wsConsultasProductosReference\" />
     <WCFMetadataStorage Include="Service References\wsProductsReference\" />
+    <WCFMetadataStorage Include="Service References\wsTopProductsReference\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\wsProductsReference\configuration91.svcinfo" />
@@ -119,13 +233,61 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\wsInsertaClientesDSReference\configuration91.svcinfo" />
+    <None Include="Service References\wsAdministrarClientesReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\wsInsertaClientesDSReference\configuration.svcinfo" />
+    <None Include="Service References\wsAdministrarClientesReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\wsInsertaClientesDSReference\Reference.svcmap">
+    <None Include="Service References\wsAdministrarClientesReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsAutenticacionReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsAutenticacionReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsAutenticacionReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsTopProductsReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsTopProductsReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsTopProductsReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsAdministrarCampanasReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsAdministrarCampanasReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsAdministrarCampanasReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsConsultasProductosReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsConsultasProductosReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\wsConsultasProductosReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -146,7 +146,8 @@ namespace B2C.Controllers
                 if (product.Id == 0 )
                 {
                     ViewData["Result"] = false;
-                    ViewData["MostrarMensaje"] = "Se debe especificar el id del producto.";
+                    //ViewData["MostrarMensaje"] = "Se debe especificar el id del producto.";
+                    ModelState.AddModelError("mensajeError", "Se debe especificar el id del producto.");
                     return View("Products");
                 }
                 else
@@ -193,7 +194,7 @@ namespace B2C.Controllers
 
             AnswerPage<Product> answerProduct = new AnswerPage<Product>();
 
-            answerProduct = IoCFactoryBusiness.Resolve<IProductsService>().GetProductsTop5(new BaseQueryPagination() { Page = 1, PageSize = 5, Contains = string.Empty});
+            answerProduct = IoCFactoryBusiness.Resolve<IProductsService>().GetProductsTop5(new BaseQueryPagination() { Page = 1, PageSize = 5, Contains = "1"});
 
             if (answerProduct.Results.Count > 0)
             {
@@ -230,15 +231,7 @@ namespace B2C.Controllers
             //}
 
             Order order = GetOrder();
-
-            if (order != null)
-            {
-                ViewData["subtotal"] = order.Items.Sum(itm => itm.Product.ListPrice*itm.Quantity);
-            }
-            else
-            {
-                ViewData["subtotal"] = 0;
-            }
+            ViewData["subtotal"] = order == null ? 0 : order.Items.Sum(itm => itm.Product.ListPrice * itm.Quantity);
 
             return View();
         }
@@ -256,12 +249,27 @@ namespace B2C.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            if(action.Equals("process"))
+            if (action.Equals("process"))
             {
+                Order order = GetOrder();
+
+                if (order.Items.Count() == 0)
+                {
+                    ModelState.AddModelError("mensajeError", "La orden no tiene productos para procesar");
+                    return View();
+                }
                 return RedirectToAction("ProcessCart");
             }
+
             if(action.Equals("cancelOrder"))
             {
+                Order order = GetOrder();
+                if (order.Items.Count() == 0)
+                {
+                    ModelState.AddModelError("mensajeError", "La orden no tiene productos para cancelar");
+                    return View();
+                }
+
                 int customerId = !User.Identity.IsAuthenticated ? 0 : Convert.ToInt32((User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier.ToString()).Value);
 
                 var result = IoCFactoryBusiness.Resolve<IItemsService>().DeleteItemsByCustomerId(customerId);
@@ -287,9 +295,15 @@ namespace B2C.Controllers
                     {
                         AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, id);
                     }
-                }
 
-                return RedirectToAction("ShoppingCarts");
+                    return RedirectToAction("ShoppingCarts");
+                }
+                else
+                {
+                    ViewData["subtotal"] = order == null ? 0 : order.Items.Sum(itm => itm.Product.ListPrice * itm.Quantity);
+
+                    ModelState.AddModelError("mensajeError", "No se pudo cancelar la orden");
+                }
             }
 
             return View();
@@ -346,7 +360,8 @@ namespace B2C.Controllers
             if (string.IsNullOrEmpty(productId))
             {
                 ViewData["Result"] = false;
-                ViewData["MostrarMensaje"] = "Se debe especificar el id del producto.";
+                //ViewData["MostrarMensaje"] = "Se debe especificar el id del producto.";
+                ModelState.AddModelError("mensajeError", "Se debe especificar el id del producto.");
             }
             else
             {
@@ -405,7 +420,8 @@ namespace B2C.Controllers
             if (item == null)
             {
                 ViewData["Result"] = false;
-                ViewData["MostrarMensaje"] = "Se debe especificar el id del producto.";
+                //ViewData["MostrarMensaje"] = "Se debe especificar el id del producto.";
+                ModelState.AddModelError("mensajeError", "Se debe especificar el id del producto.");
             }
             else
             {
@@ -504,6 +520,12 @@ namespace B2C.Controllers
                 {
                     AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, id);
                 }
+
+                ModelState.AddModelError("mensajeError", "Orden procesada correctamente");
+            }
+            else
+            {
+                ModelState.AddModelError("mensajeError", "No se pudo procesar la orden");
             }
 
             return View("ShoppingCarts");

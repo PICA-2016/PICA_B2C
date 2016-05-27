@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ca0f4c4d-f6c5-4335-a02b-498516883d18" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0cb3d482-295c-4b04-825d-2a48e088bbe1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,10 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:9763/services/insertaClientesDS?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://169.254.204.13:9763/services/administrarCampanas?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="insertaClientesDS.wsdl" MetadataType="Wsdl" ID="7fcd7777-662e-480b-a02c-bcd420b0d214" SourceId="1" SourceUrl="http://localhost:9763/services/insertaClientesDS?wsdl" />
+    <MetadataFile FileName="administrarCampanas1.wsdl" MetadataType="Wsdl" ID="fe15fc1e-8b7a-4256-ba55-44222a794d68" SourceId="1" SourceUrl="http://169.254.204.13:9763/services/administrarCampanas?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

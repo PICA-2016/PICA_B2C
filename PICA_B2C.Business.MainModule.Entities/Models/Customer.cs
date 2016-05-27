@@ -42,6 +42,11 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
         public string Email { get; set; }
 
         /// <summary>
+        /// Customer UserName.
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
         /// Customer Password.
         /// </summary>
         public string Password { get; set; }
@@ -100,6 +105,7 @@ namespace PICA_B2C.Business.MainModule.Entities.Models
         /// Order.
         /// </summary>
         public virtual Order Order { get; set; }
+        
 
         ///// <summary>
         ///// Identifiers orders.

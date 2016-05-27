@@ -41,7 +41,8 @@ namespace B2C.Controllers
         {
             if (!string.IsNullOrEmpty(message))
             {
-                ViewData["MostrarMensaje"] = message;
+                //ViewData["MostrarMensaje"] = message;
+                ModelState.AddModelError("mensajeError", message);
             }
 
             ViewBag.ReturnUrl = returnUrl;
@@ -78,7 +79,8 @@ namespace B2C.Controllers
                 }
                 else
                 {
-                    ViewData["MostrarMensaje"] = "Credenciales incorrectas";
+                    //ViewData["MostrarMensaje"] = "Credenciales incorrectas";
+                    ModelState.AddModelError("mensajeError", "Credenciales incorrectas");
                 }
             }
 
@@ -182,6 +184,7 @@ namespace B2C.Controllers
                         LastNames = model.LastNames,
                         Phone = model.Phone,
                         Email = model.Email,
+                        UserName = model.UserName,
                         Password = model.Password,
                         CrediCardType = model.CrediCardType,
                         CreditCardNumber = model.CreditCardNumber,
@@ -198,7 +201,8 @@ namespace B2C.Controllers
 
                     if (!answerCustomer)
                     {
-                        ViewData["MostrarMensaje"] = "Cliente no registrodo";
+                        //ViewData["MostrarMensaje"] = "Cliente no registrodo";
+                        ModelState.AddModelError("mensajeError", "Cliente no registrodo");
                     }
                     
                     else

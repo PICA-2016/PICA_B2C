@@ -13,12 +13,12 @@ namespace PICA_B2C.ServiceAgent.MainModule.Contracts
     /// </summary>
     public interface IProductsServiceAgent
     {
-        /// <summary>
-        /// Get Products.
-        /// </summary>
-        /// <param name="query">Query.</param>
-        /// <returns>Products.</returns>
-        AnswerPage<Product> GetProducts(BaseQueryPagination query);
+        ///// <summary>
+        ///// Get Products.
+        ///// </summary>
+        ///// <param name="query">Query.</param>
+        ///// <returns>Products.</returns>
+        //AnswerPage<Product> GetProducts(BaseQueryPagination query);
 
         /// <summary>
         /// Get Products by Name.
